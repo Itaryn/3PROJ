@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace BlockchainDemo
+namespace KittyCoins.Models
 {
     public class Blockchain
     {
-        public IList<Transfer> PendingTransfers = new List<Transfer>();
+        public IList<Transfer> PendingTransfers;
         public IList<Block> KittyChain { set;  get; }
         public int Difficulty { set; get; } = 2;
 
         public Blockchain()
         {
-            KittyChain = new List<Block>();
-            PendingTransfers = new List<Transfer>();
+            InitializeChain();
         }
-        public Blockchain(List<Block> kittyChain, List<Transfer> pendingTransfers)
+        public Blockchain(List<Block> kittyChain, IList<Transfer> pendingTransfers)
         {
             KittyChain = kittyChain;
             PendingTransfers = pendingTransfers;
@@ -26,8 +24,8 @@ namespace BlockchainDemo
         public void InitializeChain()
         {
             KittyChain = new List<Block>();
-            var block = new Block(DateTime.Now, null, PendingTransfers);
             PendingTransfers = new List<Transfer>();
+            var block = new Block(0, DateTime.Now, null, PendingTransfers);
             AddBlock(block);
         }
         
@@ -36,23 +34,23 @@ namespace BlockchainDemo
             return KittyChain.Last();
         }
 
-        public void CreateTransaction(Transfer transaction)
+        public void CreateTransfer(Transfer transfer)
         {
-            PendingTransfers.Add(transaction);
+            PendingTransfers.Add(transfer);
         }
-        public void ProcessPendingTransactions(string minerAddress)
+        public void ProcessPendingTransfers(string minerAddress)
         {
             var latestBlock = GetLatestBlock();
-            var block = new Block(DateTime.Now, latestBlock.Hash, PendingTransfers, latestBlock.Index + 1);
+            var block = new Block(latestBlock.Index + 1, DateTime.Now, latestBlock.Hash, PendingTransfers);
             AddBlock(block);
 
             PendingTransfers = new List<Transfer>();
-            CreateTransaction(new Transfer(null, minerAddress, block.Transfers.Sum(transfer => transfer.Biscuit), 0));
+            CreateTransfer(new Transfer(null, minerAddress, block.Transfers.Sum(transfer => transfer.Biscuit), 0));
         }
 
         public void AddBlock(Block block)
         {
-            block.Mine(Difficulty);
+            //block.Mine(Difficulty);
             KittyChain.Add(block);
         }
 
@@ -75,19 +73,30 @@ namespace BlockchainDemo
             double balance = 0;
 
             foreach (var block in KittyChain)
-                foreach (var transaction in block.Transfers)
+                foreach (var transfer in block.Transfers)
                 {
-                    if (transaction.FromAddress == address)
+                    if (transfer.FromAddress == address)
                     {
-                        balance -= transaction.Amount;
-                        balance -= transaction.Biscuit;
+                        balance -= transfer.Amount;
+                        balance -= transfer.Biscuit;
                     }
 
-                    if (transaction.ToAddress == address)
-                        balance += transaction.Amount;
+                    if (transfer.ToAddress == address)
+                        balance += transfer.Amount;
                 }
 
             return balance;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Blockchain compareChain;
+            try { compareChain = (Blockchain)obj; }
+            catch (Exception) { return false; }
+            if (compareChain == null) return false;
+
+            return KittyChain.Equals(compareChain.KittyChain) &&
+                   PendingTransfers.Equals(compareChain.PendingTransfers);
         }
     }
 }

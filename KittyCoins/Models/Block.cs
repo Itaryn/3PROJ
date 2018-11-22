@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
 
-namespace BlockchainDemo
+namespace KittyCoins.Models
 {
     public class Block
     {
@@ -15,7 +15,7 @@ namespace BlockchainDemo
         public Guid Guid { get; set; }
         public string Hash { get; set; }
 
-        public Block(DateTime creationDate, string previousHash, IList<Transfer> transfers, int index = 0)
+        public Block(int index, DateTime creationDate, string previousHash, IList<Transfer> transfers)
         {
             Index = index;
             CreationDate = creationDate;
@@ -41,6 +41,21 @@ namespace BlockchainDemo
                 Guid = new Guid();
                 Hash = CalculateHash();
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            Block compareBlock;
+            try { compareBlock = (Block)obj; }
+            catch (Exception) { return false; }
+            if (compareBlock == null) return false;
+
+            return Index.Equals(compareBlock.Index) &&
+                   CreationDate.Equals(compareBlock.CreationDate) &&
+                   PreviousHash.Equals(compareBlock.PreviousHash) &&
+                   Transfers.Equals(compareBlock.Transfers) &&
+                   Guid.Equals(compareBlock.Guid) &&
+                   Hash.Equals(compareBlock.Hash);
         }
     }
 }

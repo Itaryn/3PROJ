@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Security.Policy;
 
-namespace BlockchainDemo
+namespace KittyCoins.Models
 {
     public class Transfer
     {
@@ -17,6 +16,19 @@ namespace BlockchainDemo
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Transfer compareTransfer;
+            try { compareTransfer = (Transfer)obj; }
+            catch (Exception) { return false; }
+            if (compareTransfer == null) return false;
+
+            return FromAddress.Equals(compareTransfer.FromAddress) &&
+                   ToAddress.Equals(compareTransfer.ToAddress) &&
+                   Amount.Equals(compareTransfer.Amount) &&
+                   Biscuit.Equals(compareTransfer.Biscuit);
         }
     }
 }
