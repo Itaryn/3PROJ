@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using System.Windows.Input;
 using KittyCoins.Models;
+using Newtonsoft.Json;
 using Prism.Commands;
+using WebSocketSharp;
 
 namespace KittyCoins.ViewModels
 {
@@ -9,37 +12,52 @@ namespace KittyCoins.ViewModels
     {
         private bool _checkBoxMine;
         private int _port;
-        private string _serverUrl;
+        private string _peerUrl;
+        private string _consoleOutput = "";
+        public static Blockchain BlockChain = new Blockchain();
+        private Client Client;
         public MainViewModel()
         {
-            LaunchServerCommand = new DelegateCommand(Mining);
+            LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
+            NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
 
             Port = 0;
-            ServerUrl = "127.0.0.1:6002";
+            PeerUrl = "127.0.0.1:6002";
         }
 
         public ICommand LaunchServerCommand { get; }
+        public ICommand NewTransactionCommand { get; }
 
         #region Mining
 
+        public void LaunchServerMethod()
+        {
+            var test = new Thread(Mining);
+            test.Start();
+        }
         public void Mining()
         {
             var name = "Unknown";
-            Client miner;
+            Client = new Client();
+            var Server = new Server();
+            Server.Start(Port);
 
-            if (Port > 0)
-            {
-                miner = new Client(Port);
-            }
-            
-            while (true)
-            {
 
+            while (CheckBoxMine)
+            {
+                Thread.Sleep(1000);
             }
 
-            //Client.Close();
+            Client.Close();
+            Server.wss.Stop();
         }
         #endregion
+
+        public void NewTransactionMethod()
+        {
+            Client.Connect("ws://127.0.0.1:6002/Blockchain");
+            Client.Send("ws://127.0.0.1:6002/Blockchain", JsonConvert.SerializeObject(BlockChain));
+        }
 
         #region Input
         public bool CheckBoxMine
@@ -62,14 +80,24 @@ namespace KittyCoins.ViewModels
                 RaisePropertyChanged("Port");
             }
         }
-        public string ServerUrl
+        public string PeerUrl
         {
-            get => _serverUrl;
+            get => _peerUrl;
             set
             {
-                if (_serverUrl == value) return;
-                _serverUrl = value;
-                RaisePropertyChanged("ServerUrl");
+                if (_peerUrl == value) return;
+                _peerUrl = value;
+                RaisePropertyChanged("PeerUrl");
+            }
+        }
+        public string Console
+        {
+            get => _consoleOutput;
+            set
+            {
+                if (_consoleOutput == value) return;
+                _consoleOutput += value + "\n";
+                RaisePropertyChanged("Console");
             }
         }
         #endregion

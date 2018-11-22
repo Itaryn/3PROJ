@@ -1,52 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KittyCoins.ViewModels;
 using Newtonsoft.Json;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
 namespace KittyCoins.Models
 {
-    public class Client : WebSocketBehavior
+    public class Client
     {
         IDictionary<string, WebSocket> wsDict;
-        public Blockchain Chain;
-        WebSocketServer wss;
-        
-        public Client(int port)
+
+        public Client()
         {
             wsDict = new Dictionary<string, WebSocket>();
-            Chain = new Blockchain();
-
-            wss = new WebSocketServer($"ws://127.0.0.1:{port}");
-            wss.Start();
         }
 
-        protected override void OnMessage(MessageEventArgs e)
+        public void Connect(string url)
         {
-            var chainReceived = JsonConvert.DeserializeObject<Blockchain>(e.Data);
-            if (!chainReceived.IsValid() && !Chain.IsValid()) return;
-            if (!chainReceived.IsValid() && Chain.IsValid())
-                Send(JsonConvert.SerializeObject(Chain));
-            else if (chainReceived.KittyChain.Count > Chain.KittyChain.Count)
-            {
-                var newTransactions = new List<Transfer>();
-                newTransactions.AddRange(chainReceived.PendingTransfers);
-                newTransactions.AddRange(Chain.PendingTransfers);
+            if (wsDict.ContainsKey(url)) return;
 
-                chainReceived.PendingTransfers = newTransactions;
-                Chain = chainReceived;
-            }
-            else if (chainReceived.KittyChain.Count < Chain.KittyChain.Count)
-                Send(JsonConvert.SerializeObject(Chain));
-            else if (chainReceived.Equals(Chain)) return;
-            else
+            var ws = new WebSocket(url);
+            ws.OnMessage += (sender, e) =>
             {
-                // Si elles sont égales en tailles mais avec des blocs différents, faire un choix ou stocké les 2, etc
-            }
+                var chainReceived = JsonConvert.DeserializeObject<Blockchain>(e.Data);
+                if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid()) return;
+                if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
+                    Send(ws.Origin, JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                else if (chainReceived.KittyChain.Count > MainViewModel.BlockChain.KittyChain.Count)
+                {
+                    var newTransactions = new List<Transfer>();
+                    newTransactions.AddRange(chainReceived.PendingTransfers);
+                    newTransactions.AddRange(MainViewModel.BlockChain.PendingTransfers);
+
+                    chainReceived.PendingTransfers = newTransactions;
+                    MainViewModel.BlockChain = chainReceived;
+                }
+                else if (chainReceived.KittyChain.Count < MainViewModel.BlockChain.KittyChain.Count)
+                    Send(ws.Origin, JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                else if (chainReceived.Equals(MainViewModel.BlockChain)) return;
+                else
+                {
+                    // Si elles sont égales en tailles mais avec des blocs différents, faire un choix ou stocké les 2, etc
+                }
+
+            };
+            ws.Connect();
+            ws.Send(JsonConvert.SerializeObject(MainViewModel.BlockChain));
+            wsDict.Add(url, ws);
         }
 
-        public void SendTo(string url, string data)
+        public void Send(string url, string data)
         {
             if (wsDict.ContainsKey(url))
             {
