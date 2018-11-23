@@ -14,7 +14,7 @@ namespace KittyCoins.ViewModels
         private int _port;
         private string _peerUrl;
         private string _consoleOutput = "";
-        public static Blockchain BlockChain = new Blockchain();
+        public static KittyChain BlockChain = new KittyChain();
         private Client Client;
         public MainViewModel()
         {

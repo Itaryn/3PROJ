@@ -4,41 +4,42 @@ using System.Linq;
 
 namespace KittyCoins.Models
 {
-    public class Blockchain
+    public class KittyChain
     {
         public IList<Transfer> PendingTransfers;
-        public IList<Block> KittyChain { set;  get; }
+        public IList<Block> Chain { set;  get; }
         public int Difficulty { set; get; } = 2;
+        public Block CurrentMineBlock;
 
-        public Blockchain()
+        public KittyChain()
         {
             InitializeChain();
         }
-        public Blockchain(List<Block> kittyChain, IList<Transfer> pendingTransfers)
+        public KittyChain(IList<Block> chain, IList<Transfer> pendingTransfers)
         {
-            KittyChain = kittyChain;
+            Chain = chain;
             PendingTransfers = pendingTransfers;
         }
 
 
         public void InitializeChain()
         {
-            KittyChain = new List<Block>();
+            Chain = new List<Block>();
             PendingTransfers = new List<Transfer>();
-            var block = new Block(0, DateTime.Now, null, PendingTransfers);
-            AddBlock(block);
+            CurrentMineBlock = new Block(0, DateTime.Now, null, PendingTransfers);
         }
         
         public Block GetLatestBlock()
         {
-            return KittyChain.Last();
+            return Chain.Last();
         }
 
         public void CreateTransfer(Transfer transfer)
         {
             PendingTransfers.Add(transfer);
         }
-        public void ProcessPendingTransfers(string minerAddress)
+
+        public void AddBlock(string minerAdress, Block block)
         {
             var latestBlock = GetLatestBlock();
             var block = new Block(latestBlock.Index + 1, DateTime.Now, latestBlock.Hash, PendingTransfers);
@@ -46,12 +47,6 @@ namespace KittyCoins.Models
 
             PendingTransfers = new List<Transfer>();
             CreateTransfer(new Transfer(null, minerAddress, block.Transfers.Sum(transfer => transfer.Biscuit), 0));
-        }
-
-        public void AddBlock(Block block)
-        {
-            //block.Mine(Difficulty);
-            KittyChain.Add(block);
         }
 
         public bool IsValid()
@@ -90,8 +85,8 @@ namespace KittyCoins.Models
 
         public override bool Equals(object obj)
         {
-            Blockchain compareChain;
-            try { compareChain = (Blockchain)obj; }
+            KittyChain compareChain;
+            try { compareChain = (KittyChain)obj; }
             catch (Exception) { return false; }
             if (compareChain == null) return false;
 

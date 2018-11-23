@@ -16,7 +16,7 @@ namespace KittyCoins
         public int Port;
         //public static P2PServer Server = null;
         //public static P2PClient Client = new P2PClient();
-        public static Blockchain KittyChain = new Blockchain();
+        public static KittyChain KittyChain = new KittyChain();
         public string Name = "Unknown";
 
         public Main(int port, string name)

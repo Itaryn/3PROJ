@@ -24,7 +24,7 @@ namespace KittyCoins.Models
             var ws = new WebSocket(url);
             ws.OnMessage += (sender, e) =>
             {
-                var chainReceived = JsonConvert.DeserializeObject<Blockchain>(e.Data);
+                var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data);
                 if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid()) return;
                 if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                     Send(ws.Origin, JsonConvert.SerializeObject(MainViewModel.BlockChain));

@@ -24,7 +24,7 @@ namespace KittyCoins.Models
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            var chainReceived = JsonConvert.DeserializeObject<Blockchain>(e.Data);
+            var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data);
             if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid()) return;
             if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                 Send(JsonConvert.SerializeObject(MainViewModel.BlockChain));
