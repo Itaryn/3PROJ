@@ -28,7 +28,7 @@ namespace KittyCoins.Models
             if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid()) return;
             if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                 Send(JsonConvert.SerializeObject(MainViewModel.BlockChain));
-            else if (chainReceived.KittyChain.Count > MainViewModel.BlockChain.KittyChain.Count)
+            else if (chainReceived.Chain.Count > MainViewModel.BlockChain.Chain.Count)
             {
                 var newTransactions = new List<Transfer>();
                 newTransactions.AddRange(chainReceived.PendingTransfers);
@@ -37,7 +37,7 @@ namespace KittyCoins.Models
                 chainReceived.PendingTransfers = newTransactions;
                 MainViewModel.BlockChain = chainReceived;
             }
-            else if (chainReceived.KittyChain.Count < MainViewModel.BlockChain.KittyChain.Count)
+            else if (chainReceived.Chain.Count < MainViewModel.BlockChain.Chain.Count)
                 Send(JsonConvert.SerializeObject(MainViewModel.BlockChain));
             else if (chainReceived.Equals(MainViewModel.BlockChain)) return;
             else

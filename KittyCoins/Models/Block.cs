@@ -33,14 +33,12 @@ namespace KittyCoins.Models
             return Convert.ToBase64String(outputBytes);
         }
 
-        public void Mine(int difficulty)
+        public bool TryHash(int difficulty)
         {
             var firstK = new string('K', difficulty);
-            while (Hash == null || Hash.Substring(0, difficulty) != firstK)
-            {
-                Guid = new Guid();
-                Hash = CalculateHash();
-            }
+            Guid = new Guid();
+            Hash = CalculateHash();
+            return Hash.StartsWith(firstK);
         }
 
         public override bool Equals(object obj)

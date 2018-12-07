@@ -14,8 +14,8 @@ namespace KittyCoins
     class Main
     {
         public int Port;
-        //public static P2PServer Server = null;
-        //public static P2PClient Client = new P2PClient();
+        public static Server Server = null;
+        public static Client Client = new Client();
         public static KittyChain KittyChain = new KittyChain();
         public string Name = "Unknown";
 
