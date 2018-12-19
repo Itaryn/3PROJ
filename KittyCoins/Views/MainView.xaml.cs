@@ -27,5 +27,10 @@ namespace KittyCoins.Views
             _viewModel = new MainViewModel();
             DataContext = _viewModel;
         }
+
+        private void ScrollToTheEnd(object sender, TextChangedEventArgs e)
+        {
+            ConsoleGUI.ScrollToEnd();
+        }
     }
 }

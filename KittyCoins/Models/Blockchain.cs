@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace KittyCoins.Models
 {
     public class KittyChain
     {
-        public IList<Transfer> PendingTransfers;
-        public IList<Block> Chain { set;  get; }
+        public List<Transfer> PendingTransfers;
+        public List<Block> Chain { set;  get; }
         public int Difficulty { set; get; } = 2;
         public double Biscuit { set; get; } = 10;
         public Block CurrentMineBlock;
@@ -16,7 +17,7 @@ namespace KittyCoins.Models
         {
             InitializeChain();
         }
-        public KittyChain(IList<Block> chain, IList<Transfer> pendingTransfers)
+        public KittyChain(List<Block> chain, List<Transfer> pendingTransfers)
         {
             Chain = chain;
             PendingTransfers = pendingTransfers;
@@ -25,7 +26,7 @@ namespace KittyCoins.Models
 
         public void InitializeChain()
         {
-            Chain = new List<Block>();
+            Chain = new List<Block> {new Block(0, DateTime.UtcNow, string.Empty, new List<Transfer>())};
             PendingTransfers = new List<Transfer>();
             CurrentMineBlock = new Block(0, DateTime.Now, null, PendingTransfers);
         }
@@ -85,6 +86,11 @@ namespace KittyCoins.Models
 
             return Chain.Equals(compareChain.Chain) &&
                    PendingTransfers.Equals(compareChain.PendingTransfers);
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

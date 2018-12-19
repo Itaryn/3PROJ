@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -80,13 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="KittyMiner.cs" />
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Blockchain.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\P2PClient.cs" />
-    <Compile Include="Models\P2PServer.cs" />
-    <Compile Include="Models\Program.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
