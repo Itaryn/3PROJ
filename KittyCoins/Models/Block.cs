@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
@@ -11,26 +12,28 @@ namespace KittyCoins.Models
         public int Index { get; set; }
         public DateTime CreationDate { get; set; }
         public string PreviousHash { get; set; }
-        public IList<Transfer> Transfers { get; set; }
+        public List<Transfer> Transfers { get; set; }
         public Guid Guid { get; set; }
         public string Hash { get; set; }
 
-        public Block(int index, DateTime creationDate, string previousHash, IList<Transfer> transfers)
+        public Block(int index, DateTime creationDate, string previousHash, List<Transfer> transfers)
         {
             Index = index;
             CreationDate = creationDate;
             PreviousHash = previousHash;
             Transfers = transfers;
+            Guid = new Guid();
+            Hash = CalculateHash();
         }
 
         public string CalculateHash()
         {
-            var sha256 = SHA256.Create();
-
-            var inputBytes = Encoding.ASCII.GetBytes($"{CreationDate}-{PreviousHash ?? ""}-{JsonConvert.SerializeObject(Transfers)}-{Guid}");
-            var outputBytes = sha256.ComputeHash(inputBytes);
-
-            return Convert.ToBase64String(outputBytes);
+            using (var hash = SHA256.Create())
+            {
+                return string.Concat(hash
+                    .ComputeHash(Encoding.UTF8.GetBytes($"{CreationDate}-{PreviousHash ?? ""}-{JsonConvert.SerializeObject(Transfers)}-{Guid}"))
+                    .Select(item => item.ToString("x2")));
+            }
         }
 
         public bool TryHash(int difficulty)
@@ -54,6 +57,11 @@ namespace KittyCoins.Models
                    Transfers.Equals(compareBlock.Transfers) &&
                    Guid.Equals(compareBlock.Guid) &&
                    Hash.Equals(compareBlock.Hash);
+        }
+
+        public override string ToString()
+        {
+            return $"{Index} ({CreationDate}) | {Transfers.Count} transfers";
         }
     }
 }

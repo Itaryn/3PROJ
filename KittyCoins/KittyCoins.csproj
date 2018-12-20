@@ -83,10 +83,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Block.cs" />
-    <Compile Include="Models\Blockchain.cs" />
+    <Compile Include="Models\KitttyChain.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\Transfer.cs" />
+    <Compile Include="ViewModels\BlockChainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -95,7 +96,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\BlockChainView.xaml.cs">
+      <DependentUpon>BlockChainView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BlockChainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,11 +7,11 @@ namespace KittyCoins.Models
 {
     public class KittyChain
     {
-        public List<Transfer> PendingTransfers;
+        public List<Transfer> PendingTransfers { get; set; }
         public List<Block> Chain { set;  get; }
         public int Difficulty { set; get; } = 2;
         public double Biscuit { set; get; } = 10;
-        public Block CurrentMineBlock;
+        public Block CurrentMineBlock { get; set; }
 
         public KittyChain()
         {
@@ -28,7 +28,7 @@ namespace KittyCoins.Models
         {
             Chain = new List<Block> {new Block(0, DateTime.UtcNow, string.Empty, new List<Transfer>())};
             PendingTransfers = new List<Transfer>();
-            CurrentMineBlock = new Block(0, DateTime.Now, null, PendingTransfers);
+            CurrentMineBlock = new Block(1, DateTime.UtcNow, Chain.First().Hash, PendingTransfers);
         }
 
         public void CreateTransfer(Transfer transfer)

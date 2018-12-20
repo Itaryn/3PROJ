@@ -1,0 +1,91 @@
+﻿<Window x:Class="KittyCoins.Views.BlockChainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Block Chain" Height="450" Width="800">
+    <Grid>
+        <ScrollViewer>
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="KittyChain information" HorizontalAlignment="Center"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5, 0, 5, 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Difficulty : "/>
+                        <Label Content="{Binding BlockChain.Difficulty}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Biscuit : "/>
+                        <Label Content="{Binding BlockChain.Biscuit}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Pending Transfers : "/>
+                        <ComboBox ItemsSource="{Binding PendingTransfers}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Chain : "/>
+                        <ComboBox ItemsSource="{Binding Chain}" SelectedItem="{Binding SelectedBlock}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Block selected" HorizontalAlignment="Center"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5, 0, 5, 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="ID : "/>
+                        <Label Content="{Binding SelectedBlock.Index}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Creation Date : "/>
+                        <Label Content="{Binding SelectedBlock.CreationDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Hash : "/>
+                        <Label Content="{Binding SelectedBlock.Hash}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Previous Hash : "/>
+                        <Label Content="{Binding SelectedBlock.PreviousHash}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Guid : "/>
+                        <Label Content="{Binding SelectedBlock.Guid}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Transfers : "/>
+                        <ComboBox ItemsSource="{Binding SelectedBlock.Transfers}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Block mined" HorizontalAlignment="Center"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5, 0, 5, 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="ID : "/>
+                        <Label Content="{Binding BlockChain.CurrentMineBlock.Index}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Creation Date : "/>
+                        <Label Content="{Binding BlockChain.CurrentMineBlock.CreationDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Hash : "/>
+                        <Label Content="{Binding BlockChain.CurrentMineBlock.Hash}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Previous Hash : "/>
+                        <Label Content="{Binding BlockChain.CurrentMineBlock.PreviousHash}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Guid : "/>
+                        <Label Content="{Binding BlockChain.CurrentMineBlock.Guid}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Transfers : "/>
+                        <ComboBox ItemsSource="{Binding BlockChain.CurrentMineBlock.Transfers}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

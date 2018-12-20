@@ -16,29 +16,20 @@ using KittyCoins.ViewModels;
 namespace KittyCoins.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class BlockChainView : Window
     {
-        private MainViewModel _viewModel;
-        public MainView()
+        private BlockChainViewModel _viewModel;
+        public BlockChainView()
         {
             InitializeComponent();
-            _viewModel = new MainViewModel();
+            _viewModel = new BlockChainViewModel();
             DataContext = _viewModel;
-        }
-
-        private void ScrollToTheEnd(object sender, TextChangedEventArgs e)
-        {
-            ConsoleGUI.ScrollToEnd();
         }
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            _viewModel.miningThread?.Abort();
-            _viewModel.Client?.Close();
-            _viewModel.Server?.wss.Stop();
-
-            Application.Current.Shutdown();
+            _viewModel.updateThread?.Abort();
             base.OnClosing(e);
         }
     }

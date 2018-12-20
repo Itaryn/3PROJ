@@ -10,14 +10,16 @@ namespace KittyCoins.Models
         public double Amount { get; set; }
         public double Biscuit { get; set; }
         public DateTime CreationDate { get; set; }
+        public string Signature { get; set; }
 
-        public Transfer(string fromAddress, string toAddress, double amount, double biscuit)
+        public Transfer(string fromAddress, string toAddress, double amount, double biscuit, string signature)
         {
             FromAddress = fromAddress;
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;
             CreationDate = DateTime.UtcNow;
+            Signature = signature;
         }
 
         public override bool Equals(object obj)
@@ -37,6 +39,11 @@ namespace KittyCoins.Models
         {
             return !string.IsNullOrEmpty(ToAddress) &&
                    Amount > 0;
+        }
+
+        public override string ToString()
+        {
+            return $"{CreationDate} | {FromAddress} -> {ToAddress} : {Amount} + ({Biscuit})";
         }
     }
 }

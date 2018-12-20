@@ -22,14 +22,15 @@ namespace KittyCoins.ViewModels
         private string _consoleOutput = "";
         public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
-        private Client Client;
-        private Server Server;
+        public Client Client;
+        public Server Server;
+        public Thread miningThread;
         public MainViewModel()
         {
             LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
             ShowBlockChainCommand = new DelegateCommand(ShowBlockChainMethod);
             NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
-            Port = 0;
+            Port = 6002;
             PeerUrl = "127.0.0.1:6002";
         }
 
@@ -41,8 +42,8 @@ namespace KittyCoins.ViewModels
 
         public void LaunchServerMethod()
         {
-            var thread = new Thread(Mining);
-            thread.Start();
+            miningThread = new Thread(Mining) {IsBackground = true};
+            miningThread.Start();
         }
         public void Mining()
         {
@@ -55,7 +56,7 @@ namespace KittyCoins.ViewModels
             Console = $"Start server with port n°{Port}";
 
 
-            while (CheckBoxMine)
+            while (true)
             {
                 if (MessageFromClientOrServer != null && MessageFromClientOrServer.Count != 0)
                 {
@@ -64,17 +65,13 @@ namespace KittyCoins.ViewModels
                 }
                 Thread.Sleep(10);
             }
-
-            Client.Close();
-            Console = "Client close";
-            Server.wss.Stop();
-            Console = "Server close";
         }
         #endregion
 
         public void ShowBlockChainMethod()
         {
-            Console = BlockChain.ToString();
+            var blockChainView = new BlockChainView();
+            blockChainView.Show();
         }
 
         public void NewTransactionMethod()
