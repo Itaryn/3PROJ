@@ -16,7 +16,7 @@ using KittyCoins.ViewModels;
 namespace KittyCoins.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for BlockChainView.xaml
     /// </summary>
     public partial class BlockChainView : Window
     {

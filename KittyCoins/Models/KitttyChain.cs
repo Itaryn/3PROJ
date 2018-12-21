@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Newtonsoft.Json;
 
 namespace KittyCoins.Models
@@ -26,21 +27,22 @@ namespace KittyCoins.Models
 
         public void InitializeChain()
         {
-            Chain = new List<Block> {new Block(0, DateTime.UtcNow, string.Empty, new List<Transfer>())};
+            Chain = new List<Block> {new Block(0, string.Empty, new List<Transfer>())};
             PendingTransfers = new List<Transfer>();
-            CurrentMineBlock = new Block(1, DateTime.UtcNow, Chain.First().Hash, PendingTransfers);
+            CurrentMineBlock = new Block(1, Chain.First().Hash, PendingTransfers);
         }
 
         public void CreateTransfer(Transfer transfer)
         {
-            PendingTransfers.Add(transfer);
+            if (GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
+                PendingTransfers.Add(transfer);
         }
 
         public void AddBlock(string minerAddress, Block block)
         {
             Chain.Add(block);
             PendingTransfers = new List<Transfer>();
-            CreateTransfer(new Transfer(null, minerAddress, Biscuit, 0));
+            CreateTransfer(new Transfer(null, minerAddress, Biscuit, 0, new RSACryptoServiceProvider().ExportParameters(true)));
         }
 
         public bool IsValid()
@@ -76,16 +78,11 @@ namespace KittyCoins.Models
 
             return balance;
         }
-
-        public override bool Equals(object obj)
+        
+        protected bool Equals(KittyChain other)
         {
-            KittyChain compareChain;
-            try { compareChain = (KittyChain)obj; }
-            catch (Exception) { return false; }
-            if (compareChain == null) return false;
-
-            return Chain.Equals(compareChain.Chain) &&
-                   PendingTransfers.Equals(compareChain.PendingTransfers);
+            return Chain.Equals(other.Chain) &&
+                       PendingTransfers.Equals(other.PendingTransfers);
         }
 
         public override string ToString()

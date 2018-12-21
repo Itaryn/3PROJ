@@ -16,12 +16,21 @@ namespace KittyCoins.Models
         public Guid Guid { get; set; }
         public string Hash { get; set; }
 
-        public Block(int index, DateTime creationDate, string previousHash, List<Transfer> transfers)
+        public Block(int index, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers)
         {
             Index = index;
             CreationDate = creationDate;
             PreviousHash = previousHash;
-            Transfers = transfers;
+            Transfers = transfers.ToList();
+            Guid = new Guid();
+            Hash = CalculateHash();
+        }
+        public Block(int index, string previousHash, IEnumerable<Transfer> transfers)
+        {
+            Index = index;
+            CreationDate = DateTime.UtcNow;
+            PreviousHash = previousHash;
+            Transfers = transfers.ToList();
             Guid = new Guid();
             Hash = CalculateHash();
         }
@@ -44,19 +53,14 @@ namespace KittyCoins.Models
             return Hash.StartsWith(firstK);
         }
 
-        public override bool Equals(object obj)
+        protected bool Equals(Block other)
         {
-            Block compareBlock;
-            try { compareBlock = (Block)obj; }
-            catch (Exception) { return false; }
-            if (compareBlock == null) return false;
-
-            return Index.Equals(compareBlock.Index) &&
-                   CreationDate.Equals(compareBlock.CreationDate) &&
-                   PreviousHash.Equals(compareBlock.PreviousHash) &&
-                   Transfers.Equals(compareBlock.Transfers) &&
-                   Guid.Equals(compareBlock.Guid) &&
-                   Hash.Equals(compareBlock.Hash);
+            return Index == other.Index &&
+                   CreationDate.Equals(other.CreationDate) &&
+                   string.Equals(PreviousHash, other.PreviousHash) &&
+                   Transfers.SequenceEqual(other.Transfers) &&
+                   Guid.Equals(other.Guid) &&
+                   string.Equals(Hash, other.Hash);
         }
 
         public override string ToString()

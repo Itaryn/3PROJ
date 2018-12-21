@@ -8,3 +8,5 @@
 /packages
 /KittyCoins/bin/Release
 /KittyCoins/obj/Release
+/UnitTestKittyCoins/bin/Debug/netcoreapp2.1
+/UnitTestKittyCoins/obj

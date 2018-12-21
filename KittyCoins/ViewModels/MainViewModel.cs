@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,7 +48,6 @@ namespace KittyCoins.ViewModels
         }
         public void Mining()
         {
-            var name = "Unknown";
             Client = new Client();
             Console = "Create Client";
             Server = new Server();
@@ -77,7 +77,7 @@ namespace KittyCoins.ViewModels
         public void NewTransactionMethod()
         {
             Client.Connect("ws://127.0.0.1:6002/Blockchain");
-            var transfer = new Transfer("Guilhem", "Loic", 15, 1);
+            var transfer = new Transfer("Guilhem", "Loic", 15, 1, new RSACryptoServiceProvider().ExportParameters(true));
             BlockChain.CreateTransfer(transfer);
             Client.Send("ws://127.0.0.1:6002/Blockchain", "Transfer" + JsonConvert.SerializeObject(transfer));
         }
