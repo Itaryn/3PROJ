@@ -26,6 +26,7 @@ namespace KittyCoins.ViewModels
         public Client Client;
         public Server Server;
         public Thread miningThread;
+        public User ActualUser;
         public MainViewModel()
         {
             LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
@@ -77,9 +78,9 @@ namespace KittyCoins.ViewModels
         public void NewTransactionMethod()
         {
             Client.Connect("ws://127.0.0.1:6002/Blockchain");
-            var transfer = new Transfer("Guilhem", "Loic", 15, 1, new RSACryptoServiceProvider().ExportParameters(true));
-            BlockChain.CreateTransfer(transfer);
-            Client.Send("ws://127.0.0.1:6002/Blockchain", "Transfer" + JsonConvert.SerializeObject(transfer));
+            //var transfer = new Transfer("Guilhem", "Loic", 15, 1, new RSACryptoServiceProvider().ExportParameters(true));
+            //BlockChain.CreateTransfer(transfer);
+            //Client.Send("ws://127.0.0.1:6002/Blockchain", "Transfer" + JsonConvert.SerializeObject(transfer));
         }
 
         #region Input

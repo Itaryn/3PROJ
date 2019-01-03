@@ -15,23 +15,23 @@ namespace KittyCoins.Models
         public DateTime CreationDate { get; set; }
         public string Signature { get; set; }
 
-        public Transfer(string fromAddress, string toAddress, double amount, double biscuit, DateTime creationDate, RSAParameters privateKey)
+        public Transfer(User fromUser, string toAddress, double amount, double biscuit, DateTime creationDate)
         {
-            FromAddress = fromAddress;
+            FromAddress = fromUser.PublicAddress;
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;
             CreationDate = creationDate;
-            SignData(privateKey);
+            SignData(fromUser);
         }
-        public Transfer(string fromAddress, string toAddress, double amount, double biscuit, RSAParameters privateKey)
+        public Transfer(User fromUser, string toAddress, double amount, double biscuit)
         {
-            FromAddress = fromAddress;
+            FromAddress = fromUser.PublicAddress;
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;
             CreationDate = DateTime.UtcNow;
-            SignData(privateKey);
+            SignData(fromUser);
         }
 
         protected bool Equals(Transfer other)
@@ -65,21 +65,9 @@ namespace KittyCoins.Models
             }
         }
 
-        public void SignData(RSAParameters privateKey)
+        public void SignData(User user)
         {
-            using (var rsa = new RSACryptoServiceProvider())
-            {
-                try {
-                    rsa.ImportParameters(privateKey);
-
-                    Signature = Convert.ToBase64String(rsa.SignData(Convert.FromBase64String(ToHash()), CryptoConfig.MapNameToOID("SHA256")));
-                }
-                catch (CryptographicException) {
-                }
-                finally {
-                    rsa.PersistKeyInCsp = false;
-                }
-            }
+            Signature = user.SignData(ToHash());
         }
         public bool VerifyData()
         {

@@ -42,7 +42,7 @@ namespace KittyCoins.Models
         {
             Chain.Add(block);
             PendingTransfers = new List<Transfer>();
-            CreateTransfer(new Transfer(null, minerAddress, Biscuit, 0, new RSACryptoServiceProvider().ExportParameters(true)));
+            CreateTransfer(new Transfer(null, minerAddress, Biscuit, 0));
         }
 
         public bool IsValid()

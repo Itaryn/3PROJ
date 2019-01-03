@@ -46,12 +46,12 @@ namespace KittyCoins.Views
             var publicKey = RSA.ExportParameters(false);
 
             //Tried with and without the whole base64 thing
-            var messageToSign = new Transfer(Convert.ToBase64String(publicKey.Modulus), "zergzergzqgerg", 10, 2, privateKey);
+            //var messageToSign = new Transfer(Convert.ToBase64String(publicKey.Modulus), "zergzergzqgerg", 10, 2, privateKey);
             
             //// Is this message really, really, REALLY sent by me?
-            var success = messageToSign.VerifyData();
+            //var success = messageToSign.VerifyData();
 
-            Console.WriteLine("Is this message really, really, REALLY sent by me? " + success);
+            //Console.WriteLine("Is this message really, really, REALLY sent by me? " + success);
         }
 
         private void ScrollToTheEnd(object sender, TextChangedEventArgs e)

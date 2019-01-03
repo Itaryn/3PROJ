@@ -10,28 +10,24 @@ namespace UnitTestKittyCoins
         [Fact]
         public void CreateTransferTest()
         {
-            var cspParams = new CspParameters { KeyContainerName = "arch spill trousers slap spiteful fanatical fluffy man part sheet" };
-            var rsaUser1 = new RSACryptoServiceProvider();
-            var rsaUser2 = new RSACryptoServiceProvider(cspParams);
+            var rsaUser2 = new RSACryptoServiceProvider(new CspParameters { KeyContainerName = "temperature lesson reptile impress memorandum side skeleton marketing bill storage" });
 
-            var privateKeyUser1 = rsaUser1.ExportParameters(true);
-            var publicKeyUser1 = rsaUser1.ExportParameters(false);
-            var privateKeyUser2 = rsaUser2.ExportParameters(true);
-            var publicKeyUser2 = rsaUser2.ExportParameters(false);
+            var user1 = new User("arch spill trousers slap spiteful fanatical fluffy man part sheet");
+            var user2 = new User(rsaUser2.ExportParameters(true));
 
-            var transfer1 = new Transfer(Convert.ToBase64String(publicKeyUser1.Modulus), Convert.ToBase64String(publicKeyUser2.Modulus), 10, 0, new DateTime(2018, 11, 3, 15, 26, 53), privateKeyUser1);
-            var transfer2 = new Transfer(Convert.ToBase64String(publicKeyUser2.Modulus), Convert.ToBase64String(publicKeyUser1.Modulus), 10, 0, privateKeyUser2);
-
-            Assert.Equal("AQAB", Convert.ToBase64String(publicKeyUser1.Exponent));
-            Assert.Equal("AQAB", Convert.ToBase64String(publicKeyUser2.Exponent));
+            var transfer1 = new Transfer(user1, user2.PublicAddress, 10, 0, new DateTime(2018, 11, 3, 15, 26, 53));
+            var transfer2 = new Transfer(user2, user1.PublicAddress, 10, 0);
             
-            Assert.Equal("9CQNmWPR6gZigIg2xg0qN8IARnVHrPRowSj/uQ6gEAETNyqRXXq1PDHaCs38FPS+C3OovssWr6lpgUtry89P2UjDrgdbzvpqM3fcltxt1noGZfKpxr4mEkD4Duddbe8NTyalPiOUgLsSumE9ELc+lsHovvtviXI015MM9GQ9nis=", Convert.ToBase64String(publicKeyUser2.Modulus));
+            Assert.Equal("AQAB", Convert.ToBase64String(rsaUser2.ExportParameters(false).Exponent));
+            
+            Assert.Equal("8Y/Ob/cc3VsQEdxN5/OB+1T5kobV2uGLJq0re86vRpFui/S9j8cT3iUANwxJX2S6FTQlTvbp6O2spoDXKeK1kJNsf4QwXA5VJPeJ9LUgHmja5MSYe7MugXRZ10zvzun1n58Z4KFTfqxYas1X13YNOrrqyurmAprx0Q8LBnXpO3U=", user1.PublicAddress);
+            Assert.Equal("pL6G8f6+EJn9B9MqdsjpkChbNZIcnotztmgRBCykWpHSKH4R6eNmA5x3T46/ggOLpx4U6DmUMf8BhkuLiAq3S/aI7EeWuEwwRfKMe+XL55H+gPlqL12472bysayfxoOjbG+V1cMDsxC9+yvRLklEjuvTpQ9a5ZdlJzt6IrBWhnk=", user2.PublicAddress);
 
             Assert.True(transfer1.VerifyData());
             Assert.True(transfer2.VerifyData());
             Assert.False(transfer1.Equals(transfer2));
 
-            Assert.Equal($"03/11/2018 15:26:53 | {Convert.ToBase64String(publicKeyUser1.Modulus)} -> {Convert.ToBase64String(publicKeyUser2.Modulus)} : 10 + (0)", transfer1.ToString());
+            Assert.Equal($"03/11/2018 15:26:53 | {user1.PublicAddress} -> {user2.PublicAddress} : 10 + (0)", transfer1.ToString());
         }
     }
 }
