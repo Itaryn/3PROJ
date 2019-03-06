@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using Newtonsoft.Json;
+
     public class Block
     {
         public int Index { get; set; }

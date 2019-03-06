@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using Newtonsoft.Json;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Newtonsoft.Json;
+
     public class KittyChain
     {
         public List<Transfer> PendingTransfers { get; set; }

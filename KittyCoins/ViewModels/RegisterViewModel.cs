@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using KittyCoins.Models;
-using KittyCoins.Views;
-using Newtonsoft.Json;
-using Prism.Commands;
-using WebSocketSharp;
-
-namespace KittyCoins.ViewModels
+﻿namespace KittyCoins.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Windows.Input;
+    using Prism.Commands;
+
     public class RegisterViewModel : INotifyPropertyChanged
     {
         private string _privateKey;
+
         public RegisterViewModel()
         {
             RefreshWordsCommand = new DelegateCommand(RefreshWordsMethod);
             RefreshWordsMethod();
         }
+
         public ICommand RefreshWordsCommand { get; }
 
         public void RefreshWordsMethod()
@@ -36,6 +30,7 @@ namespace KittyCoins.ViewModels
         }
 
         #region Input
+
         public string PrivateKey
         {
             get => _privateKey;
@@ -46,15 +41,18 @@ namespace KittyCoins.ViewModels
                 RaisePropertyChanged("PrivateKey");
             }
         }
+
         #endregion
 
         #region PropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
 
     }

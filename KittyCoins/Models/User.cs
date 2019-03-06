@@ -1,12 +1,12 @@
-﻿using System;
-using System.Security.Cryptography;
-using KittyCoins.ViewModels;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System;
+    using System.Security.Cryptography;
+    using ViewModels;
+
     public class User
     {
-        private RSAParameters _privateKey;
+        private readonly RSAParameters _privateKey;
         public string PublicAddress;
 
         public User(RSAParameters privateKey)

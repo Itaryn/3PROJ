@@ -1,10 +1,10 @@
-using System;
-using System.Security.Cryptography;
-using KittyCoins.Models;
-using Xunit;
-
 namespace UnitTestKittyCoins
 {
+    using System;
+    using System.Security.Cryptography;
+    using KittyCoins.Models;
+    using Xunit;
+
     public class TransferTest
     {
         [Fact]

@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Threading;
-using KittyCoins.ViewModels;
-using Newtonsoft.Json;
-using WebSocketSharp;
-using WebSocketSharp.Server;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ViewModels;
+    using Newtonsoft.Json;
+    using WebSocketSharp;
+
     public class Client
     {
         public Client()
         {
             MainViewModel.MessageFromClientOrServer.Add("Create Client from client");
-            MainViewModel.wsDict = new Dictionary<string, WebSocket>();
+            MainViewModel.WsDict = new Dictionary<string, WebSocket>();
         }
 
         public void Connect(string url)
         {
-            if (MainViewModel.wsDict.ContainsKey(url) || url == Server.serverAddress) return;
+            if (MainViewModel.WsDict.ContainsKey(url) || url == Server.serverAddress) return;
 
             MainViewModel.MessageFromClientOrServer.Add($"Begin Connection to {url}");
 
@@ -95,14 +93,14 @@ namespace KittyCoins.Models
                         MainViewModel.MessageFromClientOrServer.Add("Get Servers request received");
 
                         var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));
-                        if (!MainViewModel.wsDict.Keys.Except(listWs).Any())
+                        if (!MainViewModel.WsDict.Keys.Except(listWs).Any())
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Connect to the others servers");
 
-                            foreach (var address in listWs.Except(MainViewModel.wsDict.Keys))
+                            foreach (var address in listWs.Except(MainViewModel.WsDict.Keys))
                                 MainViewModel.Client.Connect(address);
 
-                            Send(ws.Origin, "GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.wsDict.Keys) { Server.serverAddress }));
+                            Send(ws.Origin, "GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.WsDict.Keys) { Server.serverAddress }));
                         }
                     }
                     else
@@ -116,7 +114,7 @@ namespace KittyCoins.Models
                 }
             };
             ws.Connect();
-            MainViewModel.wsDict.Add(url, ws);
+            MainViewModel.WsDict.Add(url, ws);
             ws.Send("BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
             ws.Send("GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.Client.GetServers()) { Server.serverAddress }));
         }
@@ -129,8 +127,8 @@ namespace KittyCoins.Models
         public void Send(string url, string data)
         {
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(data)) return;
-            if (MainViewModel.wsDict.ContainsKey(url))
-                MainViewModel.wsDict[url].Send(data);
+            if (MainViewModel.WsDict.ContainsKey(url))
+                MainViewModel.WsDict[url].Send(data);
         }
 
         /// <summary>
@@ -139,7 +137,7 @@ namespace KittyCoins.Models
         /// <param name="data"></param>
         public void Broadcast(string data)
         {
-            foreach (var item in MainViewModel.wsDict)
+            foreach (var item in MainViewModel.WsDict)
             {
                 item.Value.Send(data);
             }
@@ -153,7 +151,7 @@ namespace KittyCoins.Models
         /// </returns>
         public IList<string> GetServers()
         {
-            return MainViewModel.wsDict.Select(item => item.Key).ToList();
+            return MainViewModel.WsDict.Select(item => item.Key).ToList();
         }
 
         /// <summary>
@@ -161,7 +159,7 @@ namespace KittyCoins.Models
         /// </summary>
         public void Close()
         {
-            foreach (var item in MainViewModel.wsDict)
+            foreach (var item in MainViewModel.WsDict)
             {
                 item.Value.Close();
             }

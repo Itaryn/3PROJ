@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public class Transfer
     {
         public string FromAddress { get; set; }

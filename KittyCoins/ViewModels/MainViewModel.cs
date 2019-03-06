@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using KittyCoins.Models;
-using KittyCoins.Views;
-using Newtonsoft.Json;
-using Prism.Commands;
-using WebSocketSharp;
-
-namespace KittyCoins.ViewModels
+﻿namespace KittyCoins.ViewModels
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading;
+    using System.Windows.Input;
+    using Models;
+    using Views;
+    using Prism.Commands;
+    using WebSocketSharp;
+
     public class MainViewModel : INotifyPropertyChanged
     {
         private bool _checkBoxMine;
@@ -23,10 +18,10 @@ namespace KittyCoins.ViewModels
         private string _consoleOutput = "";
         public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
-        public static IDictionary<string, WebSocket> wsDict;
+        public static IDictionary<string, WebSocket> WsDict;
         public static Client Client = new Client();
         public Server Server;
-        public Thread miningThread;
+        public Thread MiningThread;
         public User ActualUser;
         public MainViewModel()
         {
@@ -49,9 +44,10 @@ namespace KittyCoins.ViewModels
 
         public void LaunchServerMethod()
         {
-            miningThread = new Thread(Mining) {IsBackground = true};
-            miningThread.Start();
+            MiningThread = new Thread(Mining) {IsBackground = true};
+            MiningThread.Start();
         }
+
         public void Mining()
         {
             Server = new Server();
@@ -70,6 +66,7 @@ namespace KittyCoins.ViewModels
                 Thread.Sleep(10);
             }
         }
+
         #endregion
 
         public void ShowBlockChainMethod()

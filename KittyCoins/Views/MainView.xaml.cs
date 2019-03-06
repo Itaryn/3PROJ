@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using KittyCoins.Models;
-using KittyCoins.ViewModels;
-
-namespace KittyCoins.Views
+﻿namespace KittyCoins.Views
 {
+    using System;
+    using System.Security.Cryptography;
+    using System.Windows;
+    using System.Windows.Controls;
+    using ViewModels;
+
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
@@ -60,7 +49,7 @@ namespace KittyCoins.Views
         }
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            _viewModel.miningThread?.Abort();
+            _viewModel.MiningThread?.Abort();
             MainViewModel.Client.Close();
             _viewModel.Server?.wss.Stop();
 

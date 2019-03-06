@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KittyCoins.ViewModels;
-using Newtonsoft.Json;
-using WebSocketSharp;
-using WebSocketSharp.Server;
-
-namespace KittyCoins.Models
+﻿namespace KittyCoins.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ViewModels;
+    using Newtonsoft.Json;
+    using WebSocketSharp;
+    using WebSocketSharp.Server;
+
     public class Server : WebSocketBehavior
     {
         public WebSocketServer wss;
@@ -97,15 +95,15 @@ namespace KittyCoins.Models
                     MainViewModel.MessageFromClientOrServer.Add("Get Servers request received");
                                         var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));
                     
-                    if (listWs.Except(MainViewModel.wsDict.Keys).Any())
+                    if (listWs.Except(MainViewModel.WsDict.Keys).Any())
                     {
                         MainViewModel.MessageFromClientOrServer.Add("Connect to the others servers");
 
-                        foreach (var address in listWs.Except(MainViewModel.wsDict.Keys))
+                        foreach (var address in listWs.Except(MainViewModel.WsDict.Keys))
                             MainViewModel.Client.Connect(address);
                     }
 
-                    if (MainViewModel.wsDict.Keys.Except(listWs).Any())
+                    if (MainViewModel.WsDict.Keys.Except(listWs).Any())
                         Send("GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.Client.GetServers()) { serverAddress }));
                 }
                 else
