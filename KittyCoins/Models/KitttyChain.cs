@@ -14,17 +14,13 @@ namespace KittyCoins.Models
         public double Biscuit { set; get; } = 10;
         public Block CurrentMineBlock { get; set; }
 
-        public KittyChain()
-        {
-            InitializeChain();
-        }
+        public KittyChain() { }
         public KittyChain(List<Block> chain, List<Transfer> pendingTransfers)
         {
             Chain = chain;
             PendingTransfers = pendingTransfers;
         }
-
-
+        
         public void InitializeChain()
         {
             Chain = new List<Block> {new Block(0, string.Empty, new List<Transfer>())};

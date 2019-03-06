@@ -16,6 +16,8 @@ namespace KittyCoins.Models
         public Guid Guid { get; set; }
         public string Hash { get; set; }
 
+        public Block() { }
+
         public Block(int index, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers)
         {
             Index = index;

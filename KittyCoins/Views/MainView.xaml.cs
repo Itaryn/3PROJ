@@ -61,7 +61,7 @@ namespace KittyCoins.Views
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             _viewModel.miningThread?.Abort();
-            _viewModel.Client?.Close();
+            MainViewModel.Client.Close();
             _viewModel.Server?.wss.Stop();
 
             Application.Current.Shutdown();

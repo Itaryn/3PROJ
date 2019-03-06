@@ -11,19 +11,17 @@ namespace KittyCoins.Models
 {
     public class Client
     {
-        IDictionary<string, WebSocket> wsDict;
-
         public Client()
         {
             MainViewModel.MessageFromClientOrServer.Add("Create Client from client");
-            wsDict = new Dictionary<string, WebSocket>();
+            MainViewModel.wsDict = new Dictionary<string, WebSocket>();
         }
 
         public void Connect(string url)
         {
-            MainViewModel.MessageFromClientOrServer.Add("Begin Connect function");
-            
-            if (wsDict.ContainsKey(url)) return;
+            if (MainViewModel.wsDict.ContainsKey(url) || url == Server.serverAddress) return;
+
+            MainViewModel.MessageFromClientOrServer.Add($"Begin Connection to {url}");
 
             var ws = new WebSocket(url);
             ws.OnMessage += (sender, e) =>
@@ -32,9 +30,12 @@ namespace KittyCoins.Models
                 {
                     if (e.Data.StartsWith("BlockChain"))
                     {
-                        var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(10));
+                        var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(e.Data.StartsWith("BlockChainOverwrite") ? 19 : 10));
                         MainViewModel.MessageFromClientOrServer.Add("Check blockchain");
-                        if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() || chainReceived.Equals(MainViewModel.BlockChain)) return;
+                        if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() ||
+                            chainReceived.Equals(MainViewModel.BlockChain) ||
+                            chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
+                            chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers)) return;
                         if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Blockchain receive not valid but actual is");
@@ -64,8 +65,16 @@ namespace KittyCoins.Models
                         }
                         else
                         {
-                            MainViewModel.MessageFromClientOrServer.Add("Blockchain receive is same size than actual but different information");
-                            // Si elles sont égales en tailles mais avec des blocs différents, faire un choix ou stocké les 2, etc
+                            if (e.Data.StartsWith("BlockChainOverwrite"))
+                            {
+                                MainViewModel.MessageFromClientOrServer.Add("Overwrite BlockChain from sender");
+                                MainViewModel.BlockChain = chainReceived;
+                            }
+                            else
+                            {
+                                MainViewModel.MessageFromClientOrServer.Add("BlockChain receive is same size than actual but different information");
+                                Send(ws.Origin, "BlockChainOverwrite" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                            }
                         }
                     }
                     else if (e.Data.StartsWith("Transfer"))
@@ -81,6 +90,25 @@ namespace KittyCoins.Models
                         MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
                         MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
                     }
+                    else if (e.Data.StartsWith("GetServers"))
+                    {
+                        MainViewModel.MessageFromClientOrServer.Add("Get Servers request received");
+
+                        var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));
+                        if (!MainViewModel.wsDict.Keys.Except(listWs).Any())
+                        {
+                            MainViewModel.MessageFromClientOrServer.Add("Connect to the others servers");
+
+                            foreach (var address in listWs.Except(MainViewModel.wsDict.Keys))
+                                MainViewModel.Client.Connect(address);
+
+                            Send(ws.Origin, "GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.wsDict.Keys) { Server.serverAddress }));
+                        }
+                    }
+                    else
+                    {
+                        MainViewModel.MessageFromClientOrServer.Add("Unknown message");
+                    }
                 }
                 catch (Exception)
                 {
@@ -88,35 +116,52 @@ namespace KittyCoins.Models
                 }
             };
             ws.Connect();
+            MainViewModel.wsDict.Add(url, ws);
             ws.Send("BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
-            wsDict.Add(url, ws);
+            ws.Send("GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.Client.GetServers()) { Server.serverAddress }));
         }
 
+        /// <summary>
+        /// Send a message (data) to a server (url)
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
         public void Send(string url, string data)
         {
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(data)) return;
-            if (wsDict.ContainsKey(url))
-            {
-                wsDict[url].Send(data);
-            }
+            if (MainViewModel.wsDict.ContainsKey(url))
+                MainViewModel.wsDict[url].Send(data);
         }
 
+        /// <summary>
+        /// Send a message (data) to all server in the dictionnary (wsDict)
+        /// </summary>
+        /// <param name="data"></param>
         public void Broadcast(string data)
         {
-            foreach (var item in wsDict)
+            foreach (var item in MainViewModel.wsDict)
             {
                 item.Value.Send(data);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>
+        /// The list of server url
+        /// </returns>
         public IList<string> GetServers()
         {
-            return wsDict.Select(item => item.Key).ToList();
+            return MainViewModel.wsDict.Select(item => item.Key).ToList();
         }
 
+        /// <summary>
+        /// Close all connection
+        /// </summary>
         public void Close()
         {
-            foreach (var item in wsDict)
+            foreach (var item in MainViewModel.wsDict)
             {
                 item.Value.Close();
             }

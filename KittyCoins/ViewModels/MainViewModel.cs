@@ -23,7 +23,8 @@ namespace KittyCoins.ViewModels
         private string _consoleOutput = "";
         public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
-        public Client Client;
+        public static IDictionary<string, WebSocket> wsDict;
+        public static Client Client = new Client();
         public Server Server;
         public Thread miningThread;
         public User ActualUser;
@@ -32,13 +33,17 @@ namespace KittyCoins.ViewModels
             LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
             ShowBlockChainCommand = new DelegateCommand(ShowBlockChainMethod);
             NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
+            RegisterCommand = new DelegateCommand(RegisterMethod);
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
+
+            BlockChain.InitializeChain();
         }
 
         public ICommand LaunchServerCommand { get; }
         public ICommand ShowBlockChainCommand { get; }
         public ICommand NewTransactionCommand { get; }
+        public ICommand RegisterCommand { get; }
 
         #region Mining
 
@@ -49,8 +54,6 @@ namespace KittyCoins.ViewModels
         }
         public void Mining()
         {
-            Client = new Client();
-            Console = "Create Client";
             Server = new Server();
             Console = "Create Server";
             Server.Start(Port);
@@ -77,10 +80,16 @@ namespace KittyCoins.ViewModels
 
         public void NewTransactionMethod()
         {
-            Client.Connect("ws://127.0.0.1:6002/Blockchain");
+            Client.Connect($"ws://127.0.0.1:{Port}/Blockchain");
             //var transfer = new Transfer("Guilhem", "Loic", 15, 1, new RSACryptoServiceProvider().ExportParameters(true));
             //BlockChain.CreateTransfer(transfer);
             //Client.Send("ws://127.0.0.1:6002/Blockchain", "Transfer" + JsonConvert.SerializeObject(transfer));
+        }
+
+        public void RegisterMethod()
+        {
+            var registerView = new RegisterView();
+            registerView.Show();
         }
 
         #region Input

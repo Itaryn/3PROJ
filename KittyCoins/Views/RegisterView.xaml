@@ -1,0 +1,18 @@
+﻿<Window x:Class="KittyCoins.Views.RegisterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Création d'un porte-monnaie" Height="250" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBox Margin="5, 5, 5, 5" Text="{Binding PrivateKey}" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" IsReadOnly="True"/>
+            <TextBlock Margin="5, 5, 5, 5" Text="Notez de manière sécurisée cette suite de mots aléatoire, c'est votre clé privée, sans celle-ci vous perdez accès à votre porte-monnaie" TextWrapping="Wrap" TextAlignment="Justify"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5, 5, 5, 5">
+                <Button Content="J'ai noté" Margin="0, 0, 10, 0" Click="CloseWindow"/>
+                <Button Content="Aléatoire" Margin="10, 0, 0, 0" Command="{Binding RefreshWordsCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
