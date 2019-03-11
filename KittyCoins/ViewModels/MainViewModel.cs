@@ -9,6 +9,8 @@
     using Views;
     using Prism.Commands;
     using WebSocketSharp;
+    using System.IO;
+    using Newtonsoft.Json;
 
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -33,6 +35,12 @@
             PeerUrl = "127.0.0.1:6002";
 
             BlockChain.InitializeChain();
+            var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
+            if (blockSaved.Any())
+            {
+                var blocks = blockSaved.Select(file => JsonConvert.DeserializeObject<Block>(file)).ToList();
+                BlockChain = new KittyChain(blocks, new List<Transfer>());
+            }
         }
 
         public ICommand LaunchServerCommand { get; }

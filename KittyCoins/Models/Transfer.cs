@@ -5,6 +5,7 @@
     using System.Security.Cryptography;
     using System.Text;
 
+    [Serializable]
     public class Transfer
     {
         public string FromAddress { get; set; }
@@ -13,6 +14,8 @@
         public double Biscuit { get; set; }
         public DateTime CreationDate { get; set; }
         public string Signature { get; set; }
+
+        public Transfer() { }
 
         public Transfer(User fromUser, string toAddress, double amount, double biscuit, DateTime creationDate)
         {

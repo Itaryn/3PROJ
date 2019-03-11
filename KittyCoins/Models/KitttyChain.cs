@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
+    
 
     public class KittyChain
     {
@@ -15,8 +16,16 @@
         public KittyChain() { }
         public KittyChain(List<Block> chain, List<Transfer> pendingTransfers)
         {
-            Chain = chain;
-            PendingTransfers = pendingTransfers;
+            if (chain != null)
+            {
+                Chain = chain;
+                PendingTransfers = pendingTransfers;
+                CurrentMineBlock = new Block(chain.Count, Chain.First().Hash, PendingTransfers);
+            }
+            else
+            {
+                InitializeChain();
+            }
         }
         
         public void InitializeChain()

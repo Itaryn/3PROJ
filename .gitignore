@@ -10,3 +10,6 @@
 /KittyCoins/obj/Release
 /UnitTestKittyCoins/bin/Debug/netcoreapp2.1
 /UnitTestKittyCoins/obj
+/.vs
+/KittyCoins.Tests/bin/Debug
+/KittyCoins.Tests/obj

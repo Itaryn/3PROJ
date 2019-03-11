@@ -1,8 +1,8 @@
-namespace UnitTestKittyCoins
+namespace KittyCoins.Tests
 {
+    using KittyCoins.Models;
     using System;
     using System.Security.Cryptography;
-    using KittyCoins.Models;
     using Xunit;
 
     public class TransferTest
