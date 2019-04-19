@@ -4,11 +4,35 @@
     using System.Security.Cryptography;
     using ViewModels;
 
+    /// <summary>
+    /// The user class
+    /// </summary>
     public class User
     {
+        #region Private Attributes
+
+        /// <summary>
+        /// The private key
+        /// </summary>
         private readonly RSAParameters _privateKey;
+
+        #endregion
+
+        #region Public Attributes
+
+        /// <summary>
+        /// The public address
+        /// </summary>
         public string PublicAddress;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Create the user with a private key
+        /// </summary>
+        /// <param name="privateKey"></param>
         public User(RSAParameters privateKey)
         {
             using (var rsa = new RSACryptoServiceProvider())
@@ -20,6 +44,10 @@
             }
         }
 
+        /// <summary>
+        /// Create the user with a list of word
+        /// </summary>
+        /// <param name="privateWords"></param>
         public User(string privateWords)
         {
             using (var rsa = new RSACryptoServiceProvider(new CspParameters { KeyContainerName = privateWords }))
@@ -29,11 +57,24 @@
             }
         }
 
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Get the balance of the user
+        /// </summary>
+        /// <returns></returns>
         public double GetBalance()
         {
             return MainViewModel.BlockChain.GetBalance(PublicAddress);
         }
 
+        /// <summary>
+        /// Sign the data in parameter
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public string SignData(string data)
         {
             using (var rsa = new RSACryptoServiceProvider())
@@ -54,5 +95,7 @@
                 }
             }
         }
+
+        #endregion
     }
 }
