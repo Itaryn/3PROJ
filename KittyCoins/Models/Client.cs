@@ -7,53 +7,93 @@
     using Newtonsoft.Json;
     using WebSocketSharp;
 
+    /// <summary>
+    /// The client class
+    /// Used to send packets to other server
+    /// </summary>
     public class Client
     {
+        #region Constructor
+
         public Client()
         {
+            // Add a message in the console
             MainViewModel.MessageFromClientOrServer.Add("Create Client from client");
+
+            // Create the dictionnary who will contain the servers address
             MainViewModel.WsDict = new Dictionary<string, WebSocket>();
         }
 
+        #endregion
+
+        #region Public Methods
+
         public void Connect(string url)
         {
+            // If we know the adress (url) or if it's our server address don't connect
             if (MainViewModel.WsDict.ContainsKey(url) || url == Server.serverAddress) return;
 
+            // Message for the console
             MainViewModel.MessageFromClientOrServer.Add($"Begin Connection to {url}");
 
+            // Create the webSocket from the url
             var ws = new WebSocket(url);
             ws.OnMessage += (sender, e) =>
             {
                 try
                 {
+                    #region BlockChain Receive
+
+                    // The request send the entire blockchain
                     if (e.Data.StartsWith("BlockChain"))
                     {
+                        // Deserialize the blockchain received
+                        // The Substring cut "BlockChain" or "BlockChainOverwrite"
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(e.Data.StartsWith("BlockChainOverwrite") ? 19 : 10));
                         MainViewModel.MessageFromClientOrServer.Add("Check blockchain");
+
+                        /* If chain received and local is not valid
+                         * OR
+                         * If same blockchain received and local
+                         * OR
+                         * If same chain and same pending transfers list
+                         * => Do nothing
+                         */
                         if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() ||
                             chainReceived.Equals(MainViewModel.BlockChain) ||
                             chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
                             chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers)) return;
+
+                        // If chain received is not valid but local is
+                        // => Send local blockchain in response
                         if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                         {
-                            MainViewModel.MessageFromClientOrServer.Add("Blockchain receive not valid but actual is");
+                            MainViewModel.MessageFromClientOrServer.Add("Blockchain receive not valid but local is");
                             Send(ws.Origin, "BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                         }
+
+                        // If the received chain is bigger than local
+                        // => Copy the received blockchain and send it
                         else if (chainReceived.Chain.Count > MainViewModel.BlockChain.Chain.Count)
                         {
-                            MainViewModel.MessageFromClientOrServer.Add("Blockchain is bigger than actual");
-                            var newTransactions = new List<Transfer>();
-                            newTransactions.AddRange(chainReceived.PendingTransfers);
-                            newTransactions.AddRange(MainViewModel.BlockChain.PendingTransfers);
+                            MainViewModel.MessageFromClientOrServer.Add("Blockchain is bigger than local");
 
-                            chainReceived.PendingTransfers = newTransactions;
+                            chainReceived.PendingTransfers.AddRange(MainViewModel.BlockChain.PendingTransfers.Except(chainReceived.PendingTransfers));
                             MainViewModel.BlockChain = chainReceived;
-                        }
-                        else if (chainReceived.Chain.Count < MainViewModel.BlockChain.Chain.Count)
-                        {
-                            MainViewModel.MessageFromClientOrServer.Add("Blockchain receive lower than actual");
+
                             Send(ws.Origin, "BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                         }
+
+                        // If the received chain is lower than local
+                        // => Send the local blockchain
+                        else if (chainReceived.Chain.Count < MainViewModel.BlockChain.Chain.Count)
+                        {
+                            MainViewModel.MessageFromClientOrServer.Add("Blockchain receive lower than local");
+                            Send(ws.Origin, "BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                        }
+
+                        // If the chain are equals but the pending transfer list are different
+                        // => Get the pending transfer not in local and send the blockchain
                         else if (chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
                                  !chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers))
                         {
@@ -63,46 +103,75 @@
                         }
                         else
                         {
+                            // If the sender force to overwrite the local
                             if (e.Data.StartsWith("BlockChainOverwrite"))
                             {
                                 MainViewModel.MessageFromClientOrServer.Add("Overwrite BlockChain from sender");
                                 MainViewModel.BlockChain = chainReceived;
                             }
+                            // Send a overwrite force to the sender
                             else
                             {
-                                MainViewModel.MessageFromClientOrServer.Add("BlockChain receive is same size than actual but different information");
+                                MainViewModel.MessageFromClientOrServer.Add("BlockChain receive is same size than local but different information");
                                 Send(ws.Origin, "BlockChainOverwrite" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                             }
                         }
                     }
+
+                    #endregion
+
+                    #region Transfer Receive
+
+                    // The request send a new transfer
                     else if (e.Data.StartsWith("Transfer"))
                     {
+                        // Deserialize the transfer
+                        // The Substring cut "Transfer"
                         var newTransfer = JsonConvert.DeserializeObject<Transfer>(e.Data.Substring(8));
                         MainViewModel.MessageFromClientOrServer.Add("New transfer received");
 
+                        // If we already have it or it's not a valid transfer don't add it
                         if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
                         {
                             MainViewModel.MessageFromClientOrServer.Add("New Transfer not valid or already in local");
                             return;
                         }
+
+                        // If already is Ok add it to our pending transfer list
                         MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
                         MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
                     }
+
+                    #endregion
+
+                    #region GetServer Request Receive
+
+                    // The request want our server list
                     else if (e.Data.StartsWith("GetServers"))
                     {
                         MainViewModel.MessageFromClientOrServer.Add("Get Servers request received");
 
+                        // Deserialize the server send in the request
+                        // The Substring cut "GetServers"
                         var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));
+                        
+                        // If they have server that we didn't know in the request
                         if (!MainViewModel.WsDict.Keys.Except(listWs).Any())
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Connect to the others servers");
 
+                            // Connect to those servers
                             foreach (var address in listWs.Except(MainViewModel.WsDict.Keys))
                                 MainViewModel.Client.Connect(address);
 
+                            // Answer with our server
                             Send(ws.Origin, "GetServers" + JsonConvert.SerializeObject(new List<string>(MainViewModel.WsDict.Keys) { Server.serverAddress }));
                         }
                     }
+
+                    #endregion
+
+                    // Unknow request
                     else
                     {
                         MainViewModel.MessageFromClientOrServer.Add("Unknown message");
@@ -126,7 +195,10 @@
         /// <param name="data"></param>
         public void Send(string url, string data)
         {
+            // If the message (data) or the receiver (url) is null don't send
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(data)) return;
+
+            // If we know the adress send the data
             if (MainViewModel.WsDict.ContainsKey(url))
                 MainViewModel.WsDict[url].Send(data);
         }
@@ -144,11 +216,8 @@
         }
 
         /// <summary>
-        /// 
+        /// Return the list of server url
         /// </summary>
-        /// <returns>
-        /// The list of server url
-        /// </returns>
         public IList<string> GetServers()
         {
             return MainViewModel.WsDict.Select(item => item.Key).ToList();
@@ -164,5 +233,7 @@
                 item.Value.Close();
             }
         }
+
+        #endregion
     }
 }
