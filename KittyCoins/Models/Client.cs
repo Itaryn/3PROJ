@@ -60,9 +60,7 @@
                          * => Do nothing
                          */
                         if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() ||
-                            chainReceived.Equals(MainViewModel.BlockChain) ||
-                            chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
-                            chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers)) return;
+                            MainViewModel.BlockChain.Equals(chainReceived)) return;
 
                         // If chain received is not valid but local is
                         // => Send local blockchain in response
@@ -73,7 +71,7 @@
                         }
 
                         // If the received chain is bigger than local
-                        // => Copy the received blockchain and send it
+                        // => Copy the received blockchain and send the list of transfer
                         else if (chainReceived.Chain.Count > MainViewModel.BlockChain.Chain.Count)
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Blockchain is bigger than local");
@@ -81,7 +79,7 @@
                             chainReceived.PendingTransfers.AddRange(MainViewModel.BlockChain.PendingTransfers.Except(chainReceived.PendingTransfers));
                             MainViewModel.BlockChain = chainReceived;
 
-                            Send(ws.Origin, "BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                            Send(ws.Origin, "Transfers" + JsonConvert.SerializeObject(MainViewModel.BlockChain.PendingTransfers));
                         }
 
                         // If the received chain is lower than local
@@ -93,13 +91,13 @@
                         }
 
                         // If the chain are equals but the pending transfer list are different
-                        // => Get the pending transfer not in local and send the blockchain
+                        // => Get the pending transfer not in local and send the list of transfer
                         else if (chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
                                  !chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers))
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Chain equals but different pending transfers");
                             MainViewModel.BlockChain.PendingTransfers.AddRange(chainReceived.PendingTransfers.Except(MainViewModel.BlockChain.PendingTransfers));
-                            Send(ws.Origin, "BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                            Send(ws.Origin, "Transfers" + JsonConvert.SerializeObject(MainViewModel.BlockChain.PendingTransfers));
                         }
                         else
                         {
@@ -140,6 +138,28 @@
                         // If already is Ok add it to our pending transfer list
                         MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
                         MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
+                    }
+                    // The request send a list of transfer
+                    else if (e.Data.StartsWith("Transfers"))
+                    {
+                        // Deserialize the transfer
+                        // The Substring cut "Transfer"
+                        var newTransfers = JsonConvert.DeserializeObject<List<Transfer>>(e.Data.Substring(9));
+                        MainViewModel.MessageFromClientOrServer.Add("New list of transfer received");
+
+                        foreach (var newTransfer in newTransfers)
+                        {
+                            // If we already have it or it's not a valid transfer don't add it
+                            if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
+                            {
+                                MainViewModel.MessageFromClientOrServer.Add("New Transfer not valid or already in local");
+                                return;
+                            }
+
+                            // If already is Ok add it to our pending transfer list
+                            MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
+                            MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
+                        }
                     }
 
                     #endregion
@@ -235,5 +255,10 @@
         }
 
         #endregion
+
+        public void NewBlock(KittyChain blockChain)
+        {
+            Broadcast("BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+        }
     }
 }

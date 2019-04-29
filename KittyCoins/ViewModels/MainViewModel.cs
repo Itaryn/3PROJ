@@ -1,4 +1,6 @@
-﻿namespace KittyCoins.ViewModels
+﻿using System;
+
+namespace KittyCoins.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -27,10 +29,16 @@
 
         public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
+
+        /// <summary>
+        /// The block in creation
+        /// </summary>
+        private Block CurrentMineBlock { get; set; }
         public static IDictionary<string, WebSocket> WsDict;
         public static Client Client = new Client();
         public Server Server;
         public Thread MiningThread;
+        public Thread OpenServerThread;
         public User ActualUser;
 
         #endregion
@@ -73,18 +81,17 @@
 
         public void LaunchServerMethod()
         {
-            MiningThread = new Thread(Mining) {IsBackground = true};
-            MiningThread.Start();
+            OpenServerThread = new Thread(OpenServer) {IsBackground = true};
+            OpenServerThread.Start();
         }
 
-        public void Mining()
+        public void OpenServer()
         {
             Server = new Server();
             Console = "Create Server";
             Server.Start(Port);
             Console = $"Start server with port n°{Port}";
-
-
+            
             while (true)
             {
                 if (MessageFromClientOrServer != null && MessageFromClientOrServer.Count != 0)
@@ -92,7 +99,30 @@
                     Console = MessageFromClientOrServer.First();
                     MessageFromClientOrServer.RemoveAt(0);
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(100);
+            }
+        }
+
+        public void Mining()
+        {
+            CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers);
+
+            while (true)
+            {
+                if (CurrentMineBlock.TryHash(BlockChain.Difficulty))
+                {
+                    Console = "You have mined one block ! You successfull win 10 coins.";
+                    var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
+                    if (dif.TotalSeconds < 60 * 10)
+                    {
+                        Console = "Difficulty up !";
+                        BlockChain.Difficulty++;
+                    }
+                    Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
+                    BlockChain.AddBlock("", CurrentMineBlock);
+                    Client.NewBlock(BlockChain);
+                    CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers);
+                }
             }
         }
 
@@ -126,6 +156,19 @@
             {
                 if (_checkBoxMine == value) return;
                 _checkBoxMine = value;
+
+                if (_checkBoxMine)
+                {
+                    Console = "Begin mining";
+                    MiningThread = new Thread(Mining) { IsBackground = true };
+                    MiningThread.Start();
+                }
+                else
+                {
+                    Console = "Stop mining";
+                    MiningThread?.Abort();
+                }
+
                 RaisePropertyChanged("CheckBoxMine");
             }
         }

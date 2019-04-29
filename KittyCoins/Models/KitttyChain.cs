@@ -1,4 +1,6 @@
-﻿namespace KittyCoins.Models
+﻿using System;
+
+namespace KittyCoins.Models
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -25,17 +27,12 @@
         /// Actual difficulty of the blockchain
         /// Depending of the average creation time of a block
         /// </summary>
-        public int Difficulty { set; get; } = 2;
+        public int Difficulty { set; get; } = 4;
 
         /// <summary>
         /// Numbler of KittyCoin given to the creator of a block
         /// </summary>
         public double Biscuit { set; get; } = 10;
-
-        /// <summary>
-        /// The block in creation
-        /// </summary>
-        public Block CurrentMineBlock { get; set; }
 
         #endregion
 
@@ -57,7 +54,6 @@
             {
                 Chain = chain;
                 PendingTransfers = pendingTransfers;
-                CurrentMineBlock = new Block(chain.Count, Chain.First().Hash, PendingTransfers);
             }
             else
             {
@@ -76,7 +72,6 @@
         {
             Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>()) };
             PendingTransfers = new List<Transfer>();
-            CurrentMineBlock = new Block(1, Chain.First().Hash, PendingTransfers);
         }
 
         /// <summary>
@@ -99,7 +94,7 @@
         {
             Chain.Add(block);
             PendingTransfers = new List<Transfer>();
-            CreateTransfer(new Transfer(null, minerAddress, Biscuit, 0));
+            CreateTransfer(new Transfer(new User("ThereAreTwoMeansOfRefugeFromTheMiseryOfLifeMusicAndCats"), minerAddress, Biscuit, 0));
         }
 
         /// <summary>
@@ -152,11 +147,14 @@
         /// <summary>
         /// Compare 2 blockchain
         /// </summary>
-        /// <param name="other">The compared block</param>
-        protected bool Equals(KittyChain other)
+        /// <param name="obj">The compared blockchain</param>
+        public override bool Equals(object obj)
         {
+            if (!(obj is KittyChain other))
+                return false;
+
             return Chain.Equals(other.Chain) &&
-                   PendingTransfers.Equals(other.PendingTransfers);
+                   PendingTransfers.SequenceEqual(other.PendingTransfers);
         }
 
         /// <summary>

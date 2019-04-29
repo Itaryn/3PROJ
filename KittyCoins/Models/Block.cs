@@ -66,7 +66,7 @@
             CreationDate = creationDate;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
-            Guid = new Guid();
+            Guid = Guid.NewGuid();
             Hash = CalculateHash();
         }
 
@@ -82,7 +82,7 @@
             CreationDate = DateTime.UtcNow;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
-            Guid = new Guid();
+            Guid = Guid.NewGuid();
             Hash = CalculateHash();
         }
 
@@ -102,7 +102,7 @@
             {
                 return string.Concat(hash
                     .ComputeHash(Encoding.UTF8.GetBytes($"{CreationDate}-{PreviousHash ?? ""}-{JsonConvert.SerializeObject(Transfers)}-{Guid}"))
-                    .Select(item => item.ToString("x2")));
+                    .Select(item => item.ToString("x2"))).ToUpper();
             }
         }
 
@@ -114,8 +114,9 @@
         /// </param>
         public bool TryHash(int difficulty)
         {
-            var firstK = new string('K', difficulty);
-            Guid = new Guid();
+            var firstK = new string('F', difficulty);
+            Guid = Guid.NewGuid();
+            CreationDate = DateTime.UtcNow;
             Hash = CalculateHash();
             return Hash.StartsWith(firstK);
         }
@@ -128,8 +129,11 @@
         /// Compare 2 blocks
         /// </summary>
         /// <param name="other">The compared block</param>
-        protected bool Equals(Block other)
+        public override bool Equals(object obj)
         {
+            if (!(obj is Block other))
+                return false;
+
             return Index == other.Index &&
                    CreationDate.Equals(other.CreationDate) &&
                    string.Equals(PreviousHash, other.PreviousHash) &&

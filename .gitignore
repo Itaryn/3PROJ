@@ -13,3 +13,4 @@
 /.vs
 /KittyCoins.Tests/bin/Debug
 /KittyCoins.Tests/obj
+/KittyCoins.Tests/bin/Release

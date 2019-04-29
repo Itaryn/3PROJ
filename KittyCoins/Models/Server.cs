@@ -76,9 +76,7 @@
                      * => Do nothing
                      */
                     if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() ||
-                        chainReceived.Equals(MainViewModel.BlockChain) ||
-                        chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
-                        chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers)) return;
+                        MainViewModel.BlockChain.Equals(chainReceived)) return;
 
                     // If chain received is not valid but local is
                     // => Send local blockchain in response

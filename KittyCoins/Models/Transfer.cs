@@ -78,7 +78,6 @@
         /// <param name="biscuit"></param>
         public Transfer(User fromUser, string toAddress, double amount, double biscuit)
         {
-            FromAddress = fromUser.PublicAddress;
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;
@@ -161,10 +160,13 @@
         /// <summary>
         /// Compare 2 transfer
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="obj"></param>
         /// <returns></returns>
-        protected bool Equals(Transfer other)
+        public override bool Equals(object obj)
         {
+            if (!(obj is Transfer other))
+                return false;
+
             return string.Equals(FromAddress, other.FromAddress) &&
                    string.Equals(ToAddress, other.ToAddress) &&
                    Amount.Equals(other.Amount) &&
