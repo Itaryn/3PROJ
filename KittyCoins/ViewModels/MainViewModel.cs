@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using KittyCoins.Packages;
 
 namespace KittyCoins.ViewModels
 {
@@ -21,6 +23,7 @@ namespace KittyCoins.ViewModels
         private bool _checkBoxMine;
         private int _port;
         private string _peerUrl;
+        private string _privateWords;
         private string _consoleOutput = "";
 
         #endregion
@@ -50,6 +53,8 @@ namespace KittyCoins.ViewModels
 
             LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
             ShowBlockChainCommand = new DelegateCommand(ShowBlockChainMethod);
+            ConnectBlockchainCommand = new DelegateCommand(ConnectBlockchainMethod);
+            ConnectUserCommand = new DelegateCommand(ConnectUserMethod);
             NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
             RegisterCommand = new DelegateCommand(RegisterMethod);
 
@@ -58,6 +63,7 @@ namespace KittyCoins.ViewModels
             // Default Values
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
+            PrivateWords = "Guilhem";
 
             BlockChain.InitializeChain();
             var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
@@ -72,6 +78,8 @@ namespace KittyCoins.ViewModels
 
         public ICommand LaunchServerCommand { get; }
         public ICommand ShowBlockChainCommand { get; }
+        public ICommand ConnectBlockchainCommand { get; }
+        public ICommand ConnectUserCommand { get; }
         public ICommand NewTransactionCommand { get; }
         public ICommand RegisterCommand { get; }
 
@@ -113,14 +121,19 @@ namespace KittyCoins.ViewModels
                 {
                     Console = "You have mined one block ! You successfull win 10 coins.";
                     var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
-                    if (dif.TotalSeconds < 60 * 10)
+                    if (dif.TotalSeconds < 30 * 1)
                     {
                         Console = "Difficulty up !";
-                        BlockChain.Difficulty++;
+                        BlockChain.Difficulty = BlockChain.Difficulty.RemoveHex(1);
+                    }
+                    else if (dif.TotalSeconds > 40 * 1)
+                    {
+                        Console = "Difficulty down!";
+                        //BlockChain.Difficulty.AddHex(1);
                     }
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
                     BlockChain.AddBlock("", CurrentMineBlock);
-                    Client.NewBlock(BlockChain);
+                    Client.NewBlock(CurrentMineBlock);
                     CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers);
                 }
             }
@@ -136,10 +149,18 @@ namespace KittyCoins.ViewModels
 
         public void NewTransactionMethod()
         {
-            Client.Connect($"ws://127.0.0.1:{Port}/Blockchain");
-            //var transfer = new Transfer("Guilhem", "Loic", 15, 1, new RSACryptoServiceProvider().ExportParameters(true));
-            //BlockChain.CreateTransfer(transfer);
-            //Client.Send("ws://127.0.0.1:6002/Blockchain", "Transfer" + JsonConvert.SerializeObject(transfer));
+            var transfer = new Transfer(new User("Guilhem"), new User("Loic").PublicAddress, 15, 1);
+            BlockChain.CreateTransfer(transfer);
+        }
+
+        public void ConnectBlockchainMethod()
+        {
+            Client.Connect($"ws://{PeerUrl}/Blockchain");
+        }
+
+        public void ConnectUserMethod()
+        {
+            ActualUser = new User(PrivateWords);
         }
 
         public void RegisterMethod()
@@ -190,6 +211,16 @@ namespace KittyCoins.ViewModels
                 if (_peerUrl == value) return;
                 _peerUrl = value;
                 RaisePropertyChanged("PeerUrl");
+            }
+        }
+        public string PrivateWords
+        {
+            get => _privateWords;
+            set
+            {
+                if (_privateWords == value) return;
+                _privateWords = value;
+                RaisePropertyChanged("PrivateWords");
             }
         }
         public string Console

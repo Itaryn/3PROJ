@@ -112,14 +112,21 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
+            <Button Content="Show Blockchain" Command="{Binding ShowBlockChainCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
+            <Button Content="Connect to Blockchain" Command="{Binding ConnectBlockchainCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
+            <Button Content="Connect your Wallet" Command="{Binding ConnectUserCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
+            <Button Content="New Transaction" Command="{Binding NewTransactionCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
+        </StackPanel>
         <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path = Port, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path = PeerUrl, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="Create a Wallet" Command="{Binding RegisterCommand}" MaxHeight="50" MaxWidth="200"/>
+        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path = PrivateWords, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
+        <Button Grid.Row="0" Grid.Column="3" Content="Create a Wallet" Command="{Binding RegisterCommand}" MaxHeight="50" MaxWidth="200"/>
         <Button Grid.Row="1" Grid.Column="0" Content="Launch Server" Command="{Binding LaunchServerCommand}" MaxHeight="50" MaxWidth="100"/>
         <CheckBox Grid.Row="1" Grid.Column="1" Style="{StaticResource BlueSwitchStyle}" IsChecked="{Binding CheckBoxMine}"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="Show Blockchain" Command="{Binding ShowBlockChainCommand}" MaxHeight="50" MaxWidth="100"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="New Transaction" Command="{Binding NewTransactionCommand}" MaxHeight="50" MaxWidth="100"/>
-        <TextBox Name="ConsoleGUI" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto"/>
+        
+        <TextBox Name="ConsoleGUI" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>

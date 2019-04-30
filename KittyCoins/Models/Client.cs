@@ -92,8 +92,8 @@
 
                         // If the chain are equals but the pending transfer list are different
                         // => Get the pending transfer not in local and send the list of transfer
-                        else if (chainReceived.Chain.Equals(MainViewModel.BlockChain.Chain) &&
-                                 !chainReceived.PendingTransfers.Equals(MainViewModel.BlockChain.PendingTransfers))
+                        else if (chainReceived.Chain.SequenceEqual(MainViewModel.BlockChain.Chain) &&
+                                 !chainReceived.PendingTransfers.SequenceEqual(MainViewModel.BlockChain.PendingTransfers))
                         {
                             MainViewModel.MessageFromClientOrServer.Add("Chain equals but different pending transfers");
                             MainViewModel.BlockChain.PendingTransfers.AddRange(chainReceived.PendingTransfers.Except(MainViewModel.BlockChain.PendingTransfers));
@@ -110,55 +110,11 @@
                             // Send a overwrite force to the sender
                             else
                             {
+                                var a = JsonConvert.SerializeObject(MainViewModel.BlockChain);
+                                var b = JsonConvert.SerializeObject(chainReceived);
                                 MainViewModel.MessageFromClientOrServer.Add("BlockChain receive is same size than local but different information");
                                 Send(ws.Origin, "BlockChainOverwrite" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                             }
-                        }
-                    }
-
-                    #endregion
-
-                    #region Transfer Receive
-
-                    // The request send a new transfer
-                    else if (e.Data.StartsWith("Transfer"))
-                    {
-                        // Deserialize the transfer
-                        // The Substring cut "Transfer"
-                        var newTransfer = JsonConvert.DeserializeObject<Transfer>(e.Data.Substring(8));
-                        MainViewModel.MessageFromClientOrServer.Add("New transfer received");
-
-                        // If we already have it or it's not a valid transfer don't add it
-                        if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
-                        {
-                            MainViewModel.MessageFromClientOrServer.Add("New Transfer not valid or already in local");
-                            return;
-                        }
-
-                        // If already is Ok add it to our pending transfer list
-                        MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
-                        MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
-                    }
-                    // The request send a list of transfer
-                    else if (e.Data.StartsWith("Transfers"))
-                    {
-                        // Deserialize the transfer
-                        // The Substring cut "Transfer"
-                        var newTransfers = JsonConvert.DeserializeObject<List<Transfer>>(e.Data.Substring(9));
-                        MainViewModel.MessageFromClientOrServer.Add("New list of transfer received");
-
-                        foreach (var newTransfer in newTransfers)
-                        {
-                            // If we already have it or it's not a valid transfer don't add it
-                            if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
-                            {
-                                MainViewModel.MessageFromClientOrServer.Add("New Transfer not valid or already in local");
-                                return;
-                            }
-
-                            // If already is Ok add it to our pending transfer list
-                            MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
-                            MainViewModel.MessageFromClientOrServer.Add("New Transfer added");
                         }
                     }
 
@@ -256,9 +212,14 @@
 
         #endregion
 
-        public void NewBlock(KittyChain blockChain)
+        public void NewBlock(Block block)
         {
-            Broadcast("BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+            Broadcast("Block" + JsonConvert.SerializeObject(block));
+        }
+
+        public void NewTransfer(Transfer transfer)
+        {
+            Broadcast("Transfer" + JsonConvert.SerializeObject(transfer));
         }
     }
 }

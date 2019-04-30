@@ -78,6 +78,7 @@
         /// <param name="biscuit"></param>
         public Transfer(User fromUser, string toAddress, double amount, double biscuit)
         {
+            FromAddress = fromUser.PublicAddress;
             ToAddress = toAddress;
             Amount = amount;
             Biscuit = biscuit;

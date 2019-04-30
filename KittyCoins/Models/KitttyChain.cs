@@ -1,4 +1,5 @@
 ﻿using System;
+using KittyCoins.ViewModels;
 
 namespace KittyCoins.Models
 {
@@ -27,7 +28,7 @@ namespace KittyCoins.Models
         /// Actual difficulty of the blockchain
         /// Depending of the average creation time of a block
         /// </summary>
-        public int Difficulty { set; get; } = 4;
+        public string Difficulty { set; get; } = "0000100000000000000000000000000000000000000000000000000000000000";
 
         /// <summary>
         /// Numbler of KittyCoin given to the creator of a block
@@ -80,8 +81,16 @@ namespace KittyCoins.Models
         /// <param name="transfer"></param>
         public void CreateTransfer(Transfer transfer)
         {
-            if (GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
+            if (new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress ||
+                GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
+            {
                 PendingTransfers.Add(transfer);
+                MainViewModel.Client.NewTransfer(transfer);
+            }
+            else
+            {
+                MainViewModel.MessageFromClientOrServer.Add("Error with the transfer. It can't be added (you need more coins)");
+            }
         }
 
         /// <summary>
@@ -92,9 +101,10 @@ namespace KittyCoins.Models
         /// <param name="block"></param>
         public void AddBlock(string minerAddress, Block block)
         {
-            Chain.Add(block);
+            block.Transfers = PendingTransfers.ToList();
             PendingTransfers = new List<Transfer>();
-            CreateTransfer(new Transfer(new User("ThereAreTwoMeansOfRefugeFromTheMiseryOfLifeMusicAndCats"), minerAddress, Biscuit, 0));
+            Chain.Add(block);
+            CreateTransfer(new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), minerAddress, Biscuit, 0));
         }
 
         /// <summary>
@@ -153,8 +163,7 @@ namespace KittyCoins.Models
             if (!(obj is KittyChain other))
                 return false;
 
-            return Chain.Equals(other.Chain) &&
-                   PendingTransfers.SequenceEqual(other.PendingTransfers);
+            return string.Equals(JsonConvert.SerializeObject(this), JsonConvert.SerializeObject(other));
         }
 
         /// <summary>

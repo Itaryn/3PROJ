@@ -1,4 +1,7 @@
-﻿namespace KittyCoins.Models
+﻿using KittyCoins.Packages;
+using KittyCoins.ViewModels;
+
+namespace KittyCoins.Models
 {
     using System;
     using System.Collections.Generic;
@@ -112,13 +115,14 @@
         /// <param name="difficulty">
         /// Numbers of K needed
         /// </param>
-        public bool TryHash(int difficulty)
+        public bool TryHash(string difficulty)
         {
-            var firstK = new string('F', difficulty);
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
+            Transfers = MainViewModel.BlockChain.PendingTransfers;
+            PreviousHash = MainViewModel.BlockChain.Chain.Last().Hash;
             Hash = CalculateHash();
-            return Hash.StartsWith(firstK);
+            return Hash.IsLowerHex(difficulty);
         }
 
         #endregion
@@ -128,7 +132,7 @@
         /// <summary>
         /// Compare 2 blocks
         /// </summary>
-        /// <param name="other">The compared block</param>
+        /// <param name="obj">The compared block</param>
         public override bool Equals(object obj)
         {
             if (!(obj is Block other))

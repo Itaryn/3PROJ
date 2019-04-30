@@ -124,6 +124,7 @@
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Packages\StringExtension.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\BlockChainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
