@@ -150,6 +150,11 @@
                         {
                             MainViewModel.BlockChain.PendingTransfers.Remove(transfer);
                         }
+
+                        if (newBlock.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+                        {
+                            MainViewModel.BlockChain.CheckDifficulty();
+                        }
                     }
                 }
 

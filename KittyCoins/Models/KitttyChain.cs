@@ -1,4 +1,5 @@
 ﻿using System;
+using KittyCoins.Packages;
 using KittyCoins.ViewModels;
 
 namespace KittyCoins.Models
@@ -28,12 +29,14 @@ namespace KittyCoins.Models
         /// Actual difficulty of the blockchain
         /// Depending of the average creation time of a block
         /// </summary>
-        public string Difficulty { set; get; } = "0000100000000000000000000000000000000000000000000000000000000000";
+        public string Difficulty { set; get; } = "0001000000000000000000000000000000000000000000000000000000000000";
 
         /// <summary>
         /// Numbler of KittyCoin given to the creator of a block
         /// </summary>
         public double Biscuit { set; get; } = 10;
+
+        public Block LastBlock => Chain.First(block => block.Index.Equals(Chain.Max(x => x.Index)));
 
         #endregion
 
@@ -71,7 +74,7 @@ namespace KittyCoins.Models
         /// </summary>
         public void InitializeChain()
         {
-            Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>()) };
+            Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>(), MainViewModel.BlockChain.Difficulty) };
             PendingTransfers = new List<Transfer>();
         }
 
@@ -103,7 +106,14 @@ namespace KittyCoins.Models
         {
             block.Transfers = PendingTransfers.ToList();
             PendingTransfers = new List<Transfer>();
+            block.Index = LastBlock.Index + 1;
             Chain.Add(block);
+
+            if (block.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+            {
+                MainViewModel.BlockChain.CheckDifficulty();
+            }
+
             CreateTransfer(new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), minerAddress, Biscuit, 0));
         }
 
@@ -148,6 +158,26 @@ namespace KittyCoins.Models
             }
 
             return balance;
+        }
+
+        public void CheckDifficulty()
+        {
+            var compareBlock = Chain.First(block => block.Index.Equals(Chain.Max(x => x.Index) - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY));
+
+            var moy = (LastBlock.CreationDate - compareBlock.CreationDate).TotalSeconds /
+                      Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;
+            var pourcentOfDiff = moy / Constants.BLOCK_CREATION_TIME_EXPECTED;
+
+            if (pourcentOfDiff > 1)
+            {
+                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be down by {Math.Round(pourcentOfDiff * 100, 2)}%");
+            }
+            else
+            {
+                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be up by {Math.Round(1 / pourcentOfDiff * 100, 2)}%");
+            }
+
+            Difficulty = Difficulty.MultiplyHex(pourcentOfDiff);
         }
 
         #endregion

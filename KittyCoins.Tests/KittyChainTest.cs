@@ -52,10 +52,10 @@ namespace UnitTestKittyCoins
                 new Transfer(user1, user3.PublicAddress, 10, 5)
             };
 
-            var block1 = new Block(0, new DateTime(2018, 10, 1, 8, 0, 0), string.Empty, transfer1);
-            var block2 = new Block(1, new DateTime(2018, 10, 1, 8, 10, 0), block1.Hash, transfer2);
-            var block3 = new Block(2, new DateTime(2018, 10, 1, 8, 20, 0), block2.Hash, new List<Transfer>());
-            var block4 = new Block(3, new DateTime(2018, 10, 1, 8, 30, 0), block3.Hash, new List<Transfer>());
+            var block1 = new Block(0, new DateTime(2018, 10, 1, 8, 0, 0), string.Empty, transfer1, "");
+            var block2 = new Block(1, new DateTime(2018, 10, 1, 8, 10, 0), block1.Hash, transfer2, "");
+            var block3 = new Block(2, new DateTime(2018, 10, 1, 8, 20, 0), block2.Hash, new List<Transfer>(), "");
+            var block4 = new Block(3, new DateTime(2018, 10, 1, 8, 30, 0), block3.Hash, new List<Transfer>(), "");
 
             return new List<Block>
             {

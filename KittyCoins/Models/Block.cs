@@ -47,6 +47,8 @@ namespace KittyCoins.Models
         /// </summary>
         public string Hash { get; set; }
 
+        public string Difficulty { get; set; }
+
         #endregion
 
         #region Constructors
@@ -63,12 +65,13 @@ namespace KittyCoins.Models
         /// <param name="creationDate"></param>
         /// <param name="previousHash"></param>
         /// <param name="transfers"></param>
-        public Block(int index, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers)
+        public Block(int index, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
         {
             Index = index;
             CreationDate = creationDate;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
+            Difficulty = difficulty;
             Guid = Guid.NewGuid();
             Hash = CalculateHash();
         }
@@ -79,12 +82,13 @@ namespace KittyCoins.Models
         /// <param name="index"></param>
         /// <param name="previousHash"></param>
         /// <param name="transfers"></param>
-        public Block(int index, string previousHash, IEnumerable<Transfer> transfers)
+        public Block(int index, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
         {
             Index = index;
             CreationDate = DateTime.UtcNow;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
+            Difficulty = difficulty;
             Guid = Guid.NewGuid();
             Hash = CalculateHash();
         }
@@ -120,7 +124,7 @@ namespace KittyCoins.Models
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
             Transfers = MainViewModel.BlockChain.PendingTransfers;
-            PreviousHash = MainViewModel.BlockChain.Chain.Last().Hash;
+            PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
             Hash = CalculateHash();
             return Hash.IsLowerHex(difficulty);
         }

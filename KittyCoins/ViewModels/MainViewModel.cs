@@ -113,7 +113,7 @@ namespace KittyCoins.ViewModels
 
         public void Mining()
         {
-            CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers);
+            CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
 
             while (true)
             {
@@ -121,20 +121,10 @@ namespace KittyCoins.ViewModels
                 {
                     Console = "You have mined one block ! You successfull win 10 coins.";
                     var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
-                    if (dif.TotalSeconds < 30 * 1)
-                    {
-                        Console = "Difficulty up !";
-                        BlockChain.Difficulty = BlockChain.Difficulty.RemoveHex(1);
-                    }
-                    else if (dif.TotalSeconds > 40 * 1)
-                    {
-                        Console = "Difficulty down!";
-                        //BlockChain.Difficulty.AddHex(1);
-                    }
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
-                    BlockChain.AddBlock("", CurrentMineBlock);
+                    BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
                     Client.NewBlock(CurrentMineBlock);
-                    CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers);
+                    CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
                 }
             }
         }
