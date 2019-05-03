@@ -156,7 +156,7 @@ namespace KittyCoins.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Index} ({CreationDate}) | {Transfers.Count} transfers";
+            return $"{Index} ({CreationDate}) | {Transfers.Count} transfers | {Transfers.Sum(t => t.Amount + t.Biscuit)} coins";
         }
 
         #endregion

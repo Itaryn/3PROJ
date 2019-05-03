@@ -41,35 +41,8 @@ namespace KittyCoins.Packages
             if (number < 0)
                 return hex;
 
-            if (number < 1)
-                return hex.DivideHex(1 / number);
-
-            var bHex = BigInteger.Parse("0" + hex, NumberStyles.AllowHexSpecifier);
-            var result = BigInteger.Multiply(bHex, (int)(number * 1000)).ToString("X").DivideHex(1000);
-            return (new string('0', hex.Length) + result).Substring(result.Length);
-        }
-
-        public static string MultiplyHex(this string hex, int number)
-        {
-            if (number < 0)
-                return hex;
-
-            var bHex = BigInteger.Parse("0" + hex, NumberStyles.AllowHexSpecifier);
-            var result = BigInteger.Multiply(bHex, number).ToString("X");
-            return (new string('0', hex.Length) + result).Substring(result.Length);
-        }
-
-        private static string DivideHex(this string hex, double number)
-        {
-            var bHex = BigInteger.Parse("0" + hex, NumberStyles.AllowHexSpecifier);
-            var result = BigInteger.Divide(bHex, (int)(number * 1000)).ToString("X").DivideHex(1000);
-            return (new string('0', hex.Length) + result).Substring(result.Length);
-        }
-
-        private static string DivideHex(this string hex, int number)
-        {
-            var bHex = BigInteger.Parse("0" + hex, NumberStyles.AllowHexSpecifier);
-            var result = BigInteger.Divide(bHex, number).ToString("X");
+            var bHex = BigInteger.Parse("00000" + hex, NumberStyles.AllowHexSpecifier);
+            var result = BigInteger.Divide(BigInteger.Multiply(bHex, (int)(number * 1000)), 1000).ToString("X");
             return (new string('0', hex.Length) + result).Substring(result.Length);
         }
     }

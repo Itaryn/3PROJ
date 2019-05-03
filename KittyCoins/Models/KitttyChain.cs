@@ -170,11 +170,11 @@ namespace KittyCoins.Models
 
             if (pourcentOfDiff > 1)
             {
-                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be down by {Math.Round(pourcentOfDiff * 100, 2)}%");
+                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be down by {Math.Round((pourcentOfDiff - 1) * 100, 2)}%");
             }
             else
             {
-                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be up by {Math.Round(1 / pourcentOfDiff * 100, 2)}%");
+                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be up by {Math.Round(1 / (pourcentOfDiff - 1) * 100, 2)}%");
             }
 
             Difficulty = Difficulty.MultiplyHex(pourcentOfDiff);

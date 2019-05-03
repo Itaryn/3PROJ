@@ -48,19 +48,22 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="ID : "/>
                         <Label Grid.Column="1" Grid.Row="0" Content="{Binding SelectedBlock.Index}"/>
                         <Label Grid.Column="0" Grid.Row="1" Content="Creation Date : "/>
                         <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedBlock.CreationDate}"/>
-                        <Label Grid.Column="0" Grid.Row="2" Content="Hash : "/>
-                        <Label Grid.Column="1" Grid.Row="2" Content="{Binding SelectedBlock.Hash}"/>
-                        <Label Grid.Column="0" Grid.Row="3" Content="Previous Hash : "/>
-                        <Label Grid.Column="1" Grid.Row="3" Content="{Binding SelectedBlock.PreviousHash}"/>
-                        <Label Grid.Column="0" Grid.Row="4" Content="Guid : "/>
-                        <Label Grid.Column="1" Grid.Row="4" Content="{Binding SelectedBlock.Guid}"/>
-                        <Label Grid.Column="0" Grid.Row="5" Content="Transfers : "/>
-                        <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding SelectedBlock.Transfers}"/>
+                        <Label Grid.Column="0" Grid.Row="2" Content="Difficulty : "/>
+                        <Label Grid.Column="1" Grid.Row="2" Content="{Binding SelectedBlock.Difficulty}"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Hash : "/>
+                        <Label Grid.Column="1" Grid.Row="3" Content="{Binding SelectedBlock.Hash}"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Previous Hash : "/>
+                        <Label Grid.Column="1" Grid.Row="4" Content="{Binding SelectedBlock.PreviousHash}"/>
+                        <Label Grid.Column="0" Grid.Row="5" Content="Guid : "/>
+                        <Label Grid.Column="1" Grid.Row="5" Content="{Binding SelectedBlock.Guid}"/>
+                        <Label Grid.Column="0" Grid.Row="6" Content="Transfers : "/>
+                        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding SelectedBlock.Transfers}"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>
