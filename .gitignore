@@ -6,7 +6,10 @@
 /KittyCoins/bin/Debug
 /KittyCoins/obj/Debug
 /packages
-/KittyCoins/bin/Release
+/KittyCoins/bin/Release/*.pdb
+/KittyCoins/bin/Release/*.xml
+/KittyCoins/bin/Release/*.config
+/KittyCoins/bin/Release/Resources/Blockchain Save
 /KittyCoins/obj/Release
 /UnitTestKittyCoins/bin/Debug/netcoreapp2.1
 /UnitTestKittyCoins/obj

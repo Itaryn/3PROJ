@@ -12,6 +12,8 @@
 
         private Block _selectedBlock;
 
+        private KittyChain blockChain;
+
         #endregion
 
         #region Public Attributes
@@ -22,9 +24,9 @@
 
         #region Constructors
 
-        public BlockChainViewModel()
+        public BlockChainViewModel(KittyChain blockchain)
         {
-            UpdateBlockChain();
+            blockChain = blockchain;
         }
 
         #endregion
@@ -52,9 +54,9 @@
         #endregion
         
         #region Input
-        public KittyChain BlockChain => MainViewModel.BlockChain;
-        public List<Transfer> PendingTransfers => MainViewModel.BlockChain.PendingTransfers.ToList();
-        public List<Block> Chain => MainViewModel.BlockChain.Chain.ToList();
+        public KittyChain BlockChain => blockChain;
+        public List<Transfer> PendingTransfers => blockChain.PendingTransfers.ToList();
+        public List<Block> Chain => blockChain.Chain.ToList();
 
         public Block SelectedBlock
         {

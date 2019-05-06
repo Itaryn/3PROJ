@@ -120,6 +120,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\EventArgs.cs" />
     <Compile Include="Models\KitttyChain.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Server.cs" />

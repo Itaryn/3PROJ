@@ -50,7 +50,7 @@
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             _viewModel.MiningThread?.Abort();
-            MainViewModel.Client.Close();
+            _viewModel.Client?.Close();
             _viewModel.Server?.wss.Stop();
 
             Application.Current.Shutdown();

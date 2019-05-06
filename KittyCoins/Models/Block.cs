@@ -8,6 +8,7 @@ namespace KittyCoins.Models
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -121,10 +122,23 @@ namespace KittyCoins.Models
         /// </param>
         public bool TryHash(string difficulty)
         {
+            var guid = Guid.NewGuid();
+            MainViewModel.BlockChainWaitingList.Add(guid);
+            while (!MainViewModel.BlockChainAccessToken &&
+                    MainViewModel.BlockChainWaitingList.First().Equals(guid))
+            {
+                Thread.Sleep(50);
+            }
+
+            MainViewModel.BlockChainAccessToken = false;
+            MainViewModel.BlockChainWaitingList.Remove(guid);
+
+            PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
+
+            MainViewModel.BlockChainAccessToken = true;
+
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
-            Transfers = MainViewModel.BlockChain.PendingTransfers;
-            PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
             Hash = CalculateHash();
             return Hash.IsLowerHex(difficulty);
         }

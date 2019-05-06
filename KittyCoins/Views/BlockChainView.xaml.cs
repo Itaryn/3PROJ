@@ -1,5 +1,6 @@
 ﻿namespace KittyCoins.Views
 {
+    using KittyCoins.Models;
     using System.Windows;
     using ViewModels;
 
@@ -10,10 +11,10 @@
     {
         private readonly BlockChainViewModel _viewModel;
 
-        public BlockChainView()
+        public BlockChainView(KittyChain blockchain)
         {
             InitializeComponent();
-            _viewModel = new BlockChainViewModel();
+            _viewModel = new BlockChainViewModel(blockchain);
             DataContext = _viewModel;
         }
 

@@ -62,15 +62,6 @@
         #region Public Methods
 
         /// <summary>
-        /// Get the balance of the user
-        /// </summary>
-        /// <returns></returns>
-        public double GetBalance()
-        {
-            return MainViewModel.BlockChain.GetBalance(PublicAddress);
-        }
-
-        /// <summary>
         /// Sign the data in parameter
         /// </summary>
         /// <param name="data"></param>

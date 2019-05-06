@@ -30,15 +30,18 @@ namespace KittyCoins.ViewModels
 
         #region Public Attributes
 
-        public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
+
+        public static bool BlockChainAccessToken { get; set; }
+
+        public static List<Guid> BlockChainWaitingList { get; set; }
 
         /// <summary>
         /// The block in creation
         /// </summary>
         private Block CurrentMineBlock { get; set; }
-        public static IDictionary<string, WebSocket> WsDict;
-        public static Client Client = new Client();
+        public static IDictionary<string, WebSocket> ServerList;
+        public Client Client;
         public Server Server;
         public Thread MiningThread;
         public Thread OpenServerThread;
@@ -64,13 +67,26 @@ namespace KittyCoins.ViewModels
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
             PrivateWords = "Guilhem";
+            ActualUser = new User(PrivateWords);
+            BlockChainAccessToken = true;
+            BlockChainWaitingList = new List<Guid>();
 
-            BlockChain.InitializeChain();
-            var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
-            if (blockSaved.Any())
+            Client = new Client();
+            Client.NewMessage += NewMessage;
+            Client.BlockchainUpdate += UpdateBlockchain;
+
+            try
             {
-                var blocks = blockSaved.Select(JsonConvert.DeserializeObject<Block>).ToList();
-                BlockChain = new KittyChain(blocks, new List<Transfer>());
+                var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
+                if (blockSaved.Any())
+                {
+                    var blocks = blockSaved.Select(JsonConvert.DeserializeObject<Block>).ToList();
+                    BlockChain = new KittyChain(blocks, new List<Transfer>());
+                }
+            }
+            catch (Exception)
+            {
+                BlockChain.InitializeChain();
             }
         }
 
@@ -97,18 +113,12 @@ namespace KittyCoins.ViewModels
         {
             Server = new Server();
             Console = "Create Server";
-            Server.Start(Port);
+            Client.ServerAddress = Server.Start(Port);
             Console = $"Start server with port n°{Port}";
-            
-            while (true)
-            {
-                if (MessageFromClientOrServer != null && MessageFromClientOrServer.Count != 0)
-                {
-                    Console = MessageFromClientOrServer.First();
-                    MessageFromClientOrServer.RemoveAt(0);
-                }
-                Thread.Sleep(100);
-            }
+
+            Server.NewMessage += NewMessage;
+            Server.BlockchainUpdate += UpdateBlockchain;
+            Server.ServerUpdate += UpdateServer;
         }
 
         public void Mining()
@@ -122,7 +132,8 @@ namespace KittyCoins.ViewModels
                     Console = "You have mined one block ! You successfull win 10 coins.";
                     var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
-                    BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
+                    Console = BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
+
                     Client.NewBlock(CurrentMineBlock);
                     CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
                 }
@@ -131,16 +142,18 @@ namespace KittyCoins.ViewModels
 
         #endregion
 
+        #region Command Method
+
         public void ShowBlockChainMethod()
         {
-            var blockChainView = new BlockChainView();
+            var blockChainView = new BlockChainView(BlockChain);
             blockChainView.Show();
         }
 
         public void NewTransactionMethod()
         {
             var transfer = new Transfer(new User("Guilhem"), new User("Loic").PublicAddress, 15, 1);
-            BlockChain.CreateTransfer(transfer);
+            Console = BlockChain.CreateTransfer(transfer);
         }
 
         public void ConnectBlockchainMethod()
@@ -158,6 +171,72 @@ namespace KittyCoins.ViewModels
             var registerView = new RegisterView();
             registerView.Show();
         }
+
+        #endregion
+
+        #region Private Methods
+
+        private void NewMessage(object sender, EventArgs e)
+        {
+            if (e is EventArgsMessage args)
+            {
+                Console = args.Message;
+            }
+            else if (e is EventArgsObject argObj &&
+                     argObj.Object is Transfer transfer)
+            {
+                Client.NewTransfer(transfer);
+            }
+        }
+
+        private void UpdateBlockchain(object sender, EventArgs e)
+        {
+            if (sender is Server || sender is Client)
+            {
+                if (e is EventArgsObject args)
+                {
+                    if (args.Object is KittyChain blockchain)
+                    {
+                        BlockChain = blockchain;
+                        Console = "BlockChain updated from server";
+                    }
+                    else if (args.Object is Transfer transfer)
+                    {
+                        BlockChain.PendingTransfers.Add(transfer);
+                        Console = "New transfer added from server";
+                    }
+                    else if (args.Object is Block block)
+                    {
+                        block.Index = BlockChain.LastBlock.Index + 1;
+                        BlockChain.Chain.Add(block);
+                        foreach (var tr in block.Transfers)
+                        {
+                            BlockChain.PendingTransfers.Remove(tr);
+                        }
+
+                        if (block.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+                        {
+                            BlockChain.CheckDifficulty();
+                        }
+
+                    }
+                }
+            }
+
+            BlockChainAccessToken = true;
+        }
+
+        private void UpdateServer(object sender, EventArgs e)
+        {
+            if (sender is Server &&
+                e is EventArgsObject args &&
+                args.Object is List<string> servers)
+            {
+                Client.ConnectToAll(servers);
+            }
+        }
+
+        #endregion
 
         #region Input
         public bool CheckBoxMine

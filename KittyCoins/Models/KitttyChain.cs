@@ -11,6 +11,7 @@ namespace KittyCoins.Models
     /// <summary>
     /// The blockchain class
     /// </summary>
+    [Serializable()]
     public class KittyChain
     {
         #region Public Attributes
@@ -36,7 +37,9 @@ namespace KittyCoins.Models
         /// </summary>
         public double Biscuit { set; get; } = 10;
 
-        public Block LastBlock => Chain.First(block => block.Index.Equals(Chain.Max(x => x.Index)));
+        public Block FirstBlock => Chain.First(b => string.IsNullOrEmpty(b.PreviousHash));
+
+        public Block LastBlock => GetLastBlock(FirstBlock);
 
         #endregion
 
@@ -69,12 +72,50 @@ namespace KittyCoins.Models
 
         #region Public Methods
 
+        public Block GetLastBlock(Block block)
+        {
+            if (GetNextBlock(block) == null)
+            {
+                return block;
+            }
+            else
+            {
+                return GetLastBlock(GetNextBlock(block));
+            }
+        }
+
+        public Block GetNextBlock(Block block)
+        {
+            return Chain.FirstOrDefault(b => b.PreviousHash.Equals(block.Hash));
+        }
+
+        public Block GetPreviousBlock(Block block)
+        {
+            return Chain.FirstOrDefault(b => b.Hash.Equals(block.PreviousHash));
+        }
+
+        public Block GetBlockAt(int id)
+        {
+            var block = FirstBlock;
+            for (int i = 0; i < id; i++)
+            {
+                if (block == null)
+                {
+                    return null;
+                }
+
+                block = GetNextBlock(block);
+            }
+
+            return block;
+        }
+
         /// <summary>
         /// Initialize a new blockchain
         /// </summary>
         public void InitializeChain()
         {
-            Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>(), MainViewModel.BlockChain.Difficulty) };
+            Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>(), Difficulty) };
             PendingTransfers = new List<Transfer>();
         }
 
@@ -82,17 +123,17 @@ namespace KittyCoins.Models
         /// Create a new transfer and add it to the pending list
         /// </summary>
         /// <param name="transfer"></param>
-        public void CreateTransfer(Transfer transfer)
+        public string CreateTransfer(Transfer transfer)
         {
             if (new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress ||
                 GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
             {
                 PendingTransfers.Add(transfer);
-                MainViewModel.Client.NewTransfer(transfer);
+                return "Transfer added";
             }
             else
             {
-                MainViewModel.MessageFromClientOrServer.Add("Error with the transfer. It can't be added (you need more coins)");
+                return "Error with the transfer. It can't be added (you need more coins)";
             }
         }
 
@@ -102,7 +143,7 @@ namespace KittyCoins.Models
         /// </summary>
         /// <param name="minerAddress"></param>
         /// <param name="block"></param>
-        public void AddBlock(string minerAddress, Block block)
+        public string AddBlock(string minerAddress, Block block)
         {
             block.Transfers = PendingTransfers.ToList();
             PendingTransfers = new List<Transfer>();
@@ -111,10 +152,12 @@ namespace KittyCoins.Models
 
             if (block.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
             {
-                MainViewModel.BlockChain.CheckDifficulty();
+                return CheckDifficulty();
             }
 
             CreateTransfer(new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), minerAddress, Biscuit, 0));
+
+            return "";
         }
 
         /// <summary>
@@ -160,7 +203,7 @@ namespace KittyCoins.Models
             return balance;
         }
 
-        public void CheckDifficulty()
+        public string CheckDifficulty()
         {
             var compareBlock = Chain.First(block => block.Index.Equals(Chain.Max(x => x.Index) - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY));
 
@@ -168,16 +211,14 @@ namespace KittyCoins.Models
                       Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;
             var pourcentOfDiff = moy / Constants.BLOCK_CREATION_TIME_EXPECTED;
 
+            Difficulty = Difficulty.MultiplyHex(pourcentOfDiff);
+
             if (pourcentOfDiff > 1)
             {
-                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be down by {Math.Round((pourcentOfDiff - 1) * 100, 2)}%");
-            }
-            else
-            {
-                MainViewModel.MessageFromClientOrServer.Add($"The difficulty will be up by {Math.Round(1 / (pourcentOfDiff - 1) * 100, 2)}%");
+                return $"The difficulty will be down by {Math.Round((pourcentOfDiff - 1) * 100, 2)}%";
             }
 
-            Difficulty = Difficulty.MultiplyHex(pourcentOfDiff);
+            return $"The difficulty will be up by {Math.Round(1 / pourcentOfDiff * 100, 2)}%";
         }
 
         #endregion
@@ -190,21 +231,13 @@ namespace KittyCoins.Models
         /// <param name="obj">The compared blockchain</param>
         public override bool Equals(object obj)
         {
-            if (!(obj is KittyChain other))
+            if (!(obj is KittyChain other) ||
+                !Chain.SequenceEqual(other.Chain) ||
+                !PendingTransfers.SequenceEqual(other.PendingTransfers) ||
+                !Difficulty.Equals(other.Difficulty))
                 return false;
 
-            return string.Equals(JsonConvert.SerializeObject(this), JsonConvert.SerializeObject(other));
-        }
-
-        /// <summary>
-        /// The ToString() method
-        /// </summary>
-        /// <returns>
-        /// The Json object
-        /// </returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
+            return true;
         }
 
         #endregion
