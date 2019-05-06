@@ -14,10 +14,17 @@
 
     public class MainViewModel : INotifyPropertyChanged
     {
+        #region Private Attributes
+
         private bool _checkBoxMine;
         private int _port;
         private string _peerUrl;
         private string _consoleOutput = "";
+
+        #endregion
+
+        #region Public Attributes
+
         public static List<string> MessageFromClientOrServer = new List<string>();
         public static KittyChain BlockChain = new KittyChain();
         public static IDictionary<string, WebSocket> WsDict;
@@ -25,12 +32,22 @@
         public Server Server;
         public Thread MiningThread;
         public User ActualUser;
+
+        #endregion
+        
+
         public MainViewModel()
         {
+            #region Set the Commands
+
             LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
             ShowBlockChainCommand = new DelegateCommand(ShowBlockChainMethod);
             NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
             RegisterCommand = new DelegateCommand(RegisterMethod);
+
+            #endregion
+
+            // Default Values
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
             
@@ -50,11 +67,15 @@
             }
         }
 
+        #region ICommand
+
         public ICommand LaunchServerCommand { get; }
         public ICommand ShowBlockChainCommand { get; }
         public ICommand NewTransactionCommand { get; }
         public ICommand RegisterCommand { get; }
 
+        #endregion
+        
         #region Mining
 
         public void LaunchServerMethod()
@@ -78,7 +99,7 @@
                     Console = MessageFromClientOrServer.First();
                     MessageFromClientOrServer.RemoveAt(0);
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(10);
             }
         }
 

@@ -8,18 +8,32 @@
 
     public class BlockChainViewModel : INotifyPropertyChanged
     {
+        #region Private Attributes
+
         private Block _selectedBlock;
 
+        #endregion
+
+        #region Public Attributes
+
         public Thread UpdateThread;
+
+        #endregion
+
+        #region Constructors
 
         public BlockChainViewModel()
         {
             UpdateBlockChain();
         }
 
+        #endregion
+
+        #region Public Methods
+
         public void UpdateBlockChain()
         {
-            UpdateThread = new Thread(UpdateBlockChainThread) {IsBackground = true};
+            UpdateThread = new Thread(UpdateBlockChainThread) { IsBackground = true };
             UpdateThread.Start();
         }
 
@@ -35,6 +49,8 @@
             }
         }
 
+        #endregion
+        
         #region Input
         public KittyChain BlockChain => MainViewModel.BlockChain;
         public List<Transfer> PendingTransfers => MainViewModel.BlockChain.PendingTransfers.ToList();
