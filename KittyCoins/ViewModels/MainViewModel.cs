@@ -33,13 +33,20 @@
             RegisterCommand = new DelegateCommand(RegisterMethod);
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
-
-            BlockChain.InitializeChain();
-            var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
-            if (blockSaved.Any())
+            
+            try
             {
-                var blocks = blockSaved.Select(file => JsonConvert.DeserializeObject<Block>(file)).ToList();
-                BlockChain = new KittyChain(blocks, new List<Transfer>());
+                var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER, $"{Constants.BLOCK_FILENAME}*{Constants.BLOCK_FILE_EXTENSION}");
+                if (blockSaved.Any())
+                {
+                    var blocks = blockSaved.Select(file => JsonConvert.DeserializeObject<Block>(File.ReadAllText(file))).ToList();
+                    BlockChain = new KittyChain(blocks, new List<Transfer>());
+                }
+            }
+            catch (System.Exception e)
+            {
+                Console = "Error while reading your blockchain save";
+                BlockChain.InitializeChain();
             }
         }
 
@@ -71,7 +78,7 @@
                     Console = MessageFromClientOrServer.First();
                     MessageFromClientOrServer.RemoveAt(0);
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(1000);
             }
         }
 

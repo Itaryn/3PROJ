@@ -1,7 +1,11 @@
 ﻿namespace KittyCoins.Views
 {
+    using KittyCoins.Models;
+    using Newtonsoft.Json;
     using System;
+    using System.IO;
     using System.Security.Cryptography;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using ViewModels;
@@ -12,11 +16,19 @@
     public partial class MainView : Window
     {
         private MainViewModel _viewModel;
+        private Thread ScheduleTask;
         public MainView()
         {
             InitializeComponent();
             _viewModel = new MainViewModel();
             DataContext = _viewModel;
+
+            ScheduleTask = new Thread(SaveBlockchain);
+            ScheduleTask.Start();
+
+            if (!Directory.Exists(Constants.DATABASE_FOLDER))
+                Directory.CreateDirectory(Constants.DATABASE_FOLDER);
+
             var cspParams = new CspParameters {KeyContainerName = "Salut ezgziohvsuowghvuqz"};
 
             // Specify the container name using the passed variable.
@@ -49,12 +61,33 @@
         }
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
+            // Close all thread if they are on
             _viewModel.MiningThread?.Abort();
             MainViewModel.Client.Close();
             _viewModel.Server?.wss.Stop();
+            ScheduleTask.Abort();
 
             Application.Current.Shutdown();
             base.OnClosing(e);
+        }
+
+        private void SaveBlockchain()
+        {
+            while (true)
+            {
+                Thread.Sleep(5 * 60 * 1000);
+                foreach (var block in MainViewModel.BlockChain.Chain)
+                {
+                    var pathFile = Path.Combine(Constants.DATABASE_FOLDER, $"{Constants.BLOCK_FILENAME}{block.Index.ToString()}{Constants.BLOCK_FILE_EXTENSION}");
+                    var json = JsonConvert.SerializeObject(block, Formatting.Indented);
+
+                    if (File.Exists(pathFile) && File.ReadAllText(pathFile) == json)
+                        continue;
+
+                    File.WriteAllText(pathFile, json);
+                    _viewModel.Console = $"Block n°{block.Index} saved in a file";
+                }
+            }
         }
     }
 }

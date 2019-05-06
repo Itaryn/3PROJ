@@ -56,7 +56,8 @@
                 var previousBlock = Chain[i - 1];
 
                 if (currentBlock.Hash != currentBlock.CalculateHash() ||
-                    currentBlock.PreviousHash != previousBlock.Hash)
+                    currentBlock.PreviousHash != previousBlock.Hash || 
+                    currentBlock.Transfers.Any(t => !t.IsValid()))
                     return false;
             }
             return true;

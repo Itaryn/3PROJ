@@ -49,7 +49,7 @@
         public bool IsValid()
         {
             return !string.IsNullOrEmpty(ToAddress) &&
-                   Amount > 0;
+                   Amount > 0 && VerifyData();
         }
 
         public override string ToString()
