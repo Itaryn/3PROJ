@@ -73,7 +73,6 @@ namespace KittyCoins.ViewModels
 
             Client = new Client();
             Client.NewMessage += NewMessage;
-            Client.BlockchainUpdate += UpdateBlockchain;
 
             try
             {
@@ -114,10 +113,10 @@ namespace KittyCoins.ViewModels
             Server = new Server();
             Console = "Create Server";
             Client.ServerAddress = Server.Start(Port);
+            Console = $"Open server at {Client.ServerAddress}";
             Console = $"Start server with port n°{Port}";
 
             Server.NewMessage += NewMessage;
-            Server.BlockchainUpdate += UpdateBlockchain;
             Server.ServerUpdate += UpdateServer;
         }
 
@@ -129,12 +128,17 @@ namespace KittyCoins.ViewModels
             {
                 if (CurrentMineBlock.TryHash(BlockChain.Difficulty))
                 {
-                    Console = "You have mined one block ! You successfull win 10 coins.";
+                    Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
                     var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
                     Console = BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
 
                     Client.NewBlock(CurrentMineBlock);
+
+                    var transfer = new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), ActualUser.PublicAddress, BlockChain.Biscuit, 0);
+
+                    BlockChain.CreateTransfer(transfer);
+                    Client.NewTransfer(transfer);
                     CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
                 }
             }
@@ -187,43 +191,6 @@ namespace KittyCoins.ViewModels
             {
                 Client.NewTransfer(transfer);
             }
-        }
-
-        private void UpdateBlockchain(object sender, EventArgs e)
-        {
-            if (sender is Server || sender is Client)
-            {
-                if (e is EventArgsObject args)
-                {
-                    if (args.Object is KittyChain blockchain)
-                    {
-                        BlockChain = blockchain;
-                        Console = "BlockChain updated from server";
-                    }
-                    else if (args.Object is Transfer transfer)
-                    {
-                        BlockChain.PendingTransfers.Add(transfer);
-                        Console = "New transfer added from server";
-                    }
-                    else if (args.Object is Block block)
-                    {
-                        block.Index = BlockChain.LastBlock.Index + 1;
-                        BlockChain.Chain.Add(block);
-                        foreach (var tr in block.Transfers)
-                        {
-                            BlockChain.PendingTransfers.Remove(tr);
-                        }
-
-                        if (block.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
-                        {
-                            BlockChain.CheckDifficulty();
-                        }
-
-                    }
-                }
-            }
-
-            BlockChainAccessToken = true;
         }
 
         private void UpdateServer(object sender, EventArgs e)

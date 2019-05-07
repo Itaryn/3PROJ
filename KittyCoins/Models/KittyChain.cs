@@ -155,8 +155,6 @@ namespace KittyCoins.Models
                 return CheckDifficulty();
             }
 
-            CreateTransfer(new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), minerAddress, Biscuit, 0));
-
             return "";
         }
 
@@ -166,16 +164,20 @@ namespace KittyCoins.Models
         /// <returns></returns>
         public bool IsValid()
         {
-            for (var i = 1; i < Chain.Count; i++)
+            var currentBlock = LastBlock;
+            for (int i = 1; i < Chain.Count; i++)
             {
-                var currentBlock = Chain[i];
-                var previousBlock = Chain[i - 1];
-
-                if (currentBlock.Hash != currentBlock.CalculateHash() ||
+                var previousBlock = GetPreviousBlock(currentBlock);
+                if (previousBlock == null ||
+                    currentBlock.Hash != currentBlock.CalculateHash() ||
                     currentBlock.PreviousHash != previousBlock.Hash)
+                {
                     return false;
+                }
+                currentBlock = previousBlock;
             }
-            return true;
+
+            return currentBlock.Hash == currentBlock.CalculateHash();
         }
 
         /// <summary>

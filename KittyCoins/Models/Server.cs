@@ -8,6 +8,7 @@
     using WebSocketSharp;
     using WebSocketSharp.Server;
     using System.Threading;
+    using System.Net;
 
     public class Server : WebSocketBehavior
     {
@@ -41,8 +42,24 @@
         /// <param name="port"></param>
         public string Start(int port, string ip = "127.0.0.1")
         {
-            // Set the web socket at the local address
-            wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{ip}:{port}");
+            foreach (var address in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                try
+                {
+                    // Set the web socket at the local address
+                    wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{address.ToString()}:{port}");
+                    ip = address.ToString();
+                    break;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            if (wss == null)
+            {
+                new WebSocketServer($"{Constants.SERVER_ADDRESS}{ip}:{port}");
+            }
 
             // Set the service "Blockchain"
             wss.AddWebSocketService<Server>(Constants.WEB_SERVICE_NAME);
@@ -64,18 +81,17 @@
         /// <param name="e"></param>
         protected override void OnMessage(MessageEventArgs e)
         {
+            var guid = Guid.NewGuid();
             try
             {
-                var guid = Guid.NewGuid();
                 MainViewModel.BlockChainWaitingList.Add(guid);
-                while (!MainViewModel.BlockChainAccessToken &&
-                        MainViewModel.BlockChainWaitingList.First().Equals(guid))
+                while (!MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(guid))
                 {
-                    Thread.Sleep(50);
+                    if (MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(new Guid()))
+                    {
+                        MainViewModel.BlockChainWaitingList.Remove(new Guid());
+                    }
                 }
-
-                MainViewModel.BlockChainAccessToken = false;
-                MainViewModel.BlockChainWaitingList.Remove(guid);
 
                 #region BlockChain Receive
 
@@ -94,11 +110,16 @@
                      * If same chain and same pending transfers list
                      * => Do nothing
                      */
-                    if (!chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid() ||
-                        MainViewModel.BlockChain.Equals(chainReceived))
+                    if (MainViewModel.BlockChain.Equals(chainReceived))
                     {
-                        MainViewModel.BlockChainAccessToken = true;
+                        MainViewModel.BlockChainWaitingList.Remove(guid);
                         return;
+                    }
+
+                    if (!MainViewModel.BlockChain.IsValid() &&
+                        !chainReceived.IsValid())
+                    {
+                        MainViewModel.BlockChain.InitializeChain();
                     }
 
                     // If chain received is not valid but local is
@@ -114,8 +135,8 @@
                     if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
                     {
                         NewMessage.Invoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"));
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                        return;
+                        MainViewModel.BlockChain = chainReceived;
+                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
                     }
 
                     // If the received chain is bigger than local
@@ -123,8 +144,8 @@
                     else if (chainReceived.Chain.Count > MainViewModel.BlockChain.Chain.Count)
                     {
                         NewMessage.Invoke(this, new EventArgsMessage("Blockchain is bigger than local"));
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                        return;
+                        MainViewModel.BlockChain = chainReceived;
+                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
                     }
 
                     // If the received chain is lower than local
@@ -148,8 +169,8 @@
                         if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
                         {
                             NewMessage.Invoke(this, new EventArgsMessage("Overwrite BlockChain from sender"));
-                            BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                            return;
+                            MainViewModel.BlockChain = chainReceived;
+                            NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
                         }
                         // Send a overwrite force to the sender
                         else
@@ -166,15 +187,31 @@
 
                 else if (e.Data.StartsWith("Block"))
                 {
-                    // Deserialize the block
-                    // The Substring cut "Block"
-                    var newBlock = JsonConvert.DeserializeObject<Block>(e.Data.Substring(5));
-                    NewMessage.Invoke(this, new EventArgsMessage("New Block received"));
-
-                    if (newBlock.PreviousHash == MainViewModel.BlockChain.Chain.Last().Hash)
+                    if (!MainViewModel.BlockChain.IsValid())
                     {
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(newBlock));
-                        return;
+                        Send(Constants.NEED_BLOCKCHAIN);
+                    }
+                    else
+                    {
+                        // Deserialize the block
+                        // The Substring cut "Block"
+                        var newBlock = JsonConvert.DeserializeObject<Block>(e.Data.Substring(5));
+                        NewMessage.Invoke(this, new EventArgsMessage("New Block received"));
+
+                        if (newBlock.PreviousHash == MainViewModel.BlockChain.Chain.Last().Hash)
+                        {
+                            newBlock.Index = MainViewModel.BlockChain.LastBlock.Index + 1;
+                            MainViewModel.BlockChain.Chain.Add(newBlock);
+                            foreach (var tr in newBlock.Transfers)
+                            {
+                                MainViewModel.BlockChain.PendingTransfers.Remove(tr);
+                            }
+
+                            if (newBlock.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+                            {
+                                NewMessage.Invoke(this, new EventArgsMessage(MainViewModel.BlockChain.CheckDifficulty()));
+                            }
+                        }
                     }
                 }
 
@@ -198,8 +235,8 @@
                     else
                     {
                         // If already is Ok add it to our pending transfer list
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(newTransfer));
-                        return;
+                        MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
+                        NewMessage.Invoke(this, new EventArgsMessage("New transfer added from server"));
                     }
                 }
                 // The request send a list of transfer
@@ -220,9 +257,8 @@
                         else
                         {
                             // If already is Ok add it to our pending transfer list
-                            BlockchainUpdate.Invoke(this, new EventArgsObject(newTransfer));
-                            NewMessage.Invoke(this, new EventArgsMessage("New Transfer added"));
-                            return;
+                            MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
+                            NewMessage.Invoke(this, new EventArgsMessage("New transfer added from server"));
                         }
                     }
                 }
@@ -239,7 +275,7 @@
                     ServerUpdate.Invoke(this, new EventArgsObject(listWs));
                     if (MainViewModel.ServerList.Any())
                     {
-                        Send("ServerList" + JsonConvert.SerializeObject(MainViewModel.ServerList));
+                        Send("ServerList" + JsonConvert.SerializeObject(MainViewModel.ServerList.Select(x => x.Key)));
                     }
                 }
 
@@ -253,11 +289,10 @@
             catch (Exception ex)
             {
                 NewMessage.Invoke(this, new EventArgsMessage("Impossible to deserialize received object"));
-                NewMessage.Invoke(this, new EventArgsMessage(ex.Message));
             }
             finally
             {
-                MainViewModel.BlockChainAccessToken = true;
+                MainViewModel.BlockChainWaitingList.Remove(guid);
             }
         }
 

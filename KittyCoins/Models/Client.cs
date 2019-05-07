@@ -48,18 +48,12 @@
             var ws = new WebSocket(url);
             ws.OnMessage += (sender, e) =>
             {
+                var guid = Guid.NewGuid();
                 try
                 {
-                    var guid = Guid.NewGuid();
                     MainViewModel.BlockChainWaitingList.Add(guid);
-                    while (!MainViewModel.BlockChainAccessToken &&
-                            MainViewModel.BlockChainWaitingList.First().Equals(guid))
-                    {
-                        Thread.Sleep(50);
-                    }
-
-                    MainViewModel.BlockChainAccessToken = false;
-                    MainViewModel.BlockChainWaitingList.Remove(guid);
+                    while (!MainViewModel.BlockChainWaitingList.First().Equals(guid))
+                    { }
 
                     #region BlockChain Received
 
@@ -67,22 +61,26 @@
                     {
                         NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_IS_NOT_VALID));
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_IS_NOT_VALID.Length));
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                        return;
+                        MainViewModel.BlockChain = chainReceived;
+                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_MISS_BLOCK))
                     {
                         NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_MISS_BLOCK));
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_MISS_BLOCK.Length));
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                        return;
+                        MainViewModel.BlockChain = chainReceived;
+                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
                     {
                         NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_OVERWRITE));
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_OVERWRITE.Length));
-                        BlockchainUpdate.Invoke(this, new EventArgsObject(chainReceived));
-                        return;
+                        MainViewModel.BlockChain = chainReceived;
+                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                    }
+                    else if (e.Data.StartsWith(Constants.NEED_BLOCKCHAIN))
+                    {
+                        ws.Send(Constants.BLOCKCHAIN + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                     }
 
                     #endregion
@@ -109,13 +107,13 @@
                         NewMessage.Invoke(this, new EventArgsMessage("Unknown message"));
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    NewMessage.Invoke(this, new EventArgsMessage("Impossible to deserialize received object"));
+                    NewMessage.Invoke(this, new EventArgsMessage(ex.Message));
                 }
                 finally
                 {
-                    MainViewModel.BlockChainAccessToken = true;
+                    MainViewModel.BlockChainWaitingList.Remove(guid);
                 }
             };
             ws.Connect();
@@ -145,9 +143,22 @@
         /// <param name="data"></param>
         public void Broadcast(string data)
         {
+            var serverClose = new Dictionary<string, WebSocket>();
             foreach (var item in MainViewModel.ServerList)
             {
-                item.Value.Send(data);
+                try
+                {
+                    item.Value.Send(data);
+                }
+                catch (Exception)
+                {
+                    NewMessage.Invoke(this, new EventArgsMessage($"The server {item.Key} is closed."));
+                    serverClose.Add(item.Key, item.Value);
+                }
+            }
+            foreach (var item in serverClose)
+            {
+                MainViewModel.ServerList.Remove(item);
             }
         }
 
@@ -184,17 +195,12 @@
 
         public void ConnectToAll(List<string> servers)
         {
-            // If they have server that we didn't know in the request
-            if (!MainViewModel.ServerList.Keys.Except(servers).Any())
-            {
-                NewMessage.Invoke(this, new EventArgsMessage("Connect to the others servers"));
+            NewMessage.Invoke(this, new EventArgsMessage("Connect to the others servers"));
 
-                // Connect to those servers
-                foreach (var address in servers)
-                {
-                    NewMessage.Invoke(this, new EventArgsMessage($"Connect to {address}"));
-                    Connect(address);
-                }
+            // Connect to those servers
+            foreach (var address in servers)
+            {
+                Connect(address);
             }
         }
     }

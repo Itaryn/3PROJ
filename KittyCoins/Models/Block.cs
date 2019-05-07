@@ -124,22 +124,17 @@ namespace KittyCoins.Models
         {
             var guid = Guid.NewGuid();
             MainViewModel.BlockChainWaitingList.Add(guid);
-            while (!MainViewModel.BlockChainAccessToken &&
-                    MainViewModel.BlockChainWaitingList.First().Equals(guid))
-            {
-                Thread.Sleep(50);
-            }
-
-            MainViewModel.BlockChainAccessToken = false;
-            MainViewModel.BlockChainWaitingList.Remove(guid);
+            while (!MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(guid))
+            { }
 
             PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
-
-            MainViewModel.BlockChainAccessToken = true;
+            Transfers = MainViewModel.BlockChain.PendingTransfers;
 
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
             Hash = CalculateHash();
+
+            MainViewModel.BlockChainWaitingList.Remove(guid);
             return Hash.IsLowerHex(difficulty);
         }
 

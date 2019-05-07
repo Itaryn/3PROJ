@@ -23,5 +23,6 @@ namespace KittyCoins.Models
         public static string BLOCKCHAIN_IS_NOT_VALID => "Blockchain is not valid";
         public static string BLOCKCHAIN_MISS_BLOCK => "Blockchain miss blocks";
         public static string BLOCKCHAIN_OVERWRITE => "BlockChainOverwrite";
+        public static string NEED_BLOCKCHAIN => "NeedBlockchain";
     }
 }
