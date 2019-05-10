@@ -1,16 +1,14 @@
-﻿using KittyCoins.Packages;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using KittyCoins.Packages;
 using KittyCoins.ViewModels;
+using Newtonsoft.Json;
 
 namespace KittyCoins.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Threading;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// The Block Class
     /// </summary>

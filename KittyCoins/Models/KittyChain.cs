@@ -1,17 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using KittyCoins.Packages;
-using KittyCoins.ViewModels;
 
 namespace KittyCoins.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Newtonsoft.Json;
-    
     /// <summary>
     /// The blockchain class
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class KittyChain
     {
         #region Public Attributes
@@ -78,10 +75,8 @@ namespace KittyCoins.Models
             {
                 return block;
             }
-            else
-            {
-                return GetLastBlock(GetNextBlock(block));
-            }
+
+            return GetLastBlock(GetNextBlock(block));
         }
 
         public Block GetNextBlock(Block block)
@@ -131,10 +126,8 @@ namespace KittyCoins.Models
                 PendingTransfers.Add(transfer);
                 return "Transfer added";
             }
-            else
-            {
-                return "Error with the transfer. It can't be added (you need more coins)";
-            }
+
+            return "Error with the transfer. It can't be added (you need more coins)";
         }
 
         /// <summary>

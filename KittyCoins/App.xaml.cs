@@ -1,7 +1,7 @@
-﻿namespace KittyCoins
-{
-    using System.Windows;
+﻿using System.Windows;
 
+namespace KittyCoins
+{
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

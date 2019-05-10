@@ -1,10 +1,10 @@
-namespace UnitTestKittyCoins
-{
-    using System;
-    using System.Collections.Generic;
-    using KittyCoins.Models;
-    using Xunit;
+using System;
+using System.Collections.Generic;
+using KittyCoins.Models;
+using Xunit;
 
+namespace KittyCoins.Tests
+{
     public class BlockTest
     {
         [Fact]
@@ -14,7 +14,7 @@ namespace UnitTestKittyCoins
             var block2 = new Block(1, block1.Hash, new List<Transfer>(), "");
 
             Assert.False(block1.Equals(block2));
-            Assert.Equal("0 (01/12/2018 15:23:03) | 0 transfers", block1.ToString());
+            Assert.Equal("0 (01/12/2018 15:23:03) | 0 transfers | 0 coins", block1.ToString());
         }
     }
 }

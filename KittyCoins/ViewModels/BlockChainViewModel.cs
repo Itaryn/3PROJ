@@ -1,11 +1,11 @@
-﻿namespace KittyCoins.ViewModels
-{
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading;
-    using Models;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading;
+using KittyCoins.Models;
 
+namespace KittyCoins.ViewModels
+{
     public class BlockChainViewModel : INotifyPropertyChanged
     {
         #region Private Attributes

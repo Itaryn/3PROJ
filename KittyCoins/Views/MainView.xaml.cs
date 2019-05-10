@@ -1,11 +1,12 @@
-﻿namespace KittyCoins.Views
-{
-    using System;
-    using System.Security.Cryptography;
-    using System.Windows;
-    using System.Windows.Controls;
-    using ViewModels;
+﻿using System;
+using System.ComponentModel;
+using System.Security.Cryptography;
+using System.Windows;
+using System.Windows.Controls;
+using KittyCoins.ViewModels;
 
+namespace KittyCoins.Views
+{
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
@@ -47,7 +48,7 @@
         {
             ConsoleGUI.ScrollToEnd();
         }
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
             _viewModel.MiningThread?.Abort();
             _viewModel.Client?.Close();

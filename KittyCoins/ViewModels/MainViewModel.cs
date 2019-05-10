@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Security.Cryptography;
-using KittyCoins.Packages;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Input;
+using KittyCoins.Models;
+using KittyCoins.Views;
+using Newtonsoft.Json;
+using Prism.Commands;
+using WebSocketSharp;
 
 namespace KittyCoins.ViewModels
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading;
-    using System.Windows.Input;
-    using Models;
-    using Views;
-    using Prism.Commands;
-    using WebSocketSharp;
-    using System.IO;
-    using Newtonsoft.Json;
-
     public class MainViewModel : INotifyPropertyChanged
     {
         #region Private Attributes

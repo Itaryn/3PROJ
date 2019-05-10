@@ -1,13 +1,12 @@
-﻿namespace KittyCoins.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using ViewModels;
-    using Newtonsoft.Json;
-    using WebSocketSharp;
-    using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using KittyCoins.ViewModels;
+using Newtonsoft.Json;
+using WebSocketSharp;
 
+namespace KittyCoins.Models
+{
     /// <summary>
     /// The client class
     /// Used to send packets to other server

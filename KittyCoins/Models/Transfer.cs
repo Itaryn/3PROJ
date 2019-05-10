@@ -1,10 +1,10 @@
-﻿namespace KittyCoins.Models
-{
-    using System;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
+namespace KittyCoins.Models
+{
     /// <summary>
     /// The transfer class
     /// </summary>
