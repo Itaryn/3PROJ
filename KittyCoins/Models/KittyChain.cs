@@ -8,6 +8,7 @@ namespace KittyCoins.Models
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using KittyCoins.ViewModels;
     using Newtonsoft.Json;
     
     /// <summary>
