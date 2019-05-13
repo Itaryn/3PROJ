@@ -97,8 +97,12 @@ namespace KittyCoins.Models
         public bool IsValid()
         {
             return !string.IsNullOrEmpty(ToAddress) &&
-                   Amount > 0 &&
-                   VerifyData();
+                   Amount > 0 && VerifyData();
+        }
+
+        public override string ToString()
+        {
+            return $"{CreationDate} | {FromAddress} -> {ToAddress} : {Amount} + ({Biscuit})";
         }
 
         /// <summary>
