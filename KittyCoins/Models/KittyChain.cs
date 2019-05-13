@@ -5,6 +5,7 @@ using KittyCoins.ViewModels;
 namespace KittyCoins.Models
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using Newtonsoft.Json;
     
@@ -117,6 +118,8 @@ namespace KittyCoins.Models
         {
             Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>(), Difficulty) };
             PendingTransfers = new List<Transfer>();
+
+            MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -129,6 +132,7 @@ namespace KittyCoins.Models
                 GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
             {
                 PendingTransfers.Add(transfer);
+                MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
                 return "Transfer added";
             }
             else
@@ -154,6 +158,8 @@ namespace KittyCoins.Models
             {
                 return CheckDifficulty();
             }
+
+            MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
 
             return "";
         }
@@ -221,6 +227,11 @@ namespace KittyCoins.Models
             }
 
             return $"The difficulty will be up by {Math.Round(1 / pourcentOfDiff * 100, 2)}%";
+        }
+
+        public void SaveBlockChain()
+        {
+            File.WriteAllText(Constants.SAVE_FILENAME, JsonConvert.SerializeObject(this));
         }
 
         #endregion

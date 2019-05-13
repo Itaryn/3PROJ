@@ -114,6 +114,7 @@
                 finally
                 {
                     MainViewModel.BlockChainWaitingList.Remove(guid);
+                    MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
                 }
             };
             ws.Connect();

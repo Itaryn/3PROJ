@@ -11,17 +11,11 @@
     {
         private readonly BlockChainViewModel _viewModel;
 
-        public BlockChainView(KittyChain blockchain)
+        public BlockChainView()
         {
             InitializeComponent();
-            _viewModel = new BlockChainViewModel(blockchain);
+            _viewModel = new BlockChainViewModel();
             DataContext = _viewModel;
-        }
-
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        {
-            _viewModel.UpdateThread?.Abort();
-            base.OnClosing(e);
         }
     }
 }

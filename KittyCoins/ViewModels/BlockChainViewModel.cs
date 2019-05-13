@@ -1,5 +1,6 @@
 ﻿namespace KittyCoins.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
@@ -12,8 +13,6 @@
 
         private Block _selectedBlock;
 
-        private KittyChain blockChain;
-
         #endregion
 
         #region Public Attributes
@@ -24,39 +23,28 @@
 
         #region Constructors
 
-        public BlockChainViewModel(KittyChain blockchain)
+        public BlockChainViewModel()
         {
-            blockChain = blockchain;
+            MainViewModel.BlockChainUpdated += UpdateBlockChain;
         }
 
         #endregion
 
         #region Public Methods
 
-        public void UpdateBlockChain()
+        public void UpdateBlockChain(object sender, EventArgs e)
         {
-            UpdateThread = new Thread(UpdateBlockChainThread) { IsBackground = true };
-            UpdateThread.Start();
-        }
-
-        public void UpdateBlockChainThread()
-        {
-            while (true)
-            {
-                // Check every second
-                Thread.Sleep(1000);
-                RaisePropertyChanged("BlockChain");
-                RaisePropertyChanged("PendingTransfers");
-                RaisePropertyChanged("Chain");
-            }
+            RaisePropertyChanged("BlockChain");
+            RaisePropertyChanged("PendingTransfers");
+            RaisePropertyChanged("Chain");
         }
 
         #endregion
         
         #region Input
-        public KittyChain BlockChain => blockChain;
-        public List<Transfer> PendingTransfers => blockChain.PendingTransfers.ToList();
-        public List<Block> Chain => blockChain.Chain.ToList();
+        public KittyChain BlockChain => MainViewModel.BlockChain;
+        public List<Transfer> PendingTransfers => MainViewModel.BlockChain.PendingTransfers.ToList();
+        public List<Block> Chain => MainViewModel.BlockChain.Chain.ToList();
 
         public Block SelectedBlock
         {

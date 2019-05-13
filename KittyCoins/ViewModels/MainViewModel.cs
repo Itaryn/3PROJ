@@ -32,6 +32,8 @@ namespace KittyCoins.ViewModels
 
         public static KittyChain BlockChain = new KittyChain();
 
+        public static EventHandler BlockChainUpdated;
+
         public static bool BlockChainAccessToken { get; set; }
 
         public static List<Guid> BlockChainWaitingList { get; set; }
@@ -44,7 +46,7 @@ namespace KittyCoins.ViewModels
         public Client Client;
         public Server Server;
         public Thread MiningThread;
-        public Thread OpenServerThread;
+        public Thread SaveThread;
         public User ActualUser;
 
         #endregion
@@ -76,12 +78,7 @@ namespace KittyCoins.ViewModels
 
             try
             {
-                var blockSaved = Directory.GetFiles(Constants.DATABASE_FOLDER);
-                if (blockSaved.Any())
-                {
-                    var blocks = blockSaved.Select(JsonConvert.DeserializeObject<Block>).ToList();
-                    BlockChain = new KittyChain(blocks, new List<Transfer>());
-                }
+                BlockChain = JsonConvert.DeserializeObject<KittyChain>(File.ReadAllText(Constants.SAVE_FILENAME));
             }
             catch (Exception)
             {
@@ -104,12 +101,6 @@ namespace KittyCoins.ViewModels
 
         public void LaunchServerMethod()
         {
-            OpenServerThread = new Thread(OpenServer) {IsBackground = true};
-            OpenServerThread.Start();
-        }
-
-        public void OpenServer()
-        {
             Server = new Server();
             Console = "Create Server";
             Client.ServerAddress = Server.Start(Port);
@@ -118,6 +109,18 @@ namespace KittyCoins.ViewModels
 
             Server.NewMessage += NewMessage;
             Server.ServerUpdate += UpdateServer;
+
+            SaveThread = new Thread(Save) { IsBackground = true };
+            SaveThread.Start();
+        }
+
+        public void Save()
+        {
+            while (true)
+            {
+                BlockChain.SaveBlockChain();
+                Thread.Sleep(Constants.SCHEDULE_SAVE_TIME * 1000);
+            }
         }
 
         public void Mining()
@@ -150,7 +153,7 @@ namespace KittyCoins.ViewModels
 
         public void ShowBlockChainMethod()
         {
-            var blockChainView = new BlockChainView(BlockChain);
+            var blockChainView = new BlockChainView();
             blockChainView.Show();
         }
 
