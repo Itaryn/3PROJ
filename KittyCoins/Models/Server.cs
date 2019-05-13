@@ -1,15 +1,14 @@
-﻿namespace KittyCoins.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using ViewModels;
-    using Newtonsoft.Json;
-    using WebSocketSharp;
-    using WebSocketSharp.Server;
-    using System.Threading;
-    using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using KittyCoins.ViewModels;
+using Newtonsoft.Json;
+using WebSocketSharp;
+using WebSocketSharp.Server;
 
+namespace KittyCoins.Models
+{
     public class Server : WebSocketBehavior
     {
         #region Public Attributes
@@ -47,7 +46,7 @@
                 try
                 {
                     // Set the web socket at the local address
-                    wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{address.ToString()}:{port}");
+                    wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{address}:{port}");
                     ip = address.ToString();
                     break;
                 }

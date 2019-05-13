@@ -1,9 +1,10 @@
-﻿namespace KittyCoins.Views
-{
-    using KittyCoins.Models;
-    using System.Windows;
-    using ViewModels;
+﻿using System.ComponentModel;
+using System.Windows;
+using KittyCoins.Models;
+using KittyCoins.ViewModels;
 
+namespace KittyCoins.Views
+{
     /// <summary>
     /// Interaction logic for BlockChainView.xaml
     /// </summary>

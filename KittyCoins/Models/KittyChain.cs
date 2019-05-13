@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using KittyCoins.Packages;
-using KittyCoins.ViewModels;
 
 namespace KittyCoins.Models
 {
@@ -12,7 +13,7 @@ namespace KittyCoins.Models
     /// <summary>
     /// The blockchain class
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class KittyChain
     {
         #region Public Attributes
@@ -79,10 +80,8 @@ namespace KittyCoins.Models
             {
                 return block;
             }
-            else
-            {
-                return GetLastBlock(GetNextBlock(block));
-            }
+
+            return GetLastBlock(GetNextBlock(block));
         }
 
         public Block GetNextBlock(Block block)
@@ -135,10 +134,8 @@ namespace KittyCoins.Models
                 MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
                 return "Transfer added";
             }
-            else
-            {
-                return "Error with the transfer. It can't be added (you need more coins)";
-            }
+
+            return "Error with the transfer. It can't be added (you need more coins)";
         }
 
         /// <summary>
@@ -170,19 +167,42 @@ namespace KittyCoins.Models
         /// <returns></returns>
         public bool IsValid()
         {
-            var currentBlock = LastBlock;
-            for (int i = 1; i < Chain.Count; i++)
+            var currentBlock = FirstBlock;
+            for (var i = 1; i < Chain.Count; i++)
             {
-                var previousBlock = GetPreviousBlock(currentBlock);
-                if (previousBlock == null ||
+                var nextBlock = GetNextBlock(currentBlock);
+
+                if (currentBlock == null || nextBlock == null ||
                     currentBlock.Hash != currentBlock.CalculateHash() ||
-                    currentBlock.PreviousHash != previousBlock.Hash)
+                    currentBlock.Hash != nextBlock.PreviousHash ||
+                    !currentBlock.Hash.IsLowerHex(currentBlock.Difficulty) ||
+                    currentBlock.Transfers.Any(t => !t.IsValid()))
+                    return false;
+
+                if (Chain.Count <= i + 1) continue;
+
+                // Verify if the difficulty was well calculated
+                if (i % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+                {
+                    var compareBlock = Chain.First(block => block.Index.Equals(currentBlock.Index - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY));
+
+                    var moy = (currentBlock.CreationDate - compareBlock.CreationDate).TotalSeconds /
+                              Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;
+                    var pourcentOfDiff = moy / Constants.BLOCK_CREATION_TIME_EXPECTED;
+
+                    if (currentBlock.Difficulty.MultiplyHex(pourcentOfDiff) != nextBlock.Difficulty)
+                    {
+                        return false;
+                    }
+                }
+                // Verify if the difficulty wasn't calculated when not requested
+                else if (currentBlock.Difficulty != nextBlock.Difficulty)
                 {
                     return false;
                 }
-                currentBlock = previousBlock;
-            }
 
+                currentBlock = nextBlock;
+            }
             return currentBlock.Hash == currentBlock.CalculateHash();
         }
 

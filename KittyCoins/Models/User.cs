@@ -1,9 +1,8 @@
-﻿namespace KittyCoins.Models
-{
-    using System;
-    using System.Security.Cryptography;
-    using ViewModels;
+﻿using System;
+using System.Security.Cryptography;
 
+namespace KittyCoins.Models
+{
     /// <summary>
     /// The user class
     /// </summary>

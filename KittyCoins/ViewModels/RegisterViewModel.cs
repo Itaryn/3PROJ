@@ -1,12 +1,12 @@
-﻿namespace KittyCoins.ViewModels
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Windows.Input;
-    using Prism.Commands;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Windows.Input;
+using Prism.Commands;
 
+namespace KittyCoins.ViewModels
+{
     public class RegisterViewModel : INotifyPropertyChanged
     {
         private string _privateKey;

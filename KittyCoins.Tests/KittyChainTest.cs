@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using KittyCoins.Models;
+using Xunit;
+
 namespace UnitTestKittyCoins
 {
-    using System;
-    using System.Collections.Generic;
-    using KittyCoins.Models;
-    using Xunit;
-    
     public class KittyChainTest
     {
         [Fact]
@@ -52,10 +52,10 @@ namespace UnitTestKittyCoins
                 new Transfer(user1, user3.PublicAddress, 10, 5)
             };
 
-            var block1 = new Block(0, new DateTime(2018, 10, 1, 8, 0, 0), string.Empty, transfer1, "");
-            var block2 = new Block(1, new DateTime(2018, 10, 1, 8, 10, 0), block1.Hash, transfer2, "");
-            var block3 = new Block(2, new DateTime(2018, 10, 1, 8, 20, 0), block2.Hash, new List<Transfer>(), "");
-            var block4 = new Block(3, new DateTime(2018, 10, 1, 8, 30, 0), block3.Hash, new List<Transfer>(), "");
+            var block1 = new Block(0, new DateTime(2018, 10, 1, 8, 0, 0), string.Empty, transfer1, new string('F', 64));
+            var block2 = new Block(1, new DateTime(2018, 10, 1, 8, 10, 0), block1.Hash, transfer2, new string('F', 64));
+            var block3 = new Block(2, new DateTime(2018, 10, 1, 8, 20, 0), block2.Hash, new List<Transfer>(), new string('F', 64));
+            var block4 = new Block(3, new DateTime(2018, 10, 1, 8, 30, 0), block3.Hash, new List<Transfer>(), new string('F', 64));
 
             return new List<Block>
             {
