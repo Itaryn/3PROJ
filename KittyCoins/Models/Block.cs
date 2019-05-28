@@ -22,6 +22,11 @@ namespace KittyCoins.Models
         public int Index { get; set; }
 
         /// <summary>
+        /// Creator of the block
+        /// </summary>
+        public string Owner { get; set; }
+
+        /// <summary>
         /// Creation DateTime of the Block
         /// </summary>
         public DateTime CreationDate { get; set; }
@@ -64,9 +69,10 @@ namespace KittyCoins.Models
         /// <param name="creationDate"></param>
         /// <param name="previousHash"></param>
         /// <param name="transfers"></param>
-        public Block(int index, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
+        public Block(int index, string owner, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
         {
             Index = index;
+            Owner = owner;
             CreationDate = creationDate;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
@@ -81,9 +87,10 @@ namespace KittyCoins.Models
         /// <param name="index"></param>
         /// <param name="previousHash"></param>
         /// <param name="transfers"></param>
-        public Block(int index, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
+        public Block(int index, string owner, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
         {
             Index = index;
+            Owner = owner;
             CreationDate = DateTime.UtcNow;
             PreviousHash = previousHash;
             Transfers = transfers.ToList();
@@ -120,11 +127,6 @@ namespace KittyCoins.Models
         /// </param>
         public bool TryHash(string difficulty)
         {
-            var guid = Guid.NewGuid();
-            MainViewModel.BlockChainWaitingList.Add(guid);
-            while (!MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(guid))
-            { }
-
             PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
             Transfers = MainViewModel.BlockChain.PendingTransfers;
 
@@ -132,7 +134,6 @@ namespace KittyCoins.Models
             CreationDate = DateTime.UtcNow;
             Hash = CalculateHash();
 
-            MainViewModel.BlockChainWaitingList.Remove(guid);
             return Hash.IsLowerHex(difficulty);
         }
 

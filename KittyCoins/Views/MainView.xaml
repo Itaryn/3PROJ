@@ -3,130 +3,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="KittyCoins">
+        xmlns:local="clr-namespace:KittyCoins.Views.Controls"
+        Title="Kitty Coin"
+        mc:Ignorable="d" Width="1280" Height="720" WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
-        <LinearGradientBrush x:Key="CheckedBlue" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#FF285AB3" Offset="0" />
-            <GradientStop Color="#FF4184EC" Offset="0.5" />
-            <GradientStop Color="#FF558BED" Offset="0.5" />
-            <GradientStop Color="#FF7DACF0" Offset="1" />
-        </LinearGradientBrush>
-        <LinearGradientBrush x:Key="CheckedOrange" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#FFCA6A13" Offset="0" />
-            <GradientStop Color="#FFF67D0C" Offset="0.2" />
-            <GradientStop Color="#FFFE7F0C" Offset="0.2" />
-            <GradientStop Color="#FFFA8E12" Offset="0.5" />
-            <GradientStop Color="#FFFF981D" Offset="0.5" />
-            <GradientStop Color="#FFFCBC5A" Offset="1" />
-        </LinearGradientBrush>
-        <SolidColorBrush x:Key="CheckedOrangeBorder" Color="#FF8E4A1B" />
-        <SolidColorBrush x:Key="CheckedBlueBorder" Color="#FF143874" />
-        <Style x:Key="BlueSwitchStyle" TargetType="{x:Type CheckBox}">
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type CheckBox}">
-                        <ControlTemplate.Resources>
-                            <Storyboard x:Key="OnChecking">
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50" />
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                            <Storyboard x:Key="OnUnchecking">
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </ControlTemplate.Resources>
-                        <DockPanel x:Name="dockPanel">
-                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center" />
-                            <Grid>
-                                <Border x:Name="BackgroundBorder" HorizontalAlignment="Left" BorderBrush="#FF939393" BorderThickness="1" CornerRadius="3" Width="100" Height="35">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                            <GradientStop Color="#FFB5B5B5" Offset="0" />
-                                            <GradientStop Color="#FFDEDEDE" Offset="0.1" />
-                                            <GradientStop Color="#FFEEEEEE" Offset="0.5" />
-                                            <GradientStop Color="#FFFAFAFA" Offset="0.5" />
-                                            <GradientStop Color="#FFFEFEFE" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Ellipse x:Name="Off" Width="14" Height="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        <Line x:Name="On" X1="0" Y1="0" X2="0" Y2="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    </Grid>
-                                </Border>
-                                <Border BorderBrush="#FF939393" HorizontalAlignment="Left" x:Name="slider" Width="50" Height="35" BorderThickness="1" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Margin="0">
-                                    <Border.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                                            <SkewTransform AngleX="0" AngleY="0" />
-                                            <RotateTransform Angle="0" />
-                                            <TranslateTransform X="0" Y="0" />
-                                        </TransformGroup>
-                                    </Border.RenderTransform>
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                            <GradientStop Color="#FFF0F0F0" Offset="0" />
-                                            <GradientStop Color="#FFCDCDCD" Offset="0.1" />
-                                            <GradientStop Color="#FFFBFBFB" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                </Border>
-                            </Grid>
-                        </DockPanel>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Trigger.ExitActions>
-                                    <BeginStoryboard Storyboard="{StaticResource OnUnchecking}" x:Name="OnUnchecking_BeginStoryboard" />
-                                </Trigger.ExitActions>
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard Storyboard="{StaticResource OnChecking}" x:Name="OnChecking_BeginStoryboard" />
-                                </Trigger.EnterActions>
-                                <Setter TargetName="On" Property="Stroke" Value="White" />
-                                <Setter TargetName="Off" Property="Stroke" Value="White" />
-                                <!-- Change Orange or Blue color here -->
-                                <Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource CheckedBlue}" />
-                                <Setter TargetName="BackgroundBorder" Property="BorderBrush" Value="{StaticResource CheckedBlueBorder}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
-            <Button Content="Show Blockchain" Command="{Binding ShowBlockChainCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
-            <Button Content="Connect to Blockchain" Command="{Binding ConnectBlockchainCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
-            <Button Content="Connect your Wallet" Command="{Binding ConnectUserCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
-            <Button Content="New Transaction" Command="{Binding NewTransactionCommand}" MaxHeight="50" MaxWidth="100" Margin="5"/>
+        <StackPanel Grid.Row="0" Background="#0079D8">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Kitty Coin" FontFamily="Helvetica"  Style="{StaticResource Title}" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10">
+                    <Button Style="{StaticResource ButtonBasic}" Content="Create a Wallet" Foreground="White" Command="{Binding RegisterCommand}"/>
+                    <Border VerticalAlignment="Center" BorderBrush="White" BorderThickness="1, 20, 0, 0" Margin="10, 0, 10, 0"/>
+                    <TextBlock FontFamily="./FontFamily/#Helvetica" Foreground="White" Text="Mining" VerticalAlignment="Center"/>
+                    <local:ToggleButton x:Name="MiningToggleButton" HorizontalAlignment="Center" Height="25" Width="50" VerticalAlignment="Center" MouseLeftButtonDown="MiningClick"/>
+                    <TextBlock x:Name="MiningTextState" FontFamily="./FontFamily/#Helvetica" Foreground="White" Text="Off" VerticalAlignment="Center" Width="20"/>
+                </StackPanel>
+            </Grid>
         </StackPanel>
-        <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding Path = Port, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path = PeerUrl, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
-        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path = PrivateWords, Mode=TwoWay}" MaxHeight="30" Margin="10"/>
-        <Button Grid.Row="0" Grid.Column="3" Content="Create a Wallet" Command="{Binding RegisterCommand}" MaxHeight="50" MaxWidth="200"/>
-        <Button Grid.Row="1" Grid.Column="0" Content="Launch Server" Command="{Binding LaunchServerCommand}" MaxHeight="50" MaxWidth="100"/>
-        <CheckBox Grid.Row="1" Grid.Column="1" Style="{StaticResource BlueSwitchStyle}" IsChecked="{Binding CheckBoxMine}"/>
-        
-        <TextBox Name="ConsoleGUI" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="LaunchServerButton" Grid.Row="0" Grid.Column="0" Content="Launch Server" Style="{StaticResource ButtonMenuClicked}" Click="ButtonMenuClick"/>
+            <Button x:Name="ConnectBlockchainButton" Grid.Row="0" Grid.Column="1" Content="Connect to Blockchain" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
+            <Button x:Name="ConnectWalletButton" Grid.Row="0" Grid.Column="2" Content="Connect your Wallet" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
+            <Button x:Name="NewTransactionButton" Grid.Row="0" Grid.Column="3" Content="New Transaction" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
+            <Button x:Name="ShowBlockchainButton" Grid.Row="0" Grid.Column="4" Content="Show Blockchain" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
+            <Grid Grid.Row="0" Grid.Column="5" Background="#0079D8"/>
+            <UserControl x:Name="MainUserControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Margin="20"/>
+        </Grid>
+        <TextBlock Grid.Row="2" Text="Console log" Foreground="Gray" FontSize="11" FontFamily="./FontFamily/HelveticaBold/#Helvetica" Margin="20,0,20,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="ConsoleGUI" Grid.Row="3" Margin="20,0,20,20" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
     </Grid>
 </Window>

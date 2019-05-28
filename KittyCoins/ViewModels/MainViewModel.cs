@@ -31,8 +31,6 @@ namespace KittyCoins.ViewModels
 
         public static EventHandler BlockChainUpdated;
 
-        public static bool BlockChainAccessToken { get; set; }
-
         public static List<Guid> BlockChainWaitingList { get; set; }
 
         /// <summary>
@@ -53,11 +51,6 @@ namespace KittyCoins.ViewModels
         {
             #region Set the Commands
 
-            LaunchServerCommand = new DelegateCommand(LaunchServerMethod);
-            ShowBlockChainCommand = new DelegateCommand(ShowBlockChainMethod);
-            ConnectBlockchainCommand = new DelegateCommand(ConnectBlockchainMethod);
-            ConnectUserCommand = new DelegateCommand(ConnectUserMethod);
-            NewTransactionCommand = new DelegateCommand(NewTransactionMethod);
             RegisterCommand = new DelegateCommand(RegisterMethod);
 
             #endregion
@@ -65,9 +58,6 @@ namespace KittyCoins.ViewModels
             // Default Values
             Port = 6002;
             PeerUrl = "127.0.0.1:6002";
-            PrivateWords = "Guilhem";
-            ActualUser = new User(PrivateWords);
-            BlockChainAccessToken = true;
             BlockChainWaitingList = new List<Guid>();
 
             Client = new Client();
@@ -85,31 +75,11 @@ namespace KittyCoins.ViewModels
 
         #region ICommand
 
-        public ICommand LaunchServerCommand { get; }
-        public ICommand ShowBlockChainCommand { get; }
-        public ICommand ConnectBlockchainCommand { get; }
-        public ICommand ConnectUserCommand { get; }
-        public ICommand NewTransactionCommand { get; }
         public ICommand RegisterCommand { get; }
 
         #endregion
         
         #region Mining
-
-        public void LaunchServerMethod()
-        {
-            Server = new Server();
-            Console = "Create Server";
-            Client.ServerAddress = Server.Start(Port);
-            Console = $"Open server at {Client.ServerAddress}";
-            Console = $"Start server with port n°{Port}";
-
-            Server.NewMessage += NewMessage;
-            Server.ServerUpdate += UpdateServer;
-
-            SaveThread = new Thread(Save) { IsBackground = true };
-            SaveThread.Start();
-        }
 
         public void Save()
         {
@@ -122,10 +92,12 @@ namespace KittyCoins.ViewModels
 
         public void Mining()
         {
-            CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
+            CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
 
             while (true)
             {
+                var guid = Guid.NewGuid();
+                WaitingForBlockchainAccess(guid);
                 if (CurrentMineBlock.TryHash(BlockChain.Difficulty))
                 {
                     Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
@@ -139,8 +111,9 @@ namespace KittyCoins.ViewModels
 
                     BlockChain.CreateTransfer(transfer);
                     Client.NewTransfer(transfer);
-                    CurrentMineBlock = new Block(0, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
+                    CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
                 }
+                BlockChainWaitingList.Remove(guid);
             }
         }
 
@@ -148,32 +121,117 @@ namespace KittyCoins.ViewModels
 
         #region Command Method
 
-        public void ShowBlockChainMethod()
+        public void NewTransactionMethod(object sender, EventArgs e)
         {
-            var blockChainView = new BlockChainView();
-            blockChainView.Show();
+            if (e is EventArgsObject args)
+            {
+                if (args.Object is List<string> argument)
+                {
+                    try
+                    {
+                        var amount = int.Parse(argument[0]);
+                        var publicAddress = argument[1];
+                        var transfer = new Transfer(ActualUser, publicAddress, amount, 1);
+                        Console = BlockChain.CreateTransfer(transfer);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console = "Error while trying to send a new transfer";
+                        Console = ex.Message;
+                    }
+                }
+            }
         }
 
-        public void NewTransactionMethod()
+        public void ConnectBlockchainMethod(object sender, EventArgs e)
         {
-            var transfer = new Transfer(new User("Guilhem"), new User("Loic").PublicAddress, 15, 1);
-            Console = BlockChain.CreateTransfer(transfer);
+            if (e is EventArgsMessage args)
+            {
+                try
+                {
+                    Client.Connect($"ws://{args.Message}/Blockchain");
+                }
+                catch (Exception ex)
+                {
+                    Console = "Error while trying to connect to the blockchain";
+                    Console = ex.Message;
+                }
+            }
         }
 
-        public void ConnectBlockchainMethod()
+        public void ConnectUserMethod(object sender, EventArgs e)
         {
-            Client.Connect($"ws://{PeerUrl}/Blockchain");
+            if (e is EventArgsMessage args)
+            {
+                ActualUser = new User(args.Message);
+                Console = $"You're connected with the public address :\n{ActualUser.PublicAddress}";
+            }
         }
 
-        public void ConnectUserMethod()
+        public void LaunchServerMethod(object sender, EventArgs e)
         {
-            ActualUser = new User(PrivateWords);
+            if (e is EventArgsMessage args)
+            {
+                try
+                {
+                    var port = int.Parse(args.Message);
+                    Server = new Server();
+                    Console = "Create Server";
+                    Client.ServerAddress = Server.Start(port);
+                    Console = $"Open server at {Client.ServerAddress}";
+                    Console = $"Start server with port n°{port}";
+
+                    Server.NewMessage += NewMessage;
+                    Server.ServerUpdate += UpdateServer;
+
+                    SaveThread = new Thread(Save) { IsBackground = true };
+                    SaveThread.Start();
+                }
+                catch (Exception ex)
+                {
+                    Console = "Error when trying to launch the server";
+                    Console = ex.Message;
+
+                    Server?.wss.Stop();
+                    SaveThread?.Abort();
+                }
+            }
         }
 
         public void RegisterMethod()
         {
             var registerView = new RegisterView();
             registerView.Show();
+        }
+
+        public static void WaitingForBlockchainAccess(Guid guid)
+        {
+            var waitingTime = 0;
+            var first = BlockChainWaitingList.FirstOrDefault();
+            BlockChainWaitingList.Add(guid);
+
+            while (!BlockChainWaitingList.FirstOrDefault().Equals(guid))
+            {
+                if (BlockChainWaitingList.FirstOrDefault().Equals(new Guid()))
+                {
+                    BlockChainWaitingList.Remove(new Guid());
+                }
+                if (waitingTime > Constants.WAITING_TIME_MAX)
+                {
+                    if (first != null &&
+                        first == BlockChainWaitingList.FirstOrDefault())
+                    {
+                        BlockChainWaitingList.Remove(first);
+                    }
+                    else
+                    {
+                        first = BlockChainWaitingList.FirstOrDefault(); ;
+                        waitingTime = 0;
+                    }
+                }
+                waitingTime++;
+                Thread.Sleep(1000);
+            }
         }
 
         #endregion
@@ -247,16 +305,6 @@ namespace KittyCoins.ViewModels
                 if (_peerUrl == value) return;
                 _peerUrl = value;
                 RaisePropertyChanged("PeerUrl");
-            }
-        }
-        public string PrivateWords
-        {
-            get => _privateWords;
-            set
-            {
-                if (_privateWords == value) return;
-                _privateWords = value;
-                RaisePropertyChanged("PrivateWords");
             }
         }
         public string Console

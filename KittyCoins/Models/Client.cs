@@ -50,9 +50,7 @@ namespace KittyCoins.Models
                 var guid = Guid.NewGuid();
                 try
                 {
-                    MainViewModel.BlockChainWaitingList.Add(guid);
-                    while (!MainViewModel.BlockChainWaitingList.First().Equals(guid))
-                    { }
+                    MainViewModel.WaitingForBlockchainAccess(guid);
 
                     #region BlockChain Received
 
@@ -118,8 +116,8 @@ namespace KittyCoins.Models
             };
             ws.Connect();
             MainViewModel.ServerList.Add(url, ws);
-            ws.Send("BlockChain" + JsonConvert.SerializeObject(MainViewModel.BlockChain));
-            ws.Send("GetServers" + JsonConvert.SerializeObject(new List<string>(GetServers()) { ServerAddress }));
+            ws.Send(Constants.BLOCKCHAIN + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+            ws.Send(Constants.GET_SERVERS + JsonConvert.SerializeObject(new List<string>(GetServers()) { ServerAddress }));
         }
 
         /// <summary>

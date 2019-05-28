@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
+using KittyCoins.Models;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using Prism.Commands;
 
 namespace KittyCoins.ViewModels
@@ -14,10 +17,12 @@ namespace KittyCoins.ViewModels
         public RegisterViewModel()
         {
             RefreshWordsCommand = new DelegateCommand(RefreshWordsMethod);
+            SaveItInFileCommand = new DelegateCommand(SaveItInFileMethod);
             RefreshWordsMethod();
         }
 
         public ICommand RefreshWordsCommand { get; }
+        public ICommand SaveItInFileCommand { get; }
 
         public void RefreshWordsMethod()
         {
@@ -27,6 +32,16 @@ namespace KittyCoins.ViewModels
             for (var i = 0; i < 10; i++)
                 wordList.Add(wordDictionnary[rand.Next(wordDictionnary.Length)]);
             PrivateKey = string.Join(" ", wordList);
+        }
+
+        public void SaveItInFileMethod()
+        {
+            var saveFileDialog = new SaveFileDialog();
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, PrivateKey);
+            }
         }
 
         #region Input

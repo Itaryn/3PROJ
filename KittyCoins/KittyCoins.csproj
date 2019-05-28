@@ -118,6 +118,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ConnectWalletViewModel.cs" />
+    <Compile Include="ViewModels\ConnectBlockchainViewModel.cs" />
+    <Compile Include="ViewModels\NewTransactionViewModel.cs" />
+    <Compile Include="ViewModels\LaunchServerViewModel.cs" />
+    <Compile Include="Views\Controls\ToggleButton.xaml.cs">
+      <DependentUpon>ToggleButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\EventArgs.cs" />
@@ -128,32 +135,75 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Packages\StringExtension.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\BlockChainViewModel.cs" />
+    <Compile Include="ViewModels\ShowBlockChainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\RegisterView.xaml.cs">
-      <DependentUpon>RegisterView.xaml</DependentUpon>
+    <Compile Include="Views\ConnectBlockchainView.xaml.cs">
+      <DependentUpon>ConnectBlockchainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectWalletView.xaml.cs">
+      <DependentUpon>ConnectWalletView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LaunchServerView.xaml.cs">
+      <DependentUpon>LaunchServerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewTransactionView.xaml.cs">
+      <DependentUpon>NewTransactionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\BlockChainView.xaml.cs">
-      <DependentUpon>BlockChainView.xaml</DependentUpon>
+    <Compile Include="Views\ShowBlockchainView.xaml.cs">
+      <DependentUpon>ShowBlockchainView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\RegisterView.xaml">
+    <Compile Include="Views\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\Controls\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectBlockchainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectWalletView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LaunchServerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\BlockChainView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\NewTransactionView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ShowBlockchainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

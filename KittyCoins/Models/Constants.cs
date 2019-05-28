@@ -18,5 +18,9 @@
         public static string BLOCKCHAIN_MISS_BLOCK => "Blockchain miss blocks";
         public static string BLOCKCHAIN_OVERWRITE => "BlockChainOverwrite";
         public static string NEED_BLOCKCHAIN => "NeedBlockchain";
+
+        public static int WAITING_TIME_MAX => 10;
+
+        public static string GET_SERVERS => "GetServers";
     }
 }

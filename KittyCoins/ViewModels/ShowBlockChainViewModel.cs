@@ -7,7 +7,7 @@
     using System.Threading;
     using Models;
 
-    public class BlockChainViewModel : INotifyPropertyChanged
+    public class ShowBlockchainViewModel : INotifyPropertyChanged
     {
         #region Private Attributes
 
@@ -23,7 +23,7 @@
 
         #region Constructors
 
-        public BlockChainViewModel()
+        public ShowBlockchainViewModel()
         {
             MainViewModel.BlockChainUpdated += UpdateBlockChain;
         }

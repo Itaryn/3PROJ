@@ -83,19 +83,11 @@ namespace KittyCoins.Models
             var guid = Guid.NewGuid();
             try
             {
-                MainViewModel.BlockChainWaitingList.Add(guid);
-                while (!MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(guid))
-                {
-                    if (MainViewModel.BlockChainWaitingList.FirstOrDefault().Equals(new Guid()))
-                    {
-                        MainViewModel.BlockChainWaitingList.Remove(new Guid());
-                    }
-                }
-
+                MainViewModel.WaitingForBlockchainAccess(guid);
                 #region BlockChain Receive
 
                 // The request send the entire blockchain
-                if (e.Data.StartsWith("BlockChain"))
+                if (e.Data.StartsWith(Constants.BLOCKCHAIN))
                 {
                     // Deserialize the blockchain received
                     // The Substring cut "BlockChain" or "BlockChainOverwrite"
@@ -131,7 +123,7 @@ namespace KittyCoins.Models
 
                     // If chain received is valid but local is not
                     // Copy the received blockchain
-                    if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
+                    if (chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid())
                     {
                         NewMessage.Invoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"));
                         MainViewModel.BlockChain = chainReceived;
@@ -184,32 +176,30 @@ namespace KittyCoins.Models
                 
                 #region Block Receive
 
-                else if (e.Data.StartsWith("Block"))
+                else if (e.Data.StartsWith(Constants.BLOCK))
                 {
-                    if (!MainViewModel.BlockChain.IsValid())
+                    // Deserialize the block
+                    // The Substring cut "Block"
+                    var newBlock = JsonConvert.DeserializeObject<Block>(e.Data.Substring(5));
+                    NewMessage.Invoke(this, new EventArgsMessage("New Block received"));
+
+                    if (!MainViewModel.BlockChain.IsValid() ||
+                        newBlock.PreviousHash != MainViewModel.BlockChain.LastBlock.Hash ||
+                        newBlock.Index != MainViewModel.BlockChain.LastBlock.Index + 1)
                     {
                         Send(Constants.NEED_BLOCKCHAIN);
                     }
                     else
                     {
-                        // Deserialize the block
-                        // The Substring cut "Block"
-                        var newBlock = JsonConvert.DeserializeObject<Block>(e.Data.Substring(5));
-                        NewMessage.Invoke(this, new EventArgsMessage("New Block received"));
-
-                        if (newBlock.PreviousHash == MainViewModel.BlockChain.Chain.Last().Hash)
+                        MainViewModel.BlockChain.Chain.Add(newBlock);
+                        foreach (var tr in newBlock.Transfers)
                         {
-                            newBlock.Index = MainViewModel.BlockChain.LastBlock.Index + 1;
-                            MainViewModel.BlockChain.Chain.Add(newBlock);
-                            foreach (var tr in newBlock.Transfers)
-                            {
-                                MainViewModel.BlockChain.PendingTransfers.Remove(tr);
-                            }
+                            MainViewModel.BlockChain.PendingTransfers.Remove(tr);
+                        }
 
-                            if (newBlock.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
-                            {
-                                NewMessage.Invoke(this, new EventArgsMessage(MainViewModel.BlockChain.CheckDifficulty()));
-                            }
+                        if (newBlock.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
+                        {
+                            NewMessage.Invoke(this, new EventArgsMessage(MainViewModel.BlockChain.CheckDifficulty()));
                         }
                     }
                 }
@@ -219,7 +209,7 @@ namespace KittyCoins.Models
                 #region Transfer Receive
 
                 // The request send a new transfer
-                else if (e.Data.StartsWith("Transfer"))
+                else if (e.Data.StartsWith(Constants.TRANSFER))
                 {
                     // Deserialize the transfer
                     // The Substring cut "Transfer"
@@ -239,7 +229,7 @@ namespace KittyCoins.Models
                     }
                 }
                 // The request send a list of transfer
-                else if (e.Data.StartsWith("Transfers"))
+                else if (e.Data.StartsWith(Constants.TRANSFERS))
                 {
                     // Deserialize the transfer
                     // The Substring cut "Transfer"
@@ -266,7 +256,7 @@ namespace KittyCoins.Models
 
                 #region GetServers Receive
 
-                else if (e.Data.StartsWith("GetServers"))
+                else if (e.Data.StartsWith(Constants.GET_SERVERS))
                 {
                     NewMessage.Invoke(this, new EventArgsMessage("Get Servers request received"));
                     var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using KittyCoins.Packages;
 
 namespace KittyCoins.Models
@@ -10,7 +8,7 @@ namespace KittyCoins.Models
     using System.Linq;
     using KittyCoins.ViewModels;
     using Newtonsoft.Json;
-    
+
     /// <summary>
     /// The blockchain class
     /// </summary>
@@ -116,7 +114,7 @@ namespace KittyCoins.Models
         /// </summary>
         public void InitializeChain()
         {
-            Chain = new List<Block> { new Block(0, string.Empty, new List<Transfer>(), Difficulty) };
+            Chain = new List<Block> { new Block(0, "", string.Empty, new List<Transfer>(), Difficulty) };
             PendingTransfers = new List<Transfer>();
 
             MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
@@ -168,7 +166,7 @@ namespace KittyCoins.Models
         /// <returns></returns>
         public bool IsValid()
         {
-            var currentBlock = FirstBlock;
+            var currentBlock = GetNextBlock(FirstBlock);
             for (var i = 1; i < Chain.Count; i++)
             {
                 var nextBlock = GetNextBlock(currentBlock);
@@ -178,14 +176,20 @@ namespace KittyCoins.Models
                     currentBlock.Hash != nextBlock.PreviousHash ||
                     !currentBlock.Hash.IsLowerHex(currentBlock.Difficulty) ||
                     currentBlock.Transfers.Any(t => !t.IsValid()))
+                {
+                    var a = currentBlock.Hash != currentBlock.CalculateHash();
+                    var b = currentBlock.Hash != nextBlock.PreviousHash;
+                    var c = currentBlock.Hash.IsLowerHex(currentBlock.Difficulty);
+                    var d = currentBlock.Transfers.Any(t => !t.IsValid());
                     return false;
+                }
 
                 if (Chain.Count <= i + 1) continue;
 
                 // Verify if the difficulty was well calculated
                 if (i % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
                 {
-                    var compareBlock = Chain.First(block => block.Index.Equals(currentBlock.Index - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY));
+                    var compareBlock = GetBlockAt(i - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY);
 
                     var moy = (currentBlock.CreationDate - compareBlock.CreationDate).TotalSeconds /
                               Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;
