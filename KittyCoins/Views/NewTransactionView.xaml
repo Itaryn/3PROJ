@@ -23,8 +23,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockBasic}" Text="Amount"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" FontSize="15" Text="To"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextBlockBasic}" FontWeight="Bold" Text="Amount"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" FontSize="15" Text="To" FontWeight="Bold"/>
         <TextBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding Amount}">
             <TextBox.Style>
                 <Style TargetType="TextBox"
@@ -33,7 +33,7 @@
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="10" Foreground="DimGray" Padding="5" FontSize="15"/>
+                                <Label Content="10" Foreground="DimGray" Padding="5" FontSize="13"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>
@@ -59,7 +59,7 @@
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="The public address" Foreground="DimGray" Padding="5" FontSize="15"/>
+                                <Label Content="The public address" Foreground="DimGray" Padding="5" FontSize="13"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>

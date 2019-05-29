@@ -30,6 +30,7 @@ namespace KittyCoins.ViewModels
         public static KittyChain BlockChain = new KittyChain();
 
         public static EventHandler BlockChainUpdated;
+        public static EventHandler ServerListUpdated;
 
         public static List<Guid> BlockChainWaitingList { get; set; }
 
@@ -221,12 +222,18 @@ namespace KittyCoins.ViewModels
             var first = BlockChainWaitingList.FirstOrDefault();
             BlockChainWaitingList.Add(guid);
 
-            while (!BlockChainWaitingList.FirstOrDefault().Equals(guid))
+            bool result;
+            try
             {
-                if (BlockChainWaitingList.FirstOrDefault().Equals(new Guid()))
-                {
-                    BlockChainWaitingList.Remove(new Guid());
-                }
+                result = !BlockChainWaitingList.FirstOrDefault().Equals(guid);
+            }
+            catch (Exception)
+            {
+                result = true;
+            }
+
+            while (result)
+            {
                 if (waitingTime > Constants.WAITING_TIME_MAX * 2000)
                 {
                     if (first != null &&
@@ -242,7 +249,16 @@ namespace KittyCoins.ViewModels
                 }
                 waitingTime++;
                 Thread.Sleep(5);
+                try
+                {
+                    result = !BlockChainWaitingList.FirstOrDefault().Equals(guid);
+                }
+                catch (Exception)
+                {
+                    result = true;
+                }
             }
+
         }
 
         #endregion

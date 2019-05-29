@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using KittyCoins.Models;
 using Prism.Commands;
@@ -11,12 +12,21 @@ namespace KittyCoins.ViewModels
     public class ConnectBlockchainViewModel : INotifyPropertyChanged
     {
         private string _serverAddress;
+        private List<string> _serverList;
 
         public EventHandler LaunchServerWithPort;
 
-        public ConnectBlockchainViewModel()
+        public ConnectBlockchainViewModel(IEnumerable<string> serverList)
         {
             ConnectToBlockchainCommand = new DelegateCommand(ConnectToBlockchainMethod);
+
+            MainViewModel.ServerListUpdated += ServerListUpdate;
+            ServerList = serverList.ToList();
+        }
+
+        private void ServerListUpdate(object sender, EventArgs e)
+        {
+            ServerList = MainViewModel.ServerList.Keys.ToList();
         }
 
         public ICommand ConnectToBlockchainCommand { get; }
@@ -36,6 +46,17 @@ namespace KittyCoins.ViewModels
                 if (_serverAddress == value) return;
                 _serverAddress = value;
                 RaisePropertyChanged("ServerAddress");
+            }
+        }
+
+        public List<string> ServerList
+        {
+            get => _serverList;
+            set
+            {
+                if (_serverList == value) return;
+                _serverList = value;
+                RaisePropertyChanged("ServerList");
             }
         }
 

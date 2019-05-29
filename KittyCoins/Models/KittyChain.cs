@@ -224,6 +224,7 @@ namespace KittyCoins.Models
 
                     if (currentBlock.Difficulty.MultiplyHex(pourcentOfDiff) != nextBlock.Difficulty)
                     {
+                        var t = currentBlock.Difficulty.MultiplyHex(pourcentOfDiff);
                         return false;
                     }
                 }
@@ -273,6 +274,37 @@ namespace KittyCoins.Models
             }
 
             return balance;
+        }
+
+        /// <summary>
+        /// Get all transactions of an address
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public List<Transfer> GetTransactions(string address)
+        {
+            var transactions = new List<Transfer>();
+
+            var guid = Guid.NewGuid();
+            MainViewModel.WaitingForBlockchainAccess(guid);
+
+            var chain = Chain.ToList();
+
+            MainViewModel.BlockChainWaitingList.Remove(guid);
+
+            foreach (var block in chain)
+            {
+                foreach (var transfer in block.Transfers)
+                {
+                    if (transfer.FromAddress == address ||
+                        transfer.ToAddress == address)
+                    {
+                        transactions.Add(transfer);
+                    }
+                }
+            }
+
+            return transactions;
         }
 
         public string CheckDifficulty()

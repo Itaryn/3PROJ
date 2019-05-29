@@ -12,37 +12,53 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-        <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="IP Address"/>
-        <TextBox Text="{Binding ServerAddress}">
-            <TextBox.Style>
-                <Style TargetType="TextBox"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="IP Address"/>
+            <TextBox Text="{Binding ServerAddress}" Width="100">
+                <TextBox.Style>
+                    <Style TargetType="TextBox"
                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
                        BasedOn="{StaticResource TextBoxBasic}">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="127.0.0.1:6002" Foreground="DimGray" Padding="5" FontSize="15"/>
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <Button Style="{StaticResource ButtonBasic}" Command="{Binding ConnectToBlockchainCommand}">
-            <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect"/>
-        </Button>
-    </StackPanel>
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="127.0.0.1:6002" Foreground="DimGray" Padding="5" FontSize="13"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Style="{StaticResource ButtonBasic}" Command="{Binding ConnectToBlockchainCommand}" Width="200">
+                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Background="#F0F0F0">
+            <StackPanel Orientation="Vertical" Margin="20">
+                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connected to"
+                        HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                <ScrollViewer>
+                    <ListView Height="150" ItemsSource="{Binding ServerList}"/>
+                </ScrollViewer>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
             <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Private Words"/>
-            <TextBox Text="{Binding PrivateWords}">
+            <TextBox Text="{Binding PrivateWords}" Width="100">
                 <TextBox.Style>
                     <Style TargetType="TextBox"
                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -28,7 +28,7 @@
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Enter your words list" Foreground="DimGray" Padding="5" FontSize="15"/>
+                                    <Label Content="Enter your words list" Foreground="DimGray" Padding="5" FontSize="13"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>
@@ -46,26 +46,52 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <Button Style="{StaticResource ButtonBasic}" Width="150" Margin="5" Command="{Binding ConnectWithWordsCommand}">
-                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect with private words" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            <Button Style="{StaticResource ButtonBasic}" Width="200" Margin="5" Command="{Binding ConnectWithWordsCommand}">
+                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect with words" HorizontalAlignment="Center" TextWrapping="Wrap"/>
             </Button>
-            <Button Style="{StaticResource ButtonBasic}" Width="150" Margin="5" Command="{Binding ConnectWithFileCommand}">
+            <Button Style="{StaticResource ButtonBasic}" Width="200" Margin="5" Command="{Binding ConnectWithFileCommand}">
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect with a file"/>
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="2" Background="LightGray">
-            <StackPanel Orientation="Vertical" Margin="20">
-                <TextBlock Style="{StaticResource TextBlockTitle}" Text="Wallet Informations"
+        <ScrollViewer Grid.Column="2" >
+            <StackPanel Background="#F0F0F0">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <TextBlock Style="{StaticResource TextBlockTitle}" Text="Wallet Informations"
                         HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
-                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Public Address"
+                    <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Public Address"
                         HorizontalAlignment="Left"/>
-                <TextBlock Text="{Binding PublicAddress}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="PublicAddressText" Text="{Binding PublicAddress}" Margin="0,0,0,5" TextWrapping="Wrap"/>
 
-                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Balance"
+                    <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Balance"
                         HorizontalAlignment="Left"/>
-                <TextBlock Text="{Binding Balance}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Balance}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+
+                    <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Transaction History"
+                        HorizontalAlignment="Left"/>
+                    <ListView Height="100" ItemsSource="{Binding TransactionHistory}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Key}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Value}" Value="True">
+                                        <Setter Property="Background" Value="#FFF8E3" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value}" Value="False">
+                                        <Setter Property="Background" Value="#E5F5E1" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Resources>
+                    </ListView>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

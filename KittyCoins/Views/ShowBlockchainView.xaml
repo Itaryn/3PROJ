@@ -43,7 +43,7 @@
                 <ComboBox ItemsSource="{Binding Chain}" SelectedItem="{Binding SelectedBlock}"/>
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer Grid.Column="2" Margin="20" Background="LightGray">
+        <ScrollViewer Grid.Column="2" Margin="20" Background="#F0F0F0">
             <StackPanel>
                 <StackPanel Orientation="Vertical" Margin="20">
                     <TextBlock Style="{StaticResource TextBlockTitle}" Text="Selected block"

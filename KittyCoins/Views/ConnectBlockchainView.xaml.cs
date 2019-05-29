@@ -1,4 +1,5 @@
 ﻿using KittyCoins.ViewModels;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace KittyCoins.Views
@@ -10,10 +11,10 @@ namespace KittyCoins.Views
     {
         public ConnectBlockchainViewModel ViewModel;
 
-        public ConnectBlockchainView()
+        public ConnectBlockchainView(IEnumerable<string> serverList)
         {
             InitializeComponent();
-            ViewModel = new ConnectBlockchainViewModel();
+            ViewModel = new ConnectBlockchainViewModel(serverList);
             DataContext = ViewModel;
         }
     }

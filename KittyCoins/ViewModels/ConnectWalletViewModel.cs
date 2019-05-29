@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ namespace KittyCoins.ViewModels
         private string _privateWords;
         private string _publicAddress;
         private double _balance;
+        private Dictionary<Transfer, bool> _transferHistory;
 
         public EventHandler ConnectWithWords;
 
@@ -22,17 +24,9 @@ namespace KittyCoins.ViewModels
             ConnectWithFileCommand = new DelegateCommand(ConnectWithFileMethod);
 
             PublicAddress = publicAddress;
+            UpdateUserBalance(null, null);
 
             MainViewModel.BlockChainUpdated += UpdateUserBalance;
-
-            var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
-            if (receivers != null)
-            {
-                foreach (EventHandler receiver in receivers)
-                {
-                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
-                }
-            }
         }
 
         public ICommand ConnectWithWordsCommand { get; }
@@ -66,6 +60,15 @@ namespace KittyCoins.ViewModels
             if (!string.IsNullOrEmpty(PublicAddress))
             {
                 Balance = MainViewModel.BlockChain.GetBalance(PublicAddress);
+                var transactions = MainViewModel.BlockChain.GetTransactions(PublicAddress);
+
+                var transactionDic = new Dictionary<Transfer, bool>();
+                foreach (var transaction in transactions)
+                {
+                    transactionDic.Add(transaction, transaction.FromAddress.Equals(PublicAddress));
+                }
+
+                TransactionHistory = transactionDic;
             }
         }
 
@@ -101,6 +104,17 @@ namespace KittyCoins.ViewModels
                 if (_balance == value) return;
                 _balance = value;
                 RaisePropertyChanged("Balance");
+            }
+        }
+
+        public Dictionary<Transfer, bool> TransactionHistory
+        {
+            get => _transferHistory;
+            set
+            {
+                if (_transferHistory == value) return;
+                _transferHistory = value;
+                RaisePropertyChanged("TransactionHistory");
             }
         }
 

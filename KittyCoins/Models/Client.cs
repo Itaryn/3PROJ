@@ -123,6 +123,14 @@ namespace KittyCoins.Models
             };
             ws.Connect();
             MainViewModel.ServerList.Add(url, ws);
+            var receiversServerList = MainViewModel.ServerListUpdated?.GetInvocationList();
+            if (receiversServerList != null)
+            {
+                foreach (EventHandler receiver in receiversServerList)
+                {
+                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                }
+            }
             ws.Send(Constants.BLOCKCHAIN + JsonConvert.SerializeObject(MainViewModel.BlockChain));
             ws.Send(Constants.GET_SERVERS + JsonConvert.SerializeObject(new List<string>(GetServers()) { ServerAddress }));
         }
@@ -164,6 +172,7 @@ namespace KittyCoins.Models
             foreach (var item in serverClose)
             {
                 MainViewModel.ServerList.Remove(item);
+                MainViewModel.ServerListUpdated?.BeginInvoke(null, null, null, null);
             }
         }
 

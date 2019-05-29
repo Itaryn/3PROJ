@@ -56,7 +56,7 @@ namespace KittyCoins.Views
                         break;
                     case "ConnectBlockchainButton":
                         ConnectBlockchainButton.Style = FindResource("ButtonMenuClicked") as Style;
-                        var connectBlockchainView = new ConnectBlockchainView();
+                        var connectBlockchainView = new ConnectBlockchainView(_viewModel.Client.GetServers());
                         connectBlockchainView.ViewModel.LaunchServerWithPort += _viewModel.ConnectBlockchainMethod;
                         MainUserControl.Content = connectBlockchainView;
                         break;
