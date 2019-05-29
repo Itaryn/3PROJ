@@ -23,7 +23,7 @@ namespace KittyCoins.ViewModels
 
         public void LaunchServerMethod()
         {
-            LaunchServerWithPort.Invoke(this, new EventArgsMessage(Port.ToString()));
+            LaunchServerWithPort.BeginInvoke(this, new EventArgsMessage(Port.ToString()), null, null);
         }
 
         #region Input

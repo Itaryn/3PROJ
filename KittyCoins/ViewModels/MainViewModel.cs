@@ -100,10 +100,18 @@ namespace KittyCoins.ViewModels
                 WaitingForBlockchainAccess(guid);
                 if (CurrentMineBlock.TryHash(BlockChain.Difficulty))
                 {
+
                     Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
-                    var dif = BlockChain.Chain.Last().CreationDate - DateTime.UtcNow;
+                    var dif = BlockChain.LastBlock.CreationDate - DateTime.UtcNow;
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
                     Console = BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
+
+                    if (!BlockChain.IsValid())
+                    {
+                        Client.NeedBlockchain();
+                        BlockChainWaitingList.Remove(guid);
+                        continue;
+                    }
 
                     Client.NewBlock(CurrentMineBlock);
 
@@ -161,10 +169,13 @@ namespace KittyCoins.ViewModels
 
         public void ConnectUserMethod(object sender, EventArgs e)
         {
-            if (e is EventArgsMessage args)
+            if (e is EventArgsObject args)
             {
-                ActualUser = new User(args.Message);
-                Console = $"You're connected with the public address :\n{ActualUser.PublicAddress}";
+                if (args.Object is User user)
+                {
+                    ActualUser = user;
+                    Console = $"You're connected with the public address :\n{ActualUser.PublicAddress}";
+                }
             }
         }
 
@@ -216,7 +227,7 @@ namespace KittyCoins.ViewModels
                 {
                     BlockChainWaitingList.Remove(new Guid());
                 }
-                if (waitingTime > Constants.WAITING_TIME_MAX)
+                if (waitingTime > Constants.WAITING_TIME_MAX * 2000)
                 {
                     if (first != null &&
                         first == BlockChainWaitingList.FirstOrDefault())
@@ -230,7 +241,7 @@ namespace KittyCoins.ViewModels
                     }
                 }
                 waitingTime++;
-                Thread.Sleep(1000);
+                Thread.Sleep(5);
             }
         }
 

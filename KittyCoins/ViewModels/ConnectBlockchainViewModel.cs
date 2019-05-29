@@ -23,7 +23,7 @@ namespace KittyCoins.ViewModels
 
         public void ConnectToBlockchainMethod()
         {
-            LaunchServerWithPort.Invoke(this, new EventArgsMessage(ServerAddress));
+            LaunchServerWithPort.BeginInvoke(this, new EventArgsMessage(ServerAddress), null, null);
         }
 
         #region Input

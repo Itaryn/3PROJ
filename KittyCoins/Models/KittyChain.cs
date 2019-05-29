@@ -117,7 +117,14 @@ namespace KittyCoins.Models
             Chain = new List<Block> { new Block(0, "", string.Empty, new List<Transfer>(), Difficulty) };
             PendingTransfers = new List<Transfer>();
 
-            MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
+            var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+            if (receivers != null)
+            {
+                foreach (EventHandler receiver in receivers)
+                {
+                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                }
+            }
         }
 
         /// <summary>
@@ -130,7 +137,14 @@ namespace KittyCoins.Models
                 GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
             {
                 PendingTransfers.Add(transfer);
-                MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
+                var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+                if (receivers != null)
+                {
+                    foreach (EventHandler receiver in receivers)
+                    {
+                        receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                    }
+                }
                 return "Transfer added";
             }
 
@@ -155,7 +169,14 @@ namespace KittyCoins.Models
                 return CheckDifficulty();
             }
 
-            MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
+            var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+            if (receivers != null)
+            {
+                foreach (EventHandler receiver in receivers)
+                {
+                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                }
+            }
 
             return "";
         }
@@ -167,7 +188,7 @@ namespace KittyCoins.Models
         public bool IsValid()
         {
             var currentBlock = GetNextBlock(FirstBlock);
-            for (var i = 1; i < Chain.Count; i++)
+            for (var i = 1; i < Chain.Count - 1; i++)
             {
                 var nextBlock = GetNextBlock(currentBlock);
 
@@ -177,14 +198,20 @@ namespace KittyCoins.Models
                     !currentBlock.Hash.IsLowerHex(currentBlock.Difficulty) ||
                     currentBlock.Transfers.Any(t => !t.IsValid()))
                 {
-                    var a = currentBlock.Hash != currentBlock.CalculateHash();
-                    var b = currentBlock.Hash != nextBlock.PreviousHash;
-                    var c = currentBlock.Hash.IsLowerHex(currentBlock.Difficulty);
-                    var d = currentBlock.Transfers.Any(t => !t.IsValid());
+                    try
+                    {
+                        var a = currentBlock.Hash != currentBlock.CalculateHash();
+                        var b = currentBlock.Hash != nextBlock.PreviousHash;
+                        var c = currentBlock.Hash.IsLowerHex(currentBlock.Difficulty);
+                        var d = currentBlock.Transfers.Any(t => !t.IsValid());
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                     return false;
                 }
-
-                if (Chain.Count <= i + 1) continue;
 
                 // Verify if the difficulty was well calculated
                 if (i % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
@@ -208,6 +235,9 @@ namespace KittyCoins.Models
 
                 currentBlock = nextBlock;
             }
+
+            if (Chain.Count == 1) return true;
+
             return currentBlock.Hash == currentBlock.CalculateHash();
         }
 
@@ -220,17 +250,26 @@ namespace KittyCoins.Models
         {
             double balance = 0;
 
-            foreach (var block in Chain)
-            foreach (var transfer in block.Transfers)
-            {
-                if (transfer.FromAddress == address)
-                {
-                    balance -= transfer.Amount;
-                    balance -= transfer.Biscuit;
-                }
+            var guid = Guid.NewGuid();
+            MainViewModel.WaitingForBlockchainAccess(guid);
 
-                if (transfer.ToAddress == address)
-                    balance += transfer.Amount;
+            var chain = Chain.ToList();
+
+            MainViewModel.BlockChainWaitingList.Remove(guid);
+
+            foreach (var block in chain)
+            {
+                foreach (var transfer in block.Transfers)
+                {
+                    if (transfer.FromAddress == address)
+                    {
+                        balance -= transfer.Amount;
+                        balance -= transfer.Biscuit;
+                    }
+
+                    if (transfer.ToAddress == address)
+                        balance += transfer.Amount;
+                }
             }
 
             return balance;
@@ -238,7 +277,7 @@ namespace KittyCoins.Models
 
         public string CheckDifficulty()
         {
-            var compareBlock = Chain.First(block => block.Index.Equals(Chain.Max(x => x.Index) - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY));
+            var compareBlock = GetBlockAt(Chain.Count - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY);
 
             var moy = (LastBlock.CreationDate - compareBlock.CreationDate).TotalSeconds /
                       Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;

@@ -10,10 +10,10 @@ namespace KittyCoins.Views
     {
         public ConnectWalletViewModel ViewModel { get; }
 
-        public ConnectWalletView()
+        public ConnectWalletView(string publicAddress)
         {
             InitializeComponent();
-            ViewModel = new ConnectWalletViewModel();
+            ViewModel = new ConnectWalletViewModel(publicAddress);
             DataContext = ViewModel;
         }
     }

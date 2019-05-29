@@ -79,7 +79,7 @@
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Transfers"
                         HorizontalAlignment="Left"/>
-                    <ListBox ItemsSource="{Binding SelectedBlock.PendingTransfers}" Height="100"/>
+                    <ListBox ItemsSource="{Binding SelectedBlock.Transfers}" Height="100"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

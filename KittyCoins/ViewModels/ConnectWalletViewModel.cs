@@ -11,13 +11,28 @@ namespace KittyCoins.ViewModels
     public class ConnectWalletViewModel : INotifyPropertyChanged
     {
         private string _privateWords;
+        private string _publicAddress;
+        private double _balance;
 
         public EventHandler ConnectWithWords;
 
-        public ConnectWalletViewModel()
+        public ConnectWalletViewModel(string publicAddress)
         {
             ConnectWithWordsCommand = new DelegateCommand(ConnectWithWordsMethod);
             ConnectWithFileCommand = new DelegateCommand(ConnectWithFileMethod);
+
+            PublicAddress = publicAddress;
+
+            MainViewModel.BlockChainUpdated += UpdateUserBalance;
+
+            var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+            if (receivers != null)
+            {
+                foreach (EventHandler receiver in receivers)
+                {
+                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                }
+            }
         }
 
         public ICommand ConnectWithWordsCommand { get; }
@@ -25,7 +40,7 @@ namespace KittyCoins.ViewModels
 
         public void ConnectWithWordsMethod()
         {
-            ConnectWithWords.Invoke(this, new EventArgsMessage(PrivateWords));
+            UpdateUser(PrivateWords);
         }
 
         public void ConnectWithFileMethod()
@@ -34,7 +49,23 @@ namespace KittyCoins.ViewModels
 
             if (openFileDialog.ShowDialog() == true)
             {
-                ConnectWithWords.Invoke(this, new EventArgsMessage(File.ReadAllText(openFileDialog.FileName)));
+                UpdateUser(File.ReadAllText(openFileDialog.FileName));
+            }
+        }
+
+        public void UpdateUser(string privateWords)
+        {
+            var user = new User(privateWords);
+            PublicAddress = user.PublicAddress;
+            UpdateUserBalance(this, EventArgs.Empty);
+            ConnectWithWords.BeginInvoke(this, new EventArgsObject(user), null, null);
+        }
+
+        private void UpdateUserBalance(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(PublicAddress))
+            {
+                Balance = MainViewModel.BlockChain.GetBalance(PublicAddress);
             }
         }
 
@@ -48,6 +79,28 @@ namespace KittyCoins.ViewModels
                 if (_privateWords == value) return;
                 _privateWords = value;
                 RaisePropertyChanged("PrivateWords");
+            }
+        }
+
+        public string PublicAddress
+        {
+            get => _publicAddress;
+            set
+            {
+                if (_publicAddress == value) return;
+                _publicAddress = value;
+                RaisePropertyChanged("PublicAddress");
+            }
+        }
+
+        public double Balance
+        {
+            get => _balance;
+            set
+            {
+                if (_balance == value) return;
+                _balance = value;
+                RaisePropertyChanged("Balance");
             }
         }
 

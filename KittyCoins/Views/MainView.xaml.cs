@@ -62,7 +62,7 @@ namespace KittyCoins.Views
                         break;
                     case "ConnectWalletButton":
                         ConnectWalletButton.Style = FindResource("ButtonMenuClicked") as Style;
-                        var connectWalletView = new ConnectWalletView();
+                        var connectWalletView = new ConnectWalletView(_viewModel.ActualUser?.PublicAddress);
                         connectWalletView.ViewModel.ConnectWithWords += _viewModel.ConnectUserMethod;
                         MainUserControl.Content = connectWalletView;
                         break;

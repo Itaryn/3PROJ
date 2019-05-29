@@ -24,7 +24,7 @@ namespace KittyCoins.ViewModels
 
         public void SendTransactionMethod()
         {
-            NewTransaction.Invoke(this, new EventArgsObject(new List<string> { Amount.ToString(), PublicAddress }));
+            NewTransaction.BeginInvoke(this, new EventArgsObject(new List<string> { Amount.ToString(), PublicAddress }), null, null);
         }
 
         #region Input

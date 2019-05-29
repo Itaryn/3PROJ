@@ -41,7 +41,7 @@ namespace KittyCoins.Models
             if (MainViewModel.ServerList.ContainsKey(url) || url == ServerAddress) return;
 
             // Message for the console
-            NewMessage.Invoke(this, new EventArgsMessage($"Begin Connection to {url}"));
+            NewMessage.BeginInvoke(this, new EventArgsMessage($"Begin Connection to {url}"), null, null);
 
             // Create the webSocket from the url
             var ws = new WebSocket(url);
@@ -56,24 +56,24 @@ namespace KittyCoins.Models
 
                     if (e.Data.StartsWith(Constants.BLOCKCHAIN_IS_NOT_VALID))
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_IS_NOT_VALID));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_IS_NOT_VALID), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_IS_NOT_VALID.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_MISS_BLOCK))
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_MISS_BLOCK));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_MISS_BLOCK), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_MISS_BLOCK.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_OVERWRITE));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_OVERWRITE), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_OVERWRITE.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.NEED_BLOCKCHAIN))
                     {
@@ -87,7 +87,7 @@ namespace KittyCoins.Models
                     // The request want our server list
                     else if (e.Data.StartsWith("ServerList"))
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Server list received"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Server list received"), null, null);
 
                         // Deserialize the server send in the request
                         // The Substring cut "GetServers"
@@ -101,17 +101,24 @@ namespace KittyCoins.Models
                     // Unknow request
                     else
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Unknown message"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Unknown message"), null, null);
                     }
                 }
                 catch (Exception ex)
                 {
-                    NewMessage.Invoke(this, new EventArgsMessage(ex.Message));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage(ex.Message), null, null);
                 }
                 finally
                 {
                     MainViewModel.BlockChainWaitingList.Remove(guid);
-                    MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
+                    var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+                    if (receivers != null)
+                    {
+                        foreach (EventHandler receiver in receivers)
+                        {
+                            receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                        }
+                    }
                 }
             };
             ws.Connect();
@@ -150,7 +157,7 @@ namespace KittyCoins.Models
                 }
                 catch (Exception)
                 {
-                    NewMessage.Invoke(this, new EventArgsMessage($"The server {item.Key} is closed."));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage($"The server {item.Key} is closed."), null, null);
                     serverClose.Add(item.Key, item.Value);
                 }
             }
@@ -183,17 +190,31 @@ namespace KittyCoins.Models
 
         public void NewBlock(Block block)
         {
-            Broadcast("Block" + JsonConvert.SerializeObject(block));
+            Broadcast(Constants.BLOCK + JsonConvert.SerializeObject(block));
+        }
+
+        public void NeedBlockchain()
+        {
+            foreach (var item in MainViewModel.ServerList)
+            {
+                try
+                {
+                    item.Value.Send(Constants.NEED_BLOCKCHAIN);
+                    break;
+                }
+                catch (Exception)
+                { }
+            }
         }
 
         public void NewTransfer(Transfer transfer)
         {
-            Broadcast("Transfer" + JsonConvert.SerializeObject(transfer));
+            Broadcast(Constants.TRANSFER + JsonConvert.SerializeObject(transfer));
         }
 
         public void ConnectToAll(List<string> servers)
         {
-            NewMessage.Invoke(this, new EventArgsMessage("Connect to the others servers"));
+            NewMessage.BeginInvoke(this, new EventArgsMessage("Connect to the others servers"), null, null);
 
             // Connect to those servers
             foreach (var address in servers)

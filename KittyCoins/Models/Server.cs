@@ -92,7 +92,7 @@ namespace KittyCoins.Models
                     // Deserialize the blockchain received
                     // The Substring cut "BlockChain" or "BlockChainOverwrite"
                     var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(e.Data.StartsWith("BlockChainOverwrite") ? 19 : 10));
-                    NewMessage.Invoke(this, new EventArgsMessage("Check blockchain"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("Check blockchain"), null, null);
 
                     /* If chain received and local is not valid
                      * OR
@@ -107,43 +107,46 @@ namespace KittyCoins.Models
                         return;
                     }
 
-                    if (!MainViewModel.BlockChain.IsValid() &&
-                        !chainReceived.IsValid())
+                    var localIsValid = MainViewModel.BlockChain.IsValid();
+                    var receivedIsValid = chainReceived.IsValid();
+
+                    if (!localIsValid &&
+                        !receivedIsValid)
                     {
                         MainViewModel.BlockChain.InitializeChain();
                     }
 
                     // If chain received is not valid but local is
                     // => Send that the received blockchain is not valid
-                    if (!chainReceived.IsValid() && MainViewModel.BlockChain.IsValid())
+                    if (!receivedIsValid && localIsValid)
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Blockchain receive not valid but local is"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain receive not valid but local is"), null, null);
                         Send(Constants.BLOCKCHAIN_IS_NOT_VALID + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                     }
 
                     // If chain received is valid but local is not
                     // Copy the received blockchain
-                    if (chainReceived.IsValid() && !MainViewModel.BlockChain.IsValid())
+                    if (receivedIsValid && !localIsValid)
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"), null, null);
                         MainViewModel.BlockChain = chainReceived;
-                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
 
                     // If the received chain is bigger than local
                     // => Copy the received blockchain
                     else if (chainReceived.Chain.Count > MainViewModel.BlockChain.Chain.Count)
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Blockchain is bigger than local"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain is bigger than local"), null, null);
                         MainViewModel.BlockChain = chainReceived;
-                        NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
 
                     // If the received chain is lower than local
                     // => Send the local blockchain
                     else if (chainReceived.Chain.Count < MainViewModel.BlockChain.Chain.Count)
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Blockchain receive lower than local"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain receive lower than local"), null, null);
                         Send(Constants.BLOCKCHAIN_MISS_BLOCK + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                     }
 
@@ -152,21 +155,21 @@ namespace KittyCoins.Models
                     else if (chainReceived.Chain.SequenceEqual(MainViewModel.BlockChain.Chain) &&
                              !chainReceived.PendingTransfers.SequenceEqual(MainViewModel.BlockChain.PendingTransfers))
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("Chain equals but different pending transfers/nWaiting for transfer message"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("Chain equals but different pending transfers/nWaiting for transfer message"), null, null);
                     }
                     else
                     {
                         // If the sender force to overwrite the local
                         if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
                         {
-                            NewMessage.Invoke(this, new EventArgsMessage("Overwrite BlockChain from sender"));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("Overwrite BlockChain from sender"), null, null);
                             MainViewModel.BlockChain = chainReceived;
-                            NewMessage.Invoke(this, new EventArgsMessage("BlockChain updated from server"));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                         }
                         // Send a overwrite force to the sender
                         else
                         {
-                            NewMessage.Invoke(this, new EventArgsMessage("BlockChain receive is same size than actual but different information"));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain receive is same size than actual but different information"), null, null);
                             Send(Constants.BLOCKCHAIN_OVERWRITE + JsonConvert.SerializeObject(MainViewModel.BlockChain));
                         }
                     }
@@ -181,7 +184,7 @@ namespace KittyCoins.Models
                     // Deserialize the block
                     // The Substring cut "Block"
                     var newBlock = JsonConvert.DeserializeObject<Block>(e.Data.Substring(5));
-                    NewMessage.Invoke(this, new EventArgsMessage("New Block received"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("New Block received"), null, null);
 
                     if (!MainViewModel.BlockChain.IsValid() ||
                         newBlock.PreviousHash != MainViewModel.BlockChain.LastBlock.Hash ||
@@ -199,7 +202,7 @@ namespace KittyCoins.Models
 
                         if (newBlock.Index % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
                         {
-                            NewMessage.Invoke(this, new EventArgsMessage(MainViewModel.BlockChain.CheckDifficulty()));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage(MainViewModel.BlockChain.CheckDifficulty()), null, null);
                         }
                     }
                 }
@@ -214,18 +217,18 @@ namespace KittyCoins.Models
                     // Deserialize the transfer
                     // The Substring cut "Transfer"
                     var newTransfer = JsonConvert.DeserializeObject<Transfer>(e.Data.Substring(8));
-                    NewMessage.Invoke(this, new EventArgsMessage("New transfer received"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("New transfer received"), null, null);
 
                     // If we already have it or it's not a valid transfer don't add it
                     if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
                     {
-                        NewMessage.Invoke(this, new EventArgsMessage("New Transfer not valid or already in local"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                     }
                     else
                     {
                         // If already is Ok add it to our pending transfer list
                         MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
-                        NewMessage.Invoke(this, new EventArgsMessage("New transfer added from server"));
+                        NewMessage.BeginInvoke(this, new EventArgsMessage("New transfer added from server"), null, null);
                     }
                 }
                 // The request send a list of transfer
@@ -234,20 +237,20 @@ namespace KittyCoins.Models
                     // Deserialize the transfer
                     // The Substring cut "Transfer"
                     var newTransfers = JsonConvert.DeserializeObject<List<Transfer>>(e.Data.Substring(9));
-                    NewMessage.Invoke(this, new EventArgsMessage("New list of transfer received"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("New list of transfer received"), null, null);
 
                     foreach (var newTransfer in newTransfers)
                     {
                         // If we already have it or it's not a valid transfer don't add it
                         if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
                         {
-                            NewMessage.Invoke(this, new EventArgsMessage("New Transfer not valid or already in local"));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                         }
                         else
                         {
                             // If already is Ok add it to our pending transfer list
                             MainViewModel.BlockChain.PendingTransfers.Add(newTransfer);
-                            NewMessage.Invoke(this, new EventArgsMessage("New transfer added from server"));
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("New transfer added from server"), null, null);
                         }
                     }
                 }
@@ -258,10 +261,10 @@ namespace KittyCoins.Models
 
                 else if (e.Data.StartsWith(Constants.GET_SERVERS))
                 {
-                    NewMessage.Invoke(this, new EventArgsMessage("Get Servers request received"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("Get Servers request received"), null, null);
                     var listWs = JsonConvert.DeserializeObject<List<string>>(e.Data.Substring(10));
 
-                    ServerUpdate.Invoke(this, new EventArgsObject(listWs));
+                    ServerUpdate.BeginInvoke(this, new EventArgsObject(listWs), null, null);
                     if (MainViewModel.ServerList.Any())
                     {
                         Send("ServerList" + JsonConvert.SerializeObject(MainViewModel.ServerList.Select(x => x.Key)));
@@ -272,17 +275,24 @@ namespace KittyCoins.Models
 
                 else
                 {
-                    NewMessage.Invoke(this, new EventArgsMessage("Unknown message"));
+                    NewMessage.BeginInvoke(this, new EventArgsMessage("Unknown message"), null, null);
                 }
             }
             catch (Exception ex)
             {
-                NewMessage.Invoke(this, new EventArgsMessage("Impossible to deserialize received object"));
+                NewMessage.BeginInvoke(this, new EventArgsMessage("Impossible to deserialize received object"), null, null);
             }
             finally
             {
                 MainViewModel.BlockChainWaitingList.Remove(guid);
-                MainViewModel.BlockChainUpdated?.Invoke(this, EventArgs.Empty);
+                var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+                if (receivers != null)
+                {
+                    foreach (EventHandler receiver in receivers)
+                    {
+                        receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                    }
+                }
             }
         }
 
