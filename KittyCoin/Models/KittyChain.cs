@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace KittyCoin.Models
 {
     /// <summary>
-    /// The blockchain class
+    /// The Blockchain class
     /// </summary>
     [Serializable]
     public class KittyChain
@@ -17,7 +17,7 @@ namespace KittyCoin.Models
         #region Public Attributes
 
         /// <summary>
-        /// List of transfers that is pending the block to be created
+        /// List of transaction that is pending the block to be created
         /// </summary>
         public List<Transfer> PendingTransfers { get; set; }
 
@@ -33,12 +33,20 @@ namespace KittyCoin.Models
         public string Difficulty { set; get; } = "0001000000000000000000000000000000000000000000000000000000000000";
 
         /// <summary>
-        /// Numbler of KittyCoin given to the creator of a block
+        /// Number of KittyCoin given to the creator of a block
         /// </summary>
         public double Biscuit { set; get; } = 10;
 
+        /// <summary>
+        /// Return the first block of the chain
+        /// Search the block who have a null PreviousHash
+        /// </summary>
         public Block FirstBlock => Chain.First(b => string.IsNullOrEmpty(b.PreviousHash));
 
+        /// <summary>
+        /// Return the last block of the chain
+        /// Begin with the first block and search the next one with his Hash
+        /// </summary>
         public Block LastBlock => GetLastBlock(FirstBlock);
 
         #endregion
@@ -51,7 +59,7 @@ namespace KittyCoin.Models
         public KittyChain() { }
 
         /// <summary>
-        /// Constructor who can initialized or get a chain/pendingTransfers in parameter
+        /// Constructor who can initialize or get a chain/pendingTransfers in parameter
         /// </summary>
         /// <param name="chain"></param>
         /// <param name="pendingTransfers"></param>
@@ -72,6 +80,13 @@ namespace KittyCoin.Models
 
         #region Public Methods
 
+        /// <summary>
+        /// Get the last block of the chain, begin with one block (most of the time the first one)
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns>
+        /// The Last block of the chain
+        /// </returns>
         public Block GetLastBlock(Block block)
         {
             if (GetNextBlock(block) == null)
@@ -82,20 +97,44 @@ namespace KittyCoin.Models
             return GetLastBlock(GetNextBlock(block));
         }
 
+        /// <summary>
+        /// Get the next block of a block (use hash and previous hash)
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns>
+        /// The next block of the block in parameter
+        /// </returns>
         public Block GetNextBlock(Block block)
         {
             return Chain.FirstOrDefault(b => b.PreviousHash.Equals(block.Hash));
         }
 
+        /// <summary>
+        /// Get the previous block of a block (use hash and previous hash)
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns>
+        /// The previous block of the block in parameter
+        /// </returns>
         public Block GetPreviousBlock(Block block)
         {
             return Chain.FirstOrDefault(b => b.Hash.Equals(block.PreviousHash));
         }
 
+        /// <summary>
+        /// Get the block at a specific position
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// The block at the specific position given in parameter
+        /// </returns>
+        /// <remarks>
+        /// Used in the difficulty check
+        /// </remarks>
         public Block GetBlockAt(int id)
         {
             var block = FirstBlock;
-            for (int i = 0; i < id; i++)
+            for (var i = 0; i < id; i++)
             {
                 if (block == null)
                 {
@@ -183,6 +222,14 @@ namespace KittyCoin.Models
         /// Check the validatity of the blockchain
         /// </summary>
         /// <returns></returns>
+        /// <remarks>
+        /// It will check :
+        /// - Hash
+        /// - Previous Hash
+        /// - Transaction validity
+        /// - Hash is under difficulty
+        /// - Well calculated difficulty
+        /// </remarks>
         public bool IsValid()
         {
             var currentBlock = GetNextBlock(FirstBlock);
@@ -232,7 +279,9 @@ namespace KittyCoin.Models
         /// Get the balance of an address
         /// </summary>
         /// <param name="address"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// The amount of coin
+        /// </returns>
         public double GetBalance(string address)
         {
             double balance = 0;
@@ -293,6 +342,12 @@ namespace KittyCoin.Models
             return transactions;
         }
 
+        /// <summary>
+        /// Calculate the difficulty from the mean block creation time
+        /// </summary>
+        /// <returns>
+        /// The sentence displayed to the user
+        /// </returns>
         public string CheckDifficulty()
         {
             var compareBlock = GetBlockAt(Chain.Count - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY);
@@ -311,6 +366,9 @@ namespace KittyCoin.Models
             return $"The difficulty will be up by {Math.Round(1 / pourcentOfDiff * 100, 2)}%";
         }
 
+        /// <summary>
+        /// Save the blockchain to the txt file
+        /// </summary>
         public void SaveBlockChain()
         {
             File.WriteAllText(Constants.SAVE_FILENAME, JsonConvert.SerializeObject(this));
@@ -321,9 +379,14 @@ namespace KittyCoin.Models
         #region Override Methods
 
         /// <summary>
-        /// Compare 2 blockchain
+        /// Compare 2 blocks with :
+        /// - Chain
+        /// - PendingTransfers
+        /// - Difficulty
         /// </summary>
-        /// <param name="obj">The compared blockchain</param>
+        /// <param name="obj">
+        /// The compared object, transform in KittyChain object
+        /// </param>
         public override bool Equals(object obj)
         {
             if (!(obj is KittyChain other) ||

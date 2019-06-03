@@ -15,16 +15,27 @@ namespace KittyCoin.Models
     {
         #region Public Attributes
 
+        /// <summary>
+        /// Event Handler use to inform that they have a new message to show at the user
+        /// </summary>
         public static EventHandler NewMessage { get; set; }
 
-        public static EventHandler BlockchainUpdate { get; set; }
-
+        /// <summary>
+        /// The actual IP Address of the server
+        /// </summary>
+        /// <example>
+        /// ws://192.168.1.10:6002/Blockchain
+        /// </example>
         public string ServerAddress { get; set; }
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// The Client constructor
+        /// Initialize the server list with an empty list
+        /// </summary>
         public Client()
         {
             // Create the dictionnary who will contain the servers address
@@ -35,6 +46,20 @@ namespace KittyCoin.Models
 
         #region Public Methods
 
+        /// <summary>
+        /// Method used to connect to a server
+        /// It will :
+        /// - Create the "OnMessage" method to answer the server request
+        /// - Send the blockchain in local to the server (to check who have the good one)
+        /// - Ask for new server
+        /// </summary>
+        /// <param name="url">
+        /// The server address
+        /// </param>
+        /// <remarks>
+        /// It will create a connection only if the server is not the local one
+        /// and if the server is not already in the server list
+        /// </remarks>
         public void Connect(string url)
         {
             // If we know the adress (url) or if it's our server address don't connect
@@ -167,6 +192,9 @@ namespace KittyCoin.Models
         /// Send a message (data) to all server in the dictionnary (wsDict)
         /// </summary>
         /// <param name="data"></param>
+        /// <remarks>
+        /// It will close connection with server who didn't respond
+        /// </remarks>
         public void Broadcast(string data)
         {
             var serverClose = new Dictionary<string, WebSocket>();
@@ -197,7 +225,7 @@ namespace KittyCoin.Models
         }
 
         /// <summary>
-        /// Return the list of server url
+        /// Return the list of server ip
         /// </summary>
         public IList<string> GetServers()
         {
@@ -217,11 +245,19 @@ namespace KittyCoin.Models
 
         #endregion
 
+        /// <summary>
+        /// Broadcast the created block
+        /// </summary>
+        /// <param name="block"></param>
+        /// <see cref="Broadcast"/>
         public void NewBlock(Block block)
         {
             Broadcast(Constants.BLOCK + JsonConvert.SerializeObject(block));
         }
 
+        /// <summary>
+        /// Ask a server to send his blockchain
+        /// </summary>
         public void NeedBlockchain()
         {
             foreach (var item in MainViewModel.ServerList)
@@ -236,11 +272,21 @@ namespace KittyCoin.Models
             }
         }
 
+        /// <summary>
+        /// Broadcast the transaction
+        /// </summary>
+        /// <param name="transfer"></param>
+        /// <see cref="Broadcast"/>
         public void NewTransfer(Transfer transfer)
         {
             Broadcast(Constants.TRANSFER + JsonConvert.SerializeObject(transfer));
         }
 
+        /// <summary>
+        /// Connect to a list of server
+        /// </summary>
+        /// <param name="servers"></param>
+        /// <see cref="Connect"/>
         public void ConnectToAll(List<string> servers)
         {
             NewMessage.BeginInvoke(this, new EventArgsMessage("Connect to the others servers"), null, null);

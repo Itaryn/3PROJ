@@ -4,14 +4,14 @@ using System.Security.Cryptography;
 namespace KittyCoin.Models
 {
     /// <summary>
-    /// The user class
+    /// The User class
     /// </summary>
     public class User
     {
         #region Private Attributes
 
         /// <summary>
-        /// The private key
+        /// The Private key
         /// </summary>
         private readonly RSAParameters _privateKey;
 
@@ -20,7 +20,7 @@ namespace KittyCoin.Models
         #region Public Attributes
 
         /// <summary>
-        /// The public address
+        /// The Public address
         /// </summary>
         public string PublicAddress;
 
@@ -32,6 +32,9 @@ namespace KittyCoin.Models
         /// Create the user with a private key
         /// </summary>
         /// <param name="privateKey"></param>
+        /// <remarks>
+        /// It's used only for test purpose
+        /// </remarks>
         public User(RSAParameters privateKey)
         {
             using (var rsa = new RSACryptoServiceProvider())

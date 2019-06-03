@@ -6,24 +6,24 @@ using System.Text;
 namespace KittyCoin.Models
 {
     /// <summary>
-    /// The transfer class
+    /// The Transfer class
     /// </summary>
     public class Transfer
     {
         #region Public Attributes
 
         /// <summary>
-        /// The adress of the sender
+        /// The Public address of the sender
         /// </summary>
         public string FromAddress { get; set; }
 
         /// <summary>
-        /// The address of the receiver
+        /// The Public address of the receiver
         /// </summary>
         public string ToAddress { get; set; }
 
         /// <summary>
-        /// The amount
+        /// The amount of the transaction
         /// </summary>
         public double Amount { get; set; }
 
@@ -38,7 +38,7 @@ namespace KittyCoin.Models
         public DateTime CreationDate { get; set; }
 
         /// <summary>
-        /// The signature to proove the transfer
+        /// The signature to prove the transfer
         /// </summary>
         public string Signature { get; set; }
 
@@ -59,6 +59,10 @@ namespace KittyCoin.Models
         /// <param name="amount"></param>
         /// <param name="biscuit"></param>
         /// <param name="creationDate"></param>
+        /// <remarks>
+        /// It's used only for test purpose
+        /// The constructor will sign the transfer with the user private information
+        /// </remarks>
         public Transfer(User fromUser, string toAddress, double amount, double biscuit, DateTime creationDate)
         {
             FromAddress = fromUser.PublicAddress;
@@ -76,6 +80,9 @@ namespace KittyCoin.Models
         /// <param name="toAddress"></param>
         /// <param name="amount"></param>
         /// <param name="biscuit"></param>
+        /// <remarks>
+        /// The constructor will sign the transfer with the user private information
+        /// </remarks>
         public Transfer(User fromUser, string toAddress, double amount, double biscuit)
         {
             FromAddress = fromUser.PublicAddress;
@@ -91,7 +98,10 @@ namespace KittyCoin.Models
         #region Public Methods
 
         /// <summary>
-        /// Check the validity of the transfer
+        /// Check the validity of the transfer :
+        /// - If the sender public address is not null
+        /// - The amount is more than 0
+        /// - The transaction is signed
         /// </summary>
         /// <returns></returns>
         public bool IsValid()
@@ -158,10 +168,17 @@ namespace KittyCoin.Models
         #region Override Methods
 
         /// <summary>
-        /// Compare 2 transfer
+        /// Compare 2 transfers with :
+        /// - FromAddress
+        /// - ToAddress
+        /// - Amount
+        /// - Biscuit
+        /// - Creation Date
+        /// - Signature
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">
+        /// The compared object, transform in Transfer object
+        /// </param>
         public override bool Equals(object obj)
         {
             if (!(obj is Transfer other))
@@ -176,9 +193,14 @@ namespace KittyCoin.Models
         }
 
         /// <summary>
-        /// The ToString() Method
+        /// The ToString() method
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// Concatenate CreationDate, Sender and Receiver address, the amount and biscuit
+        /// </returns>
+        /// <example>
+        /// 03/06/2010 13:52:45 | PublicAddressOfTheSender -> PublicAddressOfTheReceiver : 10 + (0)
+        /// </example>
         public override string ToString()
         {
             return $"{CreationDate} | {FromAddress} -> {ToAddress} : {Amount} + ({Biscuit})";

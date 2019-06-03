@@ -9,12 +9,16 @@ using WebSocketSharp.Server;
 
 namespace KittyCoin.Models
 {
+    /// <summary>
+    /// The Server base on web socket
+    /// </summary>
+    /// <see cref="WebSocketBehavior"/>
     public class Server : WebSocketBehavior
     {
         #region Public Attributes
 
         /// <summary>
-        /// The webSocket
+        /// The Web Socket
         /// </summary>
         public WebSocketServer wss;
 
@@ -23,24 +27,27 @@ namespace KittyCoin.Models
         /// </summary>
         public string ServerAddress = "";
 
+        /// <summary>
+        /// Event Handler use to inform that they have a new message to show at the user
+        /// </summary>
         public static EventHandler NewMessage { get; set; }
 
-        public static EventHandler BlockchainUpdate { get; set; }
-
+        /// <summary>
+        /// Event Handler use to inform that the server is updated
+        /// </summary>
         public static EventHandler ServerUpdate { get; set; }
-
-        public List<string> ServersList { get; set; }
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Start the server
+        /// Start the server with a port
         /// </summary>
         /// <param name="port"></param>
-        public string Start(int port, string ip = "127.0.0.1")
+        public string Start(int port)
         {
+            string ip;
             foreach (var address in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
                 try
@@ -51,13 +58,12 @@ namespace KittyCoin.Models
                     break;
                 }
                 catch (Exception)
-                {
-
-                }
+                { }
             }
             if (wss == null)
             {
-                new WebSocketServer($"{Constants.SERVER_ADDRESS}{ip}:{port}");
+                wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}127.0.0.1:{port}");
+                ip = "127.0.0.1";
             }
 
             // Set the service "Blockchain"
