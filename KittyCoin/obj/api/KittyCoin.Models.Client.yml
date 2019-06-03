@@ -1,0 +1,1065 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Models.Client
+  commentId: T:KittyCoin.Models.Client
+  id: Client
+  parent: KittyCoin.Models
+  children:
+  - KittyCoin.Models.Client.#ctor
+  - KittyCoin.Models.Client.BlockchainUpdate
+  - KittyCoin.Models.Client.Broadcast(System.String)
+  - KittyCoin.Models.Client.Close
+  - KittyCoin.Models.Client.Connect(System.String)
+  - KittyCoin.Models.Client.ConnectToAll(System.Collections.Generic.List{System.String})
+  - KittyCoin.Models.Client.GetServers
+  - KittyCoin.Models.Client.NeedBlockchain
+  - KittyCoin.Models.Client.NewBlock(KittyCoin.Models.Block)
+  - KittyCoin.Models.Client.NewMessage
+  - KittyCoin.Models.Client.NewTransfer(KittyCoin.Models.Transfer)
+  - KittyCoin.Models.Client.Send(System.String,System.String)
+  - KittyCoin.Models.Client.ServerAddress
+  langs:
+  - csharp
+  - vb
+  name: Client
+  nameWithType: Client
+  fullName: KittyCoin.Models.Client
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Client
+    path: Models/Client.cs
+    startLine: 13
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe client class\nUsed to send packets to other server\n"
+  example: []
+  syntax:
+    content: public class Client
+    content.vb: Public Class Client
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.Models.Client.NewMessage
+  commentId: P:KittyCoin.Models.Client.NewMessage
+  id: NewMessage
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: NewMessage
+  nameWithType: Client.NewMessage
+  fullName: KittyCoin.Models.Client.NewMessage
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NewMessage
+    path: Models/Client.cs
+    startLine: 17
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static EventHandler NewMessage { get; set; }
+    parameters: []
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared Property NewMessage As EventHandler
+  overload: KittyCoin.Models.Client.NewMessage*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Models.Client.BlockchainUpdate
+  commentId: P:KittyCoin.Models.Client.BlockchainUpdate
+  id: BlockchainUpdate
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: BlockchainUpdate
+  nameWithType: Client.BlockchainUpdate
+  fullName: KittyCoin.Models.Client.BlockchainUpdate
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockchainUpdate
+    path: Models/Client.cs
+    startLine: 19
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static EventHandler BlockchainUpdate { get; set; }
+    parameters: []
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared Property BlockchainUpdate As EventHandler
+  overload: KittyCoin.Models.Client.BlockchainUpdate*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Models.Client.ServerAddress
+  commentId: P:KittyCoin.Models.Client.ServerAddress
+  id: ServerAddress
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: ServerAddress
+  nameWithType: Client.ServerAddress
+  fullName: KittyCoin.Models.Client.ServerAddress
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServerAddress
+    path: Models/Client.cs
+    startLine: 21
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public string ServerAddress { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ServerAddress As String
+  overload: KittyCoin.Models.Client.ServerAddress*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.#ctor
+  commentId: M:KittyCoin.Models.Client.#ctor
+  id: '#ctor'
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: Client()
+  nameWithType: Client.Client()
+  fullName: KittyCoin.Models.Client.Client()
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: Models/Client.cs
+    startLine: 27
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public Client()
+    content.vb: Public Sub New
+  overload: KittyCoin.Models.Client.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.Connect(System.String)
+  commentId: M:KittyCoin.Models.Client.Connect(System.String)
+  id: Connect(System.String)
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: Connect(String)
+  nameWithType: Client.Connect(String)
+  fullName: KittyCoin.Models.Client.Connect(System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Connect
+    path: Models/Client.cs
+    startLine: 37
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public void Connect(string url)
+    parameters:
+    - id: url
+      type: System.String
+    content.vb: Public Sub Connect(url As String)
+  overload: KittyCoin.Models.Client.Connect*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.Send(System.String,System.String)
+  commentId: M:KittyCoin.Models.Client.Send(System.String,System.String)
+  id: Send(System.String,System.String)
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: Send(String, String)
+  nameWithType: Client.Send(String, String)
+  fullName: KittyCoin.Models.Client.Send(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Send
+    path: Models/Client.cs
+    startLine: 155
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nSend a message (data) to a server (url)\n"
+  example: []
+  syntax:
+    content: public void Send(string url, string data)
+    parameters:
+    - id: url
+      type: System.String
+      description: ''
+    - id: data
+      type: System.String
+      description: ''
+    content.vb: Public Sub Send(url As String, data As String)
+  overload: KittyCoin.Models.Client.Send*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.Broadcast(System.String)
+  commentId: M:KittyCoin.Models.Client.Broadcast(System.String)
+  id: Broadcast(System.String)
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: Broadcast(String)
+  nameWithType: Client.Broadcast(String)
+  fullName: KittyCoin.Models.Client.Broadcast(System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Broadcast
+    path: Models/Client.cs
+    startLine: 169
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nSend a message (data) to all server in the dictionnary (wsDict)\n"
+  example: []
+  syntax:
+    content: public void Broadcast(string data)
+    parameters:
+    - id: data
+      type: System.String
+      description: ''
+    content.vb: Public Sub Broadcast(data As String)
+  overload: KittyCoin.Models.Client.Broadcast*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.GetServers
+  commentId: M:KittyCoin.Models.Client.GetServers
+  id: GetServers
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: GetServers()
+  nameWithType: Client.GetServers()
+  fullName: KittyCoin.Models.Client.GetServers()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: GetServers
+    path: Models/Client.cs
+    startLine: 201
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nReturn the list of server url\n"
+  example: []
+  syntax:
+    content: public IList<string> GetServers()
+    return:
+      type: System.Collections.Generic.IList{System.String}
+    content.vb: Public Function GetServers As IList(Of String)
+  overload: KittyCoin.Models.Client.GetServers*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.Close
+  commentId: M:KittyCoin.Models.Client.Close
+  id: Close
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: Close()
+  nameWithType: Client.Close()
+  fullName: KittyCoin.Models.Client.Close()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Close
+    path: Models/Client.cs
+    startLine: 209
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nClose all connection\n"
+  example: []
+  syntax:
+    content: public void Close()
+    content.vb: Public Sub Close
+  overload: KittyCoin.Models.Client.Close*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.NewBlock(KittyCoin.Models.Block)
+  commentId: M:KittyCoin.Models.Client.NewBlock(KittyCoin.Models.Block)
+  id: NewBlock(KittyCoin.Models.Block)
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: NewBlock(Block)
+  nameWithType: Client.NewBlock(Block)
+  fullName: KittyCoin.Models.Client.NewBlock(KittyCoin.Models.Block)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NewBlock
+    path: Models/Client.cs
+    startLine: 219
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public void NewBlock(Block block)
+    parameters:
+    - id: block
+      type: KittyCoin.Models.Block
+    content.vb: Public Sub NewBlock(block As Block)
+  overload: KittyCoin.Models.Client.NewBlock*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.NeedBlockchain
+  commentId: M:KittyCoin.Models.Client.NeedBlockchain
+  id: NeedBlockchain
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: NeedBlockchain()
+  nameWithType: Client.NeedBlockchain()
+  fullName: KittyCoin.Models.Client.NeedBlockchain()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NeedBlockchain
+    path: Models/Client.cs
+    startLine: 224
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public void NeedBlockchain()
+    content.vb: Public Sub NeedBlockchain
+  overload: KittyCoin.Models.Client.NeedBlockchain*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.NewTransfer(KittyCoin.Models.Transfer)
+  commentId: M:KittyCoin.Models.Client.NewTransfer(KittyCoin.Models.Transfer)
+  id: NewTransfer(KittyCoin.Models.Transfer)
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: NewTransfer(Transfer)
+  nameWithType: Client.NewTransfer(Transfer)
+  fullName: KittyCoin.Models.Client.NewTransfer(KittyCoin.Models.Transfer)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NewTransfer
+    path: Models/Client.cs
+    startLine: 238
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public void NewTransfer(Transfer transfer)
+    parameters:
+    - id: transfer
+      type: KittyCoin.Models.Transfer
+    content.vb: Public Sub NewTransfer(transfer As Transfer)
+  overload: KittyCoin.Models.Client.NewTransfer*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Client.ConnectToAll(System.Collections.Generic.List{System.String})
+  commentId: M:KittyCoin.Models.Client.ConnectToAll(System.Collections.Generic.List{System.String})
+  id: ConnectToAll(System.Collections.Generic.List{System.String})
+  parent: KittyCoin.Models.Client
+  langs:
+  - csharp
+  - vb
+  name: ConnectToAll(List<String>)
+  nameWithType: Client.ConnectToAll(List<String>)
+  fullName: KittyCoin.Models.Client.ConnectToAll(System.Collections.Generic.List<System.String>)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Client.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ConnectToAll
+    path: Models/Client.cs
+    startLine: 243
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public void ConnectToAll(List<string> servers)
+    parameters:
+    - id: servers
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Sub ConnectToAll(servers As List(Of String))
+  overload: KittyCoin.Models.Client.ConnectToAll*
+  nameWithType.vb: Client.ConnectToAll(List(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: KittyCoin.Models.Client.ConnectToAll(System.Collections.Generic.List(Of System.String))
+  name.vb: ConnectToAll(List(Of String))
+references:
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: KittyCoin.Models.Client.NewMessage*
+  commentId: Overload:KittyCoin.Models.Client.NewMessage
+  name: NewMessage
+  nameWithType: Client.NewMessage
+  fullName: KittyCoin.Models.Client.NewMessage
+- uid: System.EventHandler
+  commentId: T:System.EventHandler
+  parent: System
+  isExternal: true
+  name: EventHandler
+  nameWithType: EventHandler
+  fullName: System.EventHandler
+- uid: KittyCoin.Models.Client.BlockchainUpdate*
+  commentId: Overload:KittyCoin.Models.Client.BlockchainUpdate
+  name: BlockchainUpdate
+  nameWithType: Client.BlockchainUpdate
+  fullName: KittyCoin.Models.Client.BlockchainUpdate
+- uid: KittyCoin.Models.Client.ServerAddress*
+  commentId: Overload:KittyCoin.Models.Client.ServerAddress
+  name: ServerAddress
+  nameWithType: Client.ServerAddress
+  fullName: KittyCoin.Models.Client.ServerAddress
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: KittyCoin.Models.Client.#ctor*
+  commentId: Overload:KittyCoin.Models.Client.#ctor
+  name: Client
+  nameWithType: Client.Client
+  fullName: KittyCoin.Models.Client.Client
+- uid: KittyCoin.Models.Client.Connect*
+  commentId: Overload:KittyCoin.Models.Client.Connect
+  name: Connect
+  nameWithType: Client.Connect
+  fullName: KittyCoin.Models.Client.Connect
+- uid: KittyCoin.Models.Client.Send*
+  commentId: Overload:KittyCoin.Models.Client.Send
+  name: Send
+  nameWithType: Client.Send
+  fullName: KittyCoin.Models.Client.Send
+- uid: KittyCoin.Models.Client.Broadcast*
+  commentId: Overload:KittyCoin.Models.Client.Broadcast
+  name: Broadcast
+  nameWithType: Client.Broadcast
+  fullName: KittyCoin.Models.Client.Broadcast
+- uid: KittyCoin.Models.Client.GetServers*
+  commentId: Overload:KittyCoin.Models.Client.GetServers
+  name: GetServers
+  nameWithType: Client.GetServers
+  fullName: KittyCoin.Models.Client.GetServers
+- uid: System.Collections.Generic.IList{System.String}
+  commentId: T:System.Collections.Generic.IList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<String>
+  nameWithType: IList<String>
+  fullName: System.Collections.Generic.IList<System.String>
+  nameWithType.vb: IList(Of String)
+  fullName.vb: System.Collections.Generic.IList(Of System.String)
+  name.vb: IList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: KittyCoin.Models.Client.Close*
+  commentId: Overload:KittyCoin.Models.Client.Close
+  name: Close
+  nameWithType: Client.Close
+  fullName: KittyCoin.Models.Client.Close
+- uid: KittyCoin.Models.Client.NewBlock*
+  commentId: Overload:KittyCoin.Models.Client.NewBlock
+  name: NewBlock
+  nameWithType: Client.NewBlock
+  fullName: KittyCoin.Models.Client.NewBlock
+- uid: KittyCoin.Models.Block
+  commentId: T:KittyCoin.Models.Block
+  parent: KittyCoin.Models
+  name: Block
+  nameWithType: Block
+  fullName: KittyCoin.Models.Block
+- uid: KittyCoin.Models.Client.NeedBlockchain*
+  commentId: Overload:KittyCoin.Models.Client.NeedBlockchain
+  name: NeedBlockchain
+  nameWithType: Client.NeedBlockchain
+  fullName: KittyCoin.Models.Client.NeedBlockchain
+- uid: KittyCoin.Models.Client.NewTransfer*
+  commentId: Overload:KittyCoin.Models.Client.NewTransfer
+  name: NewTransfer
+  nameWithType: Client.NewTransfer
+  fullName: KittyCoin.Models.Client.NewTransfer
+- uid: KittyCoin.Models.Transfer
+  commentId: T:KittyCoin.Models.Transfer
+  parent: KittyCoin.Models
+  name: Transfer
+  nameWithType: Transfer
+  fullName: KittyCoin.Models.Transfer
+- uid: KittyCoin.Models.Client.ConnectToAll*
+  commentId: Overload:KittyCoin.Models.Client.ConnectToAll
+  name: ConnectToAll
+  nameWithType: Client.ConnectToAll
+  fullName: KittyCoin.Models.Client.ConnectToAll
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -1,0 +1,1147 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Models.Block
+  commentId: T:KittyCoin.Models.Block
+  id: Block
+  parent: KittyCoin.Models
+  children:
+  - KittyCoin.Models.Block.#ctor
+  - KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.DateTime,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  - KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  - KittyCoin.Models.Block.CalculateHash
+  - KittyCoin.Models.Block.CreationDate
+  - KittyCoin.Models.Block.Difficulty
+  - KittyCoin.Models.Block.Equals(System.Object)
+  - KittyCoin.Models.Block.Guid
+  - KittyCoin.Models.Block.Hash
+  - KittyCoin.Models.Block.Index
+  - KittyCoin.Models.Block.Owner
+  - KittyCoin.Models.Block.PreviousHash
+  - KittyCoin.Models.Block.ToString
+  - KittyCoin.Models.Block.Transfers
+  - KittyCoin.Models.Block.TryHash(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Block
+  nameWithType: Block
+  fullName: KittyCoin.Models.Block
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Block
+    path: Models/Block.cs
+    startLine: 14
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe Block Class\n"
+  example: []
+  syntax:
+    content: public class Block
+    content.vb: Public Class Block
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.Models.Block.Index
+  commentId: P:KittyCoin.Models.Block.Index
+  id: Index
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Index
+  nameWithType: Block.Index
+  fullName: KittyCoin.Models.Block.Index
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Index
+    path: Models/Block.cs
+    startLine: 21
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nIndex of the Block\n"
+  example: []
+  syntax:
+    content: public int Index { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Index As Integer
+  overload: KittyCoin.Models.Block.Index*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Owner
+  commentId: P:KittyCoin.Models.Block.Owner
+  id: Owner
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Owner
+  nameWithType: Block.Owner
+  fullName: KittyCoin.Models.Block.Owner
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Owner
+    path: Models/Block.cs
+    startLine: 26
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nCreator of the block\n"
+  example: []
+  syntax:
+    content: public string Owner { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Owner As String
+  overload: KittyCoin.Models.Block.Owner*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.CreationDate
+  commentId: P:KittyCoin.Models.Block.CreationDate
+  id: CreationDate
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: CreationDate
+  nameWithType: Block.CreationDate
+  fullName: KittyCoin.Models.Block.CreationDate
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: CreationDate
+    path: Models/Block.cs
+    startLine: 31
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nCreation DateTime of the Block\n"
+  example: []
+  syntax:
+    content: public DateTime CreationDate { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property CreationDate As Date
+  overload: KittyCoin.Models.Block.CreationDate*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.PreviousHash
+  commentId: P:KittyCoin.Models.Block.PreviousHash
+  id: PreviousHash
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: PreviousHash
+  nameWithType: Block.PreviousHash
+  fullName: KittyCoin.Models.Block.PreviousHash
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PreviousHash
+    path: Models/Block.cs
+    startLine: 36
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe Hash of the previous block\n"
+  example: []
+  syntax:
+    content: public string PreviousHash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PreviousHash As String
+  overload: KittyCoin.Models.Block.PreviousHash*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Transfers
+  commentId: P:KittyCoin.Models.Block.Transfers
+  id: Transfers
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Transfers
+  nameWithType: Block.Transfers
+  fullName: KittyCoin.Models.Block.Transfers
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Transfers
+    path: Models/Block.cs
+    startLine: 41
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nList of transfers contained in the block\n"
+  example: []
+  syntax:
+    content: public Transfer[] Transfers { get; set; }
+    parameters: []
+    return:
+      type: KittyCoin.Models.Transfer[]
+    content.vb: Public Property Transfers As Transfer()
+  overload: KittyCoin.Models.Block.Transfers*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Guid
+  commentId: P:KittyCoin.Models.Block.Guid
+  id: Guid
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Guid
+  nameWithType: Block.Guid
+  fullName: KittyCoin.Models.Block.Guid
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Guid
+    path: Models/Block.cs
+    startLine: 46
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nA random Guid to generate the hash beginning with K\n"
+  example: []
+  syntax:
+    content: public Guid Guid { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property Guid As Guid
+  overload: KittyCoin.Models.Block.Guid*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Hash
+  commentId: P:KittyCoin.Models.Block.Hash
+  id: Hash
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Hash
+  nameWithType: Block.Hash
+  fullName: KittyCoin.Models.Block.Hash
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Hash
+    path: Models/Block.cs
+    startLine: 51
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe Hash of the block\n"
+  example: []
+  syntax:
+    content: public string Hash { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Hash As String
+  overload: KittyCoin.Models.Block.Hash*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Difficulty
+  commentId: P:KittyCoin.Models.Block.Difficulty
+  id: Difficulty
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Difficulty
+  nameWithType: Block.Difficulty
+  fullName: KittyCoin.Models.Block.Difficulty
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Difficulty
+    path: Models/Block.cs
+    startLine: 53
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public string Difficulty { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Difficulty As String
+  overload: KittyCoin.Models.Block.Difficulty*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.#ctor
+  commentId: M:KittyCoin.Models.Block.#ctor
+  id: '#ctor'
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Block()
+  nameWithType: Block.Block()
+  fullName: KittyCoin.Models.Block.Block()
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: Models/Block.cs
+    startLine: 62
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nEmpty constructor to deserialize with NewtonSoft\n"
+  example: []
+  syntax:
+    content: public Block()
+    content.vb: Public Sub New
+  overload: KittyCoin.Models.Block.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.DateTime,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  commentId: M:KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.DateTime,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  id: '#ctor(System.Int32,System.String,System.DateTime,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)'
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Block(Int32, String, DateTime, String, IEnumerable<Transfer>, String)
+  nameWithType: Block.Block(Int32, String, DateTime, String, IEnumerable<Transfer>, String)
+  fullName: KittyCoin.Models.Block.Block(System.Int32, System.String, System.DateTime, System.String, System.Collections.Generic.IEnumerable<KittyCoin.Models.Transfer>, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: Models/Block.cs
+    startLine: 71
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nConstructor to create a block already in the chain\n"
+  example: []
+  syntax:
+    content: public Block(int index, string owner, DateTime creationDate, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: ''
+    - id: owner
+      type: System.String
+    - id: creationDate
+      type: System.DateTime
+      description: ''
+    - id: previousHash
+      type: System.String
+      description: ''
+    - id: transfers
+      type: System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer}
+      description: ''
+    - id: difficulty
+      type: System.String
+    content.vb: Public Sub New(index As Integer, owner As String, creationDate As Date, previousHash As String, transfers As IEnumerable(Of Transfer), difficulty As String)
+  overload: KittyCoin.Models.Block.#ctor*
+  nameWithType.vb: Block.Block(Int32, String, DateTime, String, IEnumerable(Of Transfer), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: KittyCoin.Models.Block.Block(System.Int32, System.String, System.DateTime, System.String, System.Collections.Generic.IEnumerable(Of KittyCoin.Models.Transfer), System.String)
+  name.vb: Block(Int32, String, DateTime, String, IEnumerable(Of Transfer), String)
+- uid: KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  commentId: M:KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)
+  id: '#ctor(System.Int32,System.String,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)'
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Block(Int32, String, String, IEnumerable<Transfer>, String)
+  nameWithType: Block.Block(Int32, String, String, IEnumerable<Transfer>, String)
+  fullName: KittyCoin.Models.Block.Block(System.Int32, System.String, System.String, System.Collections.Generic.IEnumerable<KittyCoin.Models.Transfer>, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: Models/Block.cs
+    startLine: 89
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nConstructor to initialize a new block\n"
+  example: []
+  syntax:
+    content: public Block(int index, string owner, string previousHash, IEnumerable<Transfer> transfers, string difficulty)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: ''
+    - id: owner
+      type: System.String
+    - id: previousHash
+      type: System.String
+      description: ''
+    - id: transfers
+      type: System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer}
+      description: ''
+    - id: difficulty
+      type: System.String
+    content.vb: Public Sub New(index As Integer, owner As String, previousHash As String, transfers As IEnumerable(Of Transfer), difficulty As String)
+  overload: KittyCoin.Models.Block.#ctor*
+  nameWithType.vb: Block.Block(Int32, String, String, IEnumerable(Of Transfer), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: KittyCoin.Models.Block.Block(System.Int32, System.String, System.String, System.Collections.Generic.IEnumerable(Of KittyCoin.Models.Transfer), System.String)
+  name.vb: Block(Int32, String, String, IEnumerable(Of Transfer), String)
+- uid: KittyCoin.Models.Block.CalculateHash
+  commentId: M:KittyCoin.Models.Block.CalculateHash
+  id: CalculateHash
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: CalculateHash()
+  nameWithType: Block.CalculateHash()
+  fullName: KittyCoin.Models.Block.CalculateHash()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: CalculateHash
+    path: Models/Block.cs
+    startLine: 111
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nCalculate the Hash from creationDate, previousHash, transfers and Guid\n"
+  example: []
+  syntax:
+    content: public string CalculateHash()
+    return:
+      type: System.String
+      description: "\nThe calculated hash\n"
+    content.vb: Public Function CalculateHash As String
+  overload: KittyCoin.Models.Block.CalculateHash*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.TryHash(System.String)
+  commentId: M:KittyCoin.Models.Block.TryHash(System.String)
+  id: TryHash(System.String)
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: TryHash(String)
+  nameWithType: Block.TryHash(String)
+  fullName: KittyCoin.Models.Block.TryHash(System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: TryHash
+    path: Models/Block.cs
+    startLine: 127
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nTry if the Hash is correct for the actual difficulty\n"
+  example: []
+  syntax:
+    content: public bool TryHash(string difficulty)
+    parameters:
+    - id: difficulty
+      type: System.String
+      description: "\nNumbers of K needed\n"
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryHash(difficulty As String) As Boolean
+  overload: KittyCoin.Models.Block.TryHash*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Block.Equals(System.Object)
+  commentId: M:KittyCoin.Models.Block.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: Block.Equals(Object)
+  fullName: KittyCoin.Models.Block.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Equals
+    path: Models/Block.cs
+    startLine: 147
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nCompare 2 blocks\n"
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The compared block
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: KittyCoin.Models.Block.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: KittyCoin.Models.Block.ToString
+  commentId: M:KittyCoin.Models.Block.ToString
+  id: ToString
+  parent: KittyCoin.Models.Block
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Block.ToString()
+  fullName: KittyCoin.Models.Block.ToString()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Block.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ToString
+    path: Models/Block.cs
+    startLine: 164
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe ToString() method\n"
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: KittyCoin.Models.Block.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: KittyCoin.Models.Block.Index*
+  commentId: Overload:KittyCoin.Models.Block.Index
+  name: Index
+  nameWithType: Block.Index
+  fullName: KittyCoin.Models.Block.Index
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: KittyCoin.Models.Block.Owner*
+  commentId: Overload:KittyCoin.Models.Block.Owner
+  name: Owner
+  nameWithType: Block.Owner
+  fullName: KittyCoin.Models.Block.Owner
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: KittyCoin.Models.Block.CreationDate*
+  commentId: Overload:KittyCoin.Models.Block.CreationDate
+  name: CreationDate
+  nameWithType: Block.CreationDate
+  fullName: KittyCoin.Models.Block.CreationDate
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+- uid: KittyCoin.Models.Block.PreviousHash*
+  commentId: Overload:KittyCoin.Models.Block.PreviousHash
+  name: PreviousHash
+  nameWithType: Block.PreviousHash
+  fullName: KittyCoin.Models.Block.PreviousHash
+- uid: KittyCoin.Models.Block.Transfers*
+  commentId: Overload:KittyCoin.Models.Block.Transfers
+  name: Transfers
+  nameWithType: Block.Transfers
+  fullName: KittyCoin.Models.Block.Transfers
+- uid: KittyCoin.Models.Transfer[]
+  isExternal: true
+  name: Transfer[]
+  nameWithType: Transfer[]
+  fullName: KittyCoin.Models.Transfer[]
+  nameWithType.vb: Transfer()
+  fullName.vb: KittyCoin.Models.Transfer()
+  name.vb: Transfer()
+  spec.csharp:
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: KittyCoin.Models.Block.Guid*
+  commentId: Overload:KittyCoin.Models.Block.Guid
+  name: Guid
+  nameWithType: Block.Guid
+  fullName: KittyCoin.Models.Block.Guid
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: KittyCoin.Models.Block.Hash*
+  commentId: Overload:KittyCoin.Models.Block.Hash
+  name: Hash
+  nameWithType: Block.Hash
+  fullName: KittyCoin.Models.Block.Hash
+- uid: KittyCoin.Models.Block.Difficulty*
+  commentId: Overload:KittyCoin.Models.Block.Difficulty
+  name: Difficulty
+  nameWithType: Block.Difficulty
+  fullName: KittyCoin.Models.Block.Difficulty
+- uid: KittyCoin.Models.Block.#ctor*
+  commentId: Overload:KittyCoin.Models.Block.#ctor
+  name: Block
+  nameWithType: Block.Block
+  fullName: KittyCoin.Models.Block.Block
+- uid: System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer}
+  commentId: T:System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Transfer>
+  nameWithType: IEnumerable<Transfer>
+  fullName: System.Collections.Generic.IEnumerable<KittyCoin.Models.Transfer>
+  nameWithType.vb: IEnumerable(Of Transfer)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of KittyCoin.Models.Transfer)
+  name.vb: IEnumerable(Of Transfer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: KittyCoin.Models.Block.CalculateHash*
+  commentId: Overload:KittyCoin.Models.Block.CalculateHash
+  name: CalculateHash
+  nameWithType: Block.CalculateHash
+  fullName: KittyCoin.Models.Block.CalculateHash
+- uid: KittyCoin.Models.Block.TryHash*
+  commentId: Overload:KittyCoin.Models.Block.TryHash
+  name: TryHash
+  nameWithType: Block.TryHash
+  fullName: KittyCoin.Models.Block.TryHash
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: KittyCoin.Models.Block.Equals*
+  commentId: Overload:KittyCoin.Models.Block.Equals
+  name: Equals
+  nameWithType: Block.Equals
+  fullName: KittyCoin.Models.Block.Equals
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: KittyCoin.Models.Block.ToString*
+  commentId: Overload:KittyCoin.Models.Block.ToString
+  name: ToString
+  nameWithType: Block.ToString
+  fullName: KittyCoin.Models.Block.ToString

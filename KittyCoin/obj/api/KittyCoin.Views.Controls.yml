@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Views.Controls
+  commentId: N:KittyCoin.Views.Controls
+  id: KittyCoin.Views.Controls
+  children:
+  - KittyCoin.Views.Controls.ToggleButton
+  langs:
+  - csharp
+  - vb
+  name: KittyCoin.Views.Controls
+  nameWithType: KittyCoin.Views.Controls
+  fullName: KittyCoin.Views.Controls
+  type: Namespace
+  assemblies:
+  - KittyCoin
+references:
+- uid: KittyCoin.Views.Controls.ToggleButton
+  commentId: T:KittyCoin.Views.Controls.ToggleButton
+  name: ToggleButton
+  nameWithType: ToggleButton
+  fullName: KittyCoin.Views.Controls.ToggleButton

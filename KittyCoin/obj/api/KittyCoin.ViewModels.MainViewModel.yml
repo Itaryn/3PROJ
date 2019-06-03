@@ -1,0 +1,1597 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.ViewModels.MainViewModel
+  commentId: T:KittyCoin.ViewModels.MainViewModel
+  id: MainViewModel
+  parent: KittyCoin.ViewModels
+  children:
+  - KittyCoin.ViewModels.MainViewModel.#ctor
+  - KittyCoin.ViewModels.MainViewModel.ActualUser
+  - KittyCoin.ViewModels.MainViewModel.BlockChain
+  - KittyCoin.ViewModels.MainViewModel.BlockChainUpdated
+  - KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+  - KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+  - KittyCoin.ViewModels.MainViewModel.Client
+  - KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod(System.Object,System.EventArgs)
+  - KittyCoin.ViewModels.MainViewModel.ConnectUserMethod(System.Object,System.EventArgs)
+  - KittyCoin.ViewModels.MainViewModel.Console
+  - KittyCoin.ViewModels.MainViewModel.LaunchServerMethod(System.Object,System.EventArgs)
+  - KittyCoin.ViewModels.MainViewModel.Mining
+  - KittyCoin.ViewModels.MainViewModel.MiningThread
+  - KittyCoin.ViewModels.MainViewModel.NewTransactionMethod(System.Object,System.EventArgs)
+  - KittyCoin.ViewModels.MainViewModel.PeerUrl
+  - KittyCoin.ViewModels.MainViewModel.Port
+  - KittyCoin.ViewModels.MainViewModel.PropertyChanged
+  - KittyCoin.ViewModels.MainViewModel.RegisterCommand
+  - KittyCoin.ViewModels.MainViewModel.RegisterMethod
+  - KittyCoin.ViewModels.MainViewModel.Save
+  - KittyCoin.ViewModels.MainViewModel.SaveThread
+  - KittyCoin.ViewModels.MainViewModel.Server
+  - KittyCoin.ViewModels.MainViewModel.ServerList
+  - KittyCoin.ViewModels.MainViewModel.ServerListUpdated
+  - KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess(System.Guid)
+  langs:
+  - csharp
+  - vb
+  name: MainViewModel
+  nameWithType: MainViewModel
+  fullName: KittyCoin.ViewModels.MainViewModel
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: MainViewModel
+    path: ViewModels/MainViewModel.cs
+    startLine: 15
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: 'public class MainViewModel : INotifyPropertyChanged'
+    content.vb: >-
+      Public Class MainViewModel
+          Implements INotifyPropertyChanged
+  inheritance:
+  - System.Object
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.ViewModels.MainViewModel.BlockChain
+  commentId: F:KittyCoin.ViewModels.MainViewModel.BlockChain
+  id: BlockChain
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: BlockChain
+  nameWithType: MainViewModel.BlockChain
+  fullName: KittyCoin.ViewModels.MainViewModel.BlockChain
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockChain
+    path: ViewModels/MainViewModel.cs
+    startLine: 29
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static KittyChain BlockChain
+    return:
+      type: KittyCoin.Models.KittyChain
+    content.vb: Public Shared BlockChain As KittyChain
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.BlockChainUpdated
+  commentId: F:KittyCoin.ViewModels.MainViewModel.BlockChainUpdated
+  id: BlockChainUpdated
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: BlockChainUpdated
+  nameWithType: MainViewModel.BlockChainUpdated
+  fullName: KittyCoin.ViewModels.MainViewModel.BlockChainUpdated
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockChainUpdated
+    path: ViewModels/MainViewModel.cs
+    startLine: 31
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static EventHandler BlockChainUpdated
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared BlockChainUpdated As EventHandler
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.ServerListUpdated
+  commentId: F:KittyCoin.ViewModels.MainViewModel.ServerListUpdated
+  id: ServerListUpdated
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ServerListUpdated
+  nameWithType: MainViewModel.ServerListUpdated
+  fullName: KittyCoin.ViewModels.MainViewModel.ServerListUpdated
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServerListUpdated
+    path: ViewModels/MainViewModel.cs
+    startLine: 32
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static EventHandler ServerListUpdated
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared ServerListUpdated As EventHandler
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+  commentId: P:KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+  id: BlockChainWaitingList
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: BlockChainWaitingList
+  nameWithType: MainViewModel.BlockChainWaitingList
+  fullName: KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockChainWaitingList
+    path: ViewModels/MainViewModel.cs
+    startLine: 34
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static List<Guid> BlockChainWaitingList { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.Guid}
+    content.vb: Public Shared Property BlockChainWaitingList As List(Of Guid)
+  overload: KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.ServerList
+  commentId: F:KittyCoin.ViewModels.MainViewModel.ServerList
+  id: ServerList
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ServerList
+  nameWithType: MainViewModel.ServerList
+  fullName: KittyCoin.ViewModels.MainViewModel.ServerList
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServerList
+    path: ViewModels/MainViewModel.cs
+    startLine: 40
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static IDictionary<string, WebSocket> ServerList
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,WebSocketSharp.WebSocket}
+    content.vb: Public Shared ServerList As IDictionary(Of String, WebSocket)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.Client
+  commentId: F:KittyCoin.ViewModels.MainViewModel.Client
+  id: Client
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Client
+  nameWithType: MainViewModel.Client
+  fullName: KittyCoin.ViewModels.MainViewModel.Client
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Client
+    path: ViewModels/MainViewModel.cs
+    startLine: 41
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Client Client
+    return:
+      type: KittyCoin.Models.Client
+    content.vb: Public Client As Client
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.Server
+  commentId: F:KittyCoin.ViewModels.MainViewModel.Server
+  id: Server
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Server
+  nameWithType: MainViewModel.Server
+  fullName: KittyCoin.ViewModels.MainViewModel.Server
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Server
+    path: ViewModels/MainViewModel.cs
+    startLine: 42
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Server Server
+    return:
+      type: KittyCoin.Models.Server
+    content.vb: Public Server As Server
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.MiningThread
+  commentId: F:KittyCoin.ViewModels.MainViewModel.MiningThread
+  id: MiningThread
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: MiningThread
+  nameWithType: MainViewModel.MiningThread
+  fullName: KittyCoin.ViewModels.MainViewModel.MiningThread
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: MiningThread
+    path: ViewModels/MainViewModel.cs
+    startLine: 43
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Thread MiningThread
+    return:
+      type: System.Threading.Thread
+    content.vb: Public MiningThread As Thread
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.SaveThread
+  commentId: F:KittyCoin.ViewModels.MainViewModel.SaveThread
+  id: SaveThread
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: SaveThread
+  nameWithType: MainViewModel.SaveThread
+  fullName: KittyCoin.ViewModels.MainViewModel.SaveThread
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: SaveThread
+    path: ViewModels/MainViewModel.cs
+    startLine: 44
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Thread SaveThread
+    return:
+      type: System.Threading.Thread
+    content.vb: Public SaveThread As Thread
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.ActualUser
+  commentId: F:KittyCoin.ViewModels.MainViewModel.ActualUser
+  id: ActualUser
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ActualUser
+  nameWithType: MainViewModel.ActualUser
+  fullName: KittyCoin.ViewModels.MainViewModel.ActualUser
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ActualUser
+    path: ViewModels/MainViewModel.cs
+    startLine: 45
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public User ActualUser
+    return:
+      type: KittyCoin.Models.User
+    content.vb: Public ActualUser As User
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.#ctor
+  commentId: M:KittyCoin.ViewModels.MainViewModel.#ctor
+  id: '#ctor'
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: MainViewModel()
+  nameWithType: MainViewModel.MainViewModel()
+  fullName: KittyCoin.ViewModels.MainViewModel.MainViewModel()
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: ViewModels/MainViewModel.cs
+    startLine: 50
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public MainViewModel()
+    content.vb: Public Sub New
+  overload: KittyCoin.ViewModels.MainViewModel.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.RegisterCommand
+  commentId: P:KittyCoin.ViewModels.MainViewModel.RegisterCommand
+  id: RegisterCommand
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: RegisterCommand
+  nameWithType: MainViewModel.RegisterCommand
+  fullName: KittyCoin.ViewModels.MainViewModel.RegisterCommand
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: RegisterCommand
+    path: ViewModels/MainViewModel.cs
+    startLine: 78
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public ICommand RegisterCommand { get; }
+    parameters: []
+    return:
+      type: System.Windows.Input.ICommand
+    content.vb: Public ReadOnly Property RegisterCommand As ICommand
+  overload: KittyCoin.ViewModels.MainViewModel.RegisterCommand*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: KittyCoin.ViewModels.MainViewModel.Save
+  commentId: M:KittyCoin.ViewModels.MainViewModel.Save
+  id: Save
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Save()
+  nameWithType: MainViewModel.Save()
+  fullName: KittyCoin.ViewModels.MainViewModel.Save()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Save
+    path: ViewModels/MainViewModel.cs
+    startLine: 84
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void Save()
+    content.vb: Public Sub Save
+  overload: KittyCoin.ViewModels.MainViewModel.Save*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.Mining
+  commentId: M:KittyCoin.ViewModels.MainViewModel.Mining
+  id: Mining
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Mining()
+  nameWithType: MainViewModel.Mining()
+  fullName: KittyCoin.ViewModels.MainViewModel.Mining()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Mining
+    path: ViewModels/MainViewModel.cs
+    startLine: 93
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void Mining()
+    content.vb: Public Sub Mining
+  overload: KittyCoin.ViewModels.MainViewModel.Mining*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.NewTransactionMethod(System.Object,System.EventArgs)
+  commentId: M:KittyCoin.ViewModels.MainViewModel.NewTransactionMethod(System.Object,System.EventArgs)
+  id: NewTransactionMethod(System.Object,System.EventArgs)
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: NewTransactionMethod(Object, EventArgs)
+  nameWithType: MainViewModel.NewTransactionMethod(Object, EventArgs)
+  fullName: KittyCoin.ViewModels.MainViewModel.NewTransactionMethod(System.Object, System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NewTransactionMethod
+    path: ViewModels/MainViewModel.cs
+    startLine: 133
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void NewTransactionMethod(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Sub NewTransactionMethod(sender As Object, e As EventArgs)
+  overload: KittyCoin.ViewModels.MainViewModel.NewTransactionMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod(System.Object,System.EventArgs)
+  commentId: M:KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod(System.Object,System.EventArgs)
+  id: ConnectBlockchainMethod(System.Object,System.EventArgs)
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ConnectBlockchainMethod(Object, EventArgs)
+  nameWithType: MainViewModel.ConnectBlockchainMethod(Object, EventArgs)
+  fullName: KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod(System.Object, System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ConnectBlockchainMethod
+    path: ViewModels/MainViewModel.cs
+    startLine: 155
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void ConnectBlockchainMethod(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Sub ConnectBlockchainMethod(sender As Object, e As EventArgs)
+  overload: KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.ConnectUserMethod(System.Object,System.EventArgs)
+  commentId: M:KittyCoin.ViewModels.MainViewModel.ConnectUserMethod(System.Object,System.EventArgs)
+  id: ConnectUserMethod(System.Object,System.EventArgs)
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ConnectUserMethod(Object, EventArgs)
+  nameWithType: MainViewModel.ConnectUserMethod(Object, EventArgs)
+  fullName: KittyCoin.ViewModels.MainViewModel.ConnectUserMethod(System.Object, System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ConnectUserMethod
+    path: ViewModels/MainViewModel.cs
+    startLine: 171
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void ConnectUserMethod(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Sub ConnectUserMethod(sender As Object, e As EventArgs)
+  overload: KittyCoin.ViewModels.MainViewModel.ConnectUserMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.LaunchServerMethod(System.Object,System.EventArgs)
+  commentId: M:KittyCoin.ViewModels.MainViewModel.LaunchServerMethod(System.Object,System.EventArgs)
+  id: LaunchServerMethod(System.Object,System.EventArgs)
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerMethod(Object, EventArgs)
+  nameWithType: MainViewModel.LaunchServerMethod(Object, EventArgs)
+  fullName: KittyCoin.ViewModels.MainViewModel.LaunchServerMethod(System.Object, System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: LaunchServerMethod
+    path: ViewModels/MainViewModel.cs
+    startLine: 183
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void LaunchServerMethod(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Sub LaunchServerMethod(sender As Object, e As EventArgs)
+  overload: KittyCoin.ViewModels.MainViewModel.LaunchServerMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.RegisterMethod
+  commentId: M:KittyCoin.ViewModels.MainViewModel.RegisterMethod
+  id: RegisterMethod
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: RegisterMethod()
+  nameWithType: MainViewModel.RegisterMethod()
+  fullName: KittyCoin.ViewModels.MainViewModel.RegisterMethod()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: RegisterMethod
+    path: ViewModels/MainViewModel.cs
+    startLine: 213
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void RegisterMethod()
+    content.vb: Public Sub RegisterMethod
+  overload: KittyCoin.ViewModels.MainViewModel.RegisterMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess(System.Guid)
+  commentId: M:KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess(System.Guid)
+  id: WaitingForBlockchainAccess(System.Guid)
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: WaitingForBlockchainAccess(Guid)
+  nameWithType: MainViewModel.WaitingForBlockchainAccess(Guid)
+  fullName: KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: WaitingForBlockchainAccess
+    path: ViewModels/MainViewModel.cs
+    startLine: 219
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public static void WaitingForBlockchainAccess(Guid guid)
+    parameters:
+    - id: guid
+      type: System.Guid
+    content.vb: Public Shared Sub WaitingForBlockchainAccess(guid As Guid)
+  overload: KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+  commentId: P:KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+  id: CheckBoxMine
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: CheckBoxMine
+  nameWithType: MainViewModel.CheckBoxMine
+  fullName: KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: CheckBoxMine
+    path: ViewModels/MainViewModel.cs
+    startLine: 294
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public bool CheckBoxMine { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CheckBoxMine As Boolean
+  overload: KittyCoin.ViewModels.MainViewModel.CheckBoxMine*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.Port
+  commentId: P:KittyCoin.ViewModels.MainViewModel.Port
+  id: Port
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Port
+  nameWithType: MainViewModel.Port
+  fullName: KittyCoin.ViewModels.MainViewModel.Port
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Port
+    path: ViewModels/MainViewModel.cs
+    startLine: 317
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public int Port { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Port As Integer
+  overload: KittyCoin.ViewModels.MainViewModel.Port*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.PeerUrl
+  commentId: P:KittyCoin.ViewModels.MainViewModel.PeerUrl
+  id: PeerUrl
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: PeerUrl
+  nameWithType: MainViewModel.PeerUrl
+  fullName: KittyCoin.ViewModels.MainViewModel.PeerUrl
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PeerUrl
+    path: ViewModels/MainViewModel.cs
+    startLine: 327
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public string PeerUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PeerUrl As String
+  overload: KittyCoin.ViewModels.MainViewModel.PeerUrl*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.Console
+  commentId: P:KittyCoin.ViewModels.MainViewModel.Console
+  id: Console
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Console
+  nameWithType: MainViewModel.Console
+  fullName: KittyCoin.ViewModels.MainViewModel.Console
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Console
+    path: ViewModels/MainViewModel.cs
+    startLine: 337
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public string Console { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Console As String
+  overload: KittyCoin.ViewModels.MainViewModel.Console*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.MainViewModel.PropertyChanged
+  commentId: E:KittyCoin.ViewModels.MainViewModel.PropertyChanged
+  id: PropertyChanged
+  parent: KittyCoin.ViewModels.MainViewModel
+  langs:
+  - csharp
+  - vb
+  name: PropertyChanged
+  nameWithType: MainViewModel.PropertyChanged
+  fullName: KittyCoin.ViewModels.MainViewModel.PropertyChanged
+  type: Event
+  source:
+    remote:
+      path: KittyCoin/ViewModels/MainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PropertyChanged
+    path: ViewModels/MainViewModel.cs
+    startLine: 350
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public event PropertyChangedEventHandler PropertyChanged
+    return:
+      type: System.ComponentModel.PropertyChangedEventHandler
+    content.vb: Public Event PropertyChanged As PropertyChangedEventHandler
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: KittyCoin.ViewModels
+  commentId: N:KittyCoin.ViewModels
+  name: KittyCoin.ViewModels
+  nameWithType: KittyCoin.ViewModels
+  fullName: KittyCoin.ViewModels
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+- uid: KittyCoin.Models.KittyChain
+  commentId: T:KittyCoin.Models.KittyChain
+  parent: KittyCoin.Models
+  name: KittyChain
+  nameWithType: KittyChain
+  fullName: KittyCoin.Models.KittyChain
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: System.EventHandler
+  commentId: T:System.EventHandler
+  parent: System
+  isExternal: true
+  name: EventHandler
+  nameWithType: EventHandler
+  fullName: System.EventHandler
+- uid: KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+  name: BlockChainWaitingList
+  nameWithType: MainViewModel.BlockChainWaitingList
+  fullName: KittyCoin.ViewModels.MainViewModel.BlockChainWaitingList
+- uid: System.Collections.Generic.List{System.Guid}
+  commentId: T:System.Collections.Generic.List{System.Guid}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Guid>
+  nameWithType: List<Guid>
+  fullName: System.Collections.Generic.List<System.Guid>
+  nameWithType.vb: List(Of Guid)
+  fullName.vb: System.Collections.Generic.List(Of System.Guid)
+  name.vb: List(Of Guid)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.IDictionary{System.String,WebSocketSharp.WebSocket}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,WebSocketSharp.WebSocket}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<String, WebSocket>
+  nameWithType: IDictionary<String, WebSocket>
+  fullName: System.Collections.Generic.IDictionary<System.String, WebSocketSharp.WebSocket>
+  nameWithType.vb: IDictionary(Of String, WebSocket)
+  fullName.vb: System.Collections.Generic.IDictionary(Of System.String, WebSocketSharp.WebSocket)
+  name.vb: IDictionary(Of String, WebSocket)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: WebSocketSharp.WebSocket
+    name: WebSocket
+    nameWithType: WebSocket
+    fullName: WebSocketSharp.WebSocket
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: WebSocketSharp.WebSocket
+    name: WebSocket
+    nameWithType: WebSocket
+    fullName: WebSocketSharp.WebSocket
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: KittyCoin.Models.Client
+  commentId: T:KittyCoin.Models.Client
+  parent: KittyCoin.Models
+  name: Client
+  nameWithType: Client
+  fullName: KittyCoin.Models.Client
+- uid: KittyCoin.Models.Server
+  commentId: T:KittyCoin.Models.Server
+  parent: KittyCoin.Models
+  name: Server
+  nameWithType: Server
+  fullName: KittyCoin.Models.Server
+- uid: System.Threading.Thread
+  commentId: T:System.Threading.Thread
+  parent: System.Threading
+  isExternal: true
+  name: Thread
+  nameWithType: Thread
+  fullName: System.Threading.Thread
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: KittyCoin.Models.User
+  commentId: T:KittyCoin.Models.User
+  parent: KittyCoin.Models
+  name: User
+  nameWithType: User
+  fullName: KittyCoin.Models.User
+- uid: KittyCoin.ViewModels.MainViewModel.#ctor*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.#ctor
+  name: MainViewModel
+  nameWithType: MainViewModel.MainViewModel
+  fullName: KittyCoin.ViewModels.MainViewModel.MainViewModel
+- uid: KittyCoin.ViewModels.MainViewModel.RegisterCommand*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.RegisterCommand
+  name: RegisterCommand
+  nameWithType: MainViewModel.RegisterCommand
+  fullName: KittyCoin.ViewModels.MainViewModel.RegisterCommand
+- uid: System.Windows.Input.ICommand
+  commentId: T:System.Windows.Input.ICommand
+  parent: System.Windows.Input
+  isExternal: true
+  name: ICommand
+  nameWithType: ICommand
+  fullName: System.Windows.Input.ICommand
+- uid: System.Windows.Input
+  commentId: N:System.Windows.Input
+  isExternal: true
+  name: System.Windows.Input
+  nameWithType: System.Windows.Input
+  fullName: System.Windows.Input
+- uid: KittyCoin.ViewModels.MainViewModel.Save*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.Save
+  name: Save
+  nameWithType: MainViewModel.Save
+  fullName: KittyCoin.ViewModels.MainViewModel.Save
+- uid: KittyCoin.ViewModels.MainViewModel.Mining*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.Mining
+  name: Mining
+  nameWithType: MainViewModel.Mining
+  fullName: KittyCoin.ViewModels.MainViewModel.Mining
+- uid: KittyCoin.ViewModels.MainViewModel.NewTransactionMethod*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.NewTransactionMethod
+  name: NewTransactionMethod
+  nameWithType: MainViewModel.NewTransactionMethod
+  fullName: KittyCoin.ViewModels.MainViewModel.NewTransactionMethod
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod
+  name: ConnectBlockchainMethod
+  nameWithType: MainViewModel.ConnectBlockchainMethod
+  fullName: KittyCoin.ViewModels.MainViewModel.ConnectBlockchainMethod
+- uid: KittyCoin.ViewModels.MainViewModel.ConnectUserMethod*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.ConnectUserMethod
+  name: ConnectUserMethod
+  nameWithType: MainViewModel.ConnectUserMethod
+  fullName: KittyCoin.ViewModels.MainViewModel.ConnectUserMethod
+- uid: KittyCoin.ViewModels.MainViewModel.LaunchServerMethod*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.LaunchServerMethod
+  name: LaunchServerMethod
+  nameWithType: MainViewModel.LaunchServerMethod
+  fullName: KittyCoin.ViewModels.MainViewModel.LaunchServerMethod
+- uid: KittyCoin.ViewModels.MainViewModel.RegisterMethod*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.RegisterMethod
+  name: RegisterMethod
+  nameWithType: MainViewModel.RegisterMethod
+  fullName: KittyCoin.ViewModels.MainViewModel.RegisterMethod
+- uid: KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess
+  name: WaitingForBlockchainAccess
+  nameWithType: MainViewModel.WaitingForBlockchainAccess
+  fullName: KittyCoin.ViewModels.MainViewModel.WaitingForBlockchainAccess
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: KittyCoin.ViewModels.MainViewModel.CheckBoxMine*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+  name: CheckBoxMine
+  nameWithType: MainViewModel.CheckBoxMine
+  fullName: KittyCoin.ViewModels.MainViewModel.CheckBoxMine
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: KittyCoin.ViewModels.MainViewModel.Port*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.Port
+  name: Port
+  nameWithType: MainViewModel.Port
+  fullName: KittyCoin.ViewModels.MainViewModel.Port
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: KittyCoin.ViewModels.MainViewModel.PeerUrl*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.PeerUrl
+  name: PeerUrl
+  nameWithType: MainViewModel.PeerUrl
+  fullName: KittyCoin.ViewModels.MainViewModel.PeerUrl
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: KittyCoin.ViewModels.MainViewModel.Console*
+  commentId: Overload:KittyCoin.ViewModels.MainViewModel.Console
+  name: Console
+  nameWithType: MainViewModel.Console
+  fullName: KittyCoin.ViewModels.MainViewModel.Console
+- uid: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  commentId: E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  parent: System.ComponentModel.INotifyPropertyChanged
+  isExternal: true
+  name: PropertyChanged
+  nameWithType: INotifyPropertyChanged.PropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+- uid: System.ComponentModel.PropertyChangedEventHandler
+  commentId: T:System.ComponentModel.PropertyChangedEventHandler
+  parent: System.ComponentModel
+  isExternal: true
+  name: PropertyChangedEventHandler
+  nameWithType: PropertyChangedEventHandler
+  fullName: System.ComponentModel.PropertyChangedEventHandler

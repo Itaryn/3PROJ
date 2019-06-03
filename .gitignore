@@ -2,18 +2,18 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/KittyCoins
-/KittyCoins/bin/Debug
-/KittyCoins/obj/Debug
+/.vs/KittyCoin
+/KittyCoin/bin/Debug
+/KittyCoin/obj/Debug
 /packages
-/KittyCoins/bin/Release/*.pdb
-/KittyCoins/bin/Release/*.xml
-/KittyCoins/bin/Release/*.config
-/KittyCoins/bin/Release/Resources/Blockchain Save
-/KittyCoins/obj/Release
-/UnitTestKittyCoins/bin/Debug/netcoreapp2.1
-/UnitTestKittyCoins/obj
+/KittyCoin/bin/Release/*.pdb
+/KittyCoin/bin/Release/*.xml
+/KittyCoin/bin/Release/*.config
+/KittyCoin/bin/Release/Resources/Blockchain Save
+/KittyCoin/obj/Release
+/UnitTestKittyCoin/bin/Debug/netcoreapp2.1
+/UnitTestKittyCoin/obj
 /.vs
-/KittyCoins.Tests/bin/Debug
-/KittyCoins.Tests/obj
-/KittyCoins.Tests/bin/Release
+/KittyCoin.Tests/bin/Debug
+/KittyCoin.Tests/obj
+/KittyCoin.Tests/bin/Release

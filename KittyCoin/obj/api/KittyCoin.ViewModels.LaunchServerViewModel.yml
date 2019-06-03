@@ -1,0 +1,620 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.ViewModels.LaunchServerViewModel
+  commentId: T:KittyCoin.ViewModels.LaunchServerViewModel
+  id: LaunchServerViewModel
+  parent: KittyCoin.ViewModels
+  children:
+  - KittyCoin.ViewModels.LaunchServerViewModel.#ctor
+  - KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+  - KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod
+  - KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerWithPort
+  - KittyCoin.ViewModels.LaunchServerViewModel.Port
+  - KittyCoin.ViewModels.LaunchServerViewModel.PropertyChanged
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerViewModel
+  nameWithType: LaunchServerViewModel
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: LaunchServerViewModel
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 8
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: 'public class LaunchServerViewModel : INotifyPropertyChanged'
+    content.vb: >-
+      Public Class LaunchServerViewModel
+          Implements INotifyPropertyChanged
+  inheritance:
+  - System.Object
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerWithPort
+  commentId: F:KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerWithPort
+  id: LaunchServerWithPort
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerWithPort
+  nameWithType: LaunchServerViewModel.LaunchServerWithPort
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerWithPort
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: LaunchServerWithPort
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 12
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public EventHandler LaunchServerWithPort
+    return:
+      type: System.EventHandler
+    content.vb: Public LaunchServerWithPort As EventHandler
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.#ctor
+  commentId: M:KittyCoin.ViewModels.LaunchServerViewModel.#ctor
+  id: '#ctor'
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerViewModel()
+  nameWithType: LaunchServerViewModel.LaunchServerViewModel()
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerViewModel()
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 14
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public LaunchServerViewModel()
+    content.vb: Public Sub New
+  overload: KittyCoin.ViewModels.LaunchServerViewModel.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+  commentId: P:KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+  id: LaunchServerCommand
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerCommand
+  nameWithType: LaunchServerViewModel.LaunchServerCommand
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: LaunchServerCommand
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 19
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public ICommand LaunchServerCommand { get; }
+    parameters: []
+    return:
+      type: System.Windows.Input.ICommand
+    content.vb: Public ReadOnly Property LaunchServerCommand As ICommand
+  overload: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod
+  commentId: M:KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod
+  id: LaunchServerMethod
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: LaunchServerMethod()
+  nameWithType: LaunchServerViewModel.LaunchServerMethod()
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod()
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: LaunchServerMethod
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 21
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void LaunchServerMethod()
+    content.vb: Public Sub LaunchServerMethod
+  overload: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.Port
+  commentId: P:KittyCoin.ViewModels.LaunchServerViewModel.Port
+  id: Port
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: Port
+  nameWithType: LaunchServerViewModel.Port
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.Port
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Port
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 28
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public int Port { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Port As Integer
+  overload: KittyCoin.ViewModels.LaunchServerViewModel.Port*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.PropertyChanged
+  commentId: E:KittyCoin.ViewModels.LaunchServerViewModel.PropertyChanged
+  id: PropertyChanged
+  parent: KittyCoin.ViewModels.LaunchServerViewModel
+  langs:
+  - csharp
+  - vb
+  name: PropertyChanged
+  nameWithType: LaunchServerViewModel.PropertyChanged
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.PropertyChanged
+  type: Event
+  source:
+    remote:
+      path: KittyCoin/ViewModels/LaunchServerViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PropertyChanged
+    path: ViewModels/LaunchServerViewModel.cs
+    startLine: 43
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public event PropertyChangedEventHandler PropertyChanged
+    return:
+      type: System.ComponentModel.PropertyChangedEventHandler
+    content.vb: Public Event PropertyChanged As PropertyChangedEventHandler
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: KittyCoin.ViewModels
+  commentId: N:KittyCoin.ViewModels
+  name: KittyCoin.ViewModels
+  nameWithType: KittyCoin.ViewModels
+  fullName: KittyCoin.ViewModels
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+- uid: System.EventHandler
+  commentId: T:System.EventHandler
+  parent: System
+  isExternal: true
+  name: EventHandler
+  nameWithType: EventHandler
+  fullName: System.EventHandler
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.#ctor*
+  commentId: Overload:KittyCoin.ViewModels.LaunchServerViewModel.#ctor
+  name: LaunchServerViewModel
+  nameWithType: LaunchServerViewModel.LaunchServerViewModel
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerViewModel
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand*
+  commentId: Overload:KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+  name: LaunchServerCommand
+  nameWithType: LaunchServerViewModel.LaunchServerCommand
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerCommand
+- uid: System.Windows.Input.ICommand
+  commentId: T:System.Windows.Input.ICommand
+  parent: System.Windows.Input
+  isExternal: true
+  name: ICommand
+  nameWithType: ICommand
+  fullName: System.Windows.Input.ICommand
+- uid: System.Windows.Input
+  commentId: N:System.Windows.Input
+  isExternal: true
+  name: System.Windows.Input
+  nameWithType: System.Windows.Input
+  fullName: System.Windows.Input
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod*
+  commentId: Overload:KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod
+  name: LaunchServerMethod
+  nameWithType: LaunchServerViewModel.LaunchServerMethod
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.LaunchServerMethod
+- uid: KittyCoin.ViewModels.LaunchServerViewModel.Port*
+  commentId: Overload:KittyCoin.ViewModels.LaunchServerViewModel.Port
+  name: Port
+  nameWithType: LaunchServerViewModel.Port
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel.Port
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  commentId: E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  parent: System.ComponentModel.INotifyPropertyChanged
+  isExternal: true
+  name: PropertyChanged
+  nameWithType: INotifyPropertyChanged.PropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+- uid: System.ComponentModel.PropertyChangedEventHandler
+  commentId: T:System.ComponentModel.PropertyChangedEventHandler
+  parent: System.ComponentModel
+  isExternal: true
+  name: PropertyChangedEventHandler
+  nameWithType: PropertyChangedEventHandler
+  fullName: System.ComponentModel.PropertyChangedEventHandler

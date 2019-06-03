@@ -1,0 +1,141 @@
+
+<div id="sidetoggle">
+  <div>
+    <div class="sidefilter">
+      <form class="toc-filter">
+        <span class="glyphicon glyphicon-filter filter-icon"></span>
+        <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+      </form>
+    </div>
+    <div class="sidetoc">
+      <div class="toc" id="toc">
+          
+          <ul class="nav level1">
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.html" name="" title="KittyCoin">KittyCoin</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.App.html" name="" title="App">App</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.Models.html" name="" title="KittyCoin.Models">KittyCoin.Models</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.Models.Block.html" name="" title="Block">Block</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.Client.html" name="" title="Client">Client</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.Constants.html" name="" title="Constants">Constants</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.EventArgsMessage.html" name="" title="EventArgsMessage">EventArgsMessage</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.EventArgsObject.html" name="" title="EventArgsObject">EventArgsObject</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.KittyChain.html" name="" title="KittyChain">KittyChain</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.Server.html" name="" title="Server">Server</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.Transfer.html" name="" title="Transfer">Transfer</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Models.User.html" name="" title="User">User</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.Packages.html" name="" title="KittyCoin.Packages">KittyCoin.Packages</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.Packages.StringExtension.html" name="" title="StringExtension">StringExtension</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.ViewModels.html" name="" title="KittyCoin.ViewModels">KittyCoin.ViewModels</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.ViewModels.ConnectBlockchainViewModel.html" name="" title="ConnectBlockchainViewModel">ConnectBlockchainViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.ConnectWalletViewModel.html" name="" title="ConnectWalletViewModel">ConnectWalletViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.LaunchServerViewModel.html" name="" title="LaunchServerViewModel">LaunchServerViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.MainViewModel.html" name="" title="MainViewModel">MainViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.NewTransactionViewModel.html" name="" title="NewTransactionViewModel">NewTransactionViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.RegisterViewModel.html" name="" title="RegisterViewModel">RegisterViewModel</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.ViewModels.ShowBlockchainViewModel.html" name="" title="ShowBlockchainViewModel">ShowBlockchainViewModel</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.Views.html" name="" title="KittyCoin.Views">KittyCoin.Views</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.Views.ConnectBlockchainView.html" name="" title="ConnectBlockchainView">ConnectBlockchainView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.ConnectWalletView.html" name="" title="ConnectWalletView">ConnectWalletView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.LaunchServerView.html" name="" title="LaunchServerView">LaunchServerView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.MainView.html" name="" title="MainView">MainView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.NewTransactionView.html" name="" title="NewTransactionView">NewTransactionView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.RegisterView.html" name="" title="RegisterView">RegisterView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.ShowBlockchainView.html" name="" title="ShowBlockchainView">ShowBlockchainView</a>
+                          </li>
+                          <li>
+                              <a href="KittyCoin.Views.SplashScreen.html" name="" title="SplashScreen">SplashScreen</a>
+                          </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand-stub"></span>
+                    <a href="KittyCoin.Views.Controls.html" name="" title="KittyCoin.Views.Controls">KittyCoin.Views.Controls</a>
+                    
+                    <ul class="nav level2">
+                          <li>
+                              <a href="KittyCoin.Views.Controls.ToggleButton.html" name="" title="ToggleButton">ToggleButton</a>
+                          </li>
+                    </ul>
+                </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>

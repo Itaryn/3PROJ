@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Views
+  commentId: N:KittyCoin.Views
+  id: KittyCoin.Views
+  children:
+  - KittyCoin.Views.ConnectBlockchainView
+  - KittyCoin.Views.ConnectWalletView
+  - KittyCoin.Views.LaunchServerView
+  - KittyCoin.Views.MainView
+  - KittyCoin.Views.NewTransactionView
+  - KittyCoin.Views.RegisterView
+  - KittyCoin.Views.ShowBlockchainView
+  - KittyCoin.Views.SplashScreen
+  langs:
+  - csharp
+  - vb
+  name: KittyCoin.Views
+  nameWithType: KittyCoin.Views
+  fullName: KittyCoin.Views
+  type: Namespace
+  assemblies:
+  - KittyCoin
+references:
+- uid: KittyCoin.Views.ConnectBlockchainView
+  commentId: T:KittyCoin.Views.ConnectBlockchainView
+  name: ConnectBlockchainView
+  nameWithType: ConnectBlockchainView
+  fullName: KittyCoin.Views.ConnectBlockchainView
+- uid: KittyCoin.Views.ConnectWalletView
+  commentId: T:KittyCoin.Views.ConnectWalletView
+  name: ConnectWalletView
+  nameWithType: ConnectWalletView
+  fullName: KittyCoin.Views.ConnectWalletView
+- uid: KittyCoin.Views.LaunchServerView
+  commentId: T:KittyCoin.Views.LaunchServerView
+  name: LaunchServerView
+  nameWithType: LaunchServerView
+  fullName: KittyCoin.Views.LaunchServerView
+- uid: KittyCoin.Views.MainView
+  commentId: T:KittyCoin.Views.MainView
+  name: MainView
+  nameWithType: MainView
+  fullName: KittyCoin.Views.MainView
+- uid: KittyCoin.Views.NewTransactionView
+  commentId: T:KittyCoin.Views.NewTransactionView
+  name: NewTransactionView
+  nameWithType: NewTransactionView
+  fullName: KittyCoin.Views.NewTransactionView
+- uid: KittyCoin.Views.RegisterView
+  commentId: T:KittyCoin.Views.RegisterView
+  name: RegisterView
+  nameWithType: RegisterView
+  fullName: KittyCoin.Views.RegisterView
+- uid: KittyCoin.Views.ShowBlockchainView
+  commentId: T:KittyCoin.Views.ShowBlockchainView
+  name: ShowBlockchainView
+  nameWithType: ShowBlockchainView
+  fullName: KittyCoin.Views.ShowBlockchainView
+- uid: KittyCoin.Views.SplashScreen
+  commentId: T:KittyCoin.Views.SplashScreen
+  name: SplashScreen
+  nameWithType: SplashScreen
+  fullName: KittyCoin.Views.SplashScreen

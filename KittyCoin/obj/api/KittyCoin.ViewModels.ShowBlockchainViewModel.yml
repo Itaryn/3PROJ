@@ -1,0 +1,846 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel
+  commentId: T:KittyCoin.ViewModels.ShowBlockchainViewModel
+  id: ShowBlockchainViewModel
+  parent: KittyCoin.ViewModels
+  children:
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.PropertyChanged
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain(System.Object,System.EventArgs)
+  - KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateThread
+  langs:
+  - csharp
+  - vb
+  name: ShowBlockchainViewModel
+  nameWithType: ShowBlockchainViewModel
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ShowBlockchainViewModel
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 9
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: 'public class ShowBlockchainViewModel : INotifyPropertyChanged'
+    content.vb: >-
+      Public Class ShowBlockchainViewModel
+          Implements INotifyPropertyChanged
+  inheritance:
+  - System.Object
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateThread
+  commentId: F:KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateThread
+  id: UpdateThread
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: UpdateThread
+  nameWithType: ShowBlockchainViewModel.UpdateThread
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateThread
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: UpdateThread
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 19
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Thread UpdateThread
+    return:
+      type: System.Threading.Thread
+    content.vb: Public UpdateThread As Thread
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor
+  commentId: M:KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor
+  id: '#ctor'
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: ShowBlockchainViewModel()
+  nameWithType: ShowBlockchainViewModel.ShowBlockchainViewModel()
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.ShowBlockchainViewModel()
+  type: Constructor
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: .ctor
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 25
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public ShowBlockchainViewModel()
+    content.vb: Public Sub New
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain(System.Object,System.EventArgs)
+  commentId: M:KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain(System.Object,System.EventArgs)
+  id: UpdateBlockChain(System.Object,System.EventArgs)
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: UpdateBlockChain(Object, EventArgs)
+  nameWithType: ShowBlockchainViewModel.UpdateBlockChain(Object, EventArgs)
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain(System.Object, System.EventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: UpdateBlockChain
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 34
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public void UpdateBlockChain(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Sub UpdateBlockChain(sender As Object, e As EventArgs)
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+  commentId: P:KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+  id: BlockChain
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: BlockChain
+  nameWithType: ShowBlockchainViewModel.BlockChain
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockChain
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 44
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public KittyChain BlockChain { get; }
+    parameters: []
+    return:
+      type: KittyCoin.Models.KittyChain
+    content.vb: Public ReadOnly Property BlockChain As KittyChain
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+  commentId: P:KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+  id: PendingTransfers
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: PendingTransfers
+  nameWithType: ShowBlockchainViewModel.PendingTransfers
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PendingTransfers
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 45
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public List<Transfer> PendingTransfers { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{KittyCoin.Models.Transfer}
+    content.vb: Public ReadOnly Property PendingTransfers As List(Of Transfer)
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+  commentId: P:KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+  id: Chain
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: Chain
+  nameWithType: ShowBlockchainViewModel.Chain
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Chain
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 46
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public List<Block> Chain { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{KittyCoin.Models.Block}
+    content.vb: Public ReadOnly Property Chain As List(Of Block)
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.Chain*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+  commentId: P:KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+  id: SelectedBlock
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: SelectedBlock
+  nameWithType: ShowBlockchainViewModel.SelectedBlock
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: SelectedBlock
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 48
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public Block SelectedBlock { get; set; }
+    parameters: []
+    return:
+      type: KittyCoin.Models.Block
+    content.vb: Public Property SelectedBlock As Block
+  overload: KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.PropertyChanged
+  commentId: E:KittyCoin.ViewModels.ShowBlockchainViewModel.PropertyChanged
+  id: PropertyChanged
+  parent: KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: PropertyChanged
+  nameWithType: ShowBlockchainViewModel.PropertyChanged
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.PropertyChanged
+  type: Event
+  source:
+    remote:
+      path: KittyCoin/ViewModels/ShowBlockChainViewModel.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PropertyChanged
+    path: ViewModels/ShowBlockChainViewModel.cs
+    startLine: 61
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.ViewModels
+  syntax:
+    content: public event PropertyChangedEventHandler PropertyChanged
+    return:
+      type: System.ComponentModel.PropertyChangedEventHandler
+    content.vb: Public Event PropertyChanged As PropertyChangedEventHandler
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: KittyCoin.ViewModels
+  commentId: N:KittyCoin.ViewModels
+  name: KittyCoin.ViewModels
+  nameWithType: KittyCoin.ViewModels
+  fullName: KittyCoin.ViewModels
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+- uid: System.Threading.Thread
+  commentId: T:System.Threading.Thread
+  parent: System.Threading
+  isExternal: true
+  name: Thread
+  nameWithType: Thread
+  fullName: System.Threading.Thread
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.#ctor
+  name: ShowBlockchainViewModel
+  nameWithType: ShowBlockchainViewModel.ShowBlockchainViewModel
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.ShowBlockchainViewModel
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain
+  name: UpdateBlockChain
+  nameWithType: ShowBlockchainViewModel.UpdateBlockChain
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.UpdateBlockChain
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+  name: BlockChain
+  nameWithType: ShowBlockchainViewModel.BlockChain
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.BlockChain
+- uid: KittyCoin.Models.KittyChain
+  commentId: T:KittyCoin.Models.KittyChain
+  parent: KittyCoin.Models
+  name: KittyChain
+  nameWithType: KittyChain
+  fullName: KittyCoin.Models.KittyChain
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+  name: PendingTransfers
+  nameWithType: ShowBlockchainViewModel.PendingTransfers
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.PendingTransfers
+- uid: System.Collections.Generic.List{KittyCoin.Models.Transfer}
+  commentId: T:System.Collections.Generic.List{KittyCoin.Models.Transfer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Transfer>
+  nameWithType: List<Transfer>
+  fullName: System.Collections.Generic.List<KittyCoin.Models.Transfer>
+  nameWithType.vb: List(Of Transfer)
+  fullName.vb: System.Collections.Generic.List(Of KittyCoin.Models.Transfer)
+  name.vb: List(Of Transfer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+    nameWithType: Transfer
+    fullName: KittyCoin.Models.Transfer
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.Chain*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+  name: Chain
+  nameWithType: ShowBlockchainViewModel.Chain
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.Chain
+- uid: System.Collections.Generic.List{KittyCoin.Models.Block}
+  commentId: T:System.Collections.Generic.List{KittyCoin.Models.Block}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Block>
+  nameWithType: List<Block>
+  fullName: System.Collections.Generic.List<KittyCoin.Models.Block>
+  nameWithType.vb: List(Of Block)
+  fullName.vb: System.Collections.Generic.List(Of KittyCoin.Models.Block)
+  name.vb: List(Of Block)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: KittyCoin.Models.Block
+    name: Block
+    nameWithType: Block
+    fullName: KittyCoin.Models.Block
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: KittyCoin.Models.Block
+    name: Block
+    nameWithType: Block
+    fullName: KittyCoin.Models.Block
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock*
+  commentId: Overload:KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+  name: SelectedBlock
+  nameWithType: ShowBlockchainViewModel.SelectedBlock
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel.SelectedBlock
+- uid: KittyCoin.Models.Block
+  commentId: T:KittyCoin.Models.Block
+  parent: KittyCoin.Models
+  name: Block
+  nameWithType: Block
+  fullName: KittyCoin.Models.Block
+- uid: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  commentId: E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+  parent: System.ComponentModel.INotifyPropertyChanged
+  isExternal: true
+  name: PropertyChanged
+  nameWithType: INotifyPropertyChanged.PropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+- uid: System.ComponentModel.PropertyChangedEventHandler
+  commentId: T:System.ComponentModel.PropertyChangedEventHandler
+  parent: System.ComponentModel
+  isExternal: true
+  name: PropertyChangedEventHandler
+  nameWithType: PropertyChangedEventHandler
+  fullName: System.ComponentModel.PropertyChangedEventHandler

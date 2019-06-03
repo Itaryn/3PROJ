@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Block
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Block
+   ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="KittyCoin.Models.Block">
+  
+  
+  <h1 id="KittyCoin_Models_Block" data-uid="KittyCoin.Models.Block" class="text-break">Class Block
+  </h1>
+  <div class="markdown level0 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">The Block Class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Block</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="KittyCoin.Models.html">KittyCoin.Models</a></h6>
+  <h6><strong>Assembly</strong>: KittyCoin.dll</h6>
+  <h5 id="KittyCoin_Models_Block_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Block</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="KittyCoin_Models_Block__ctor_" data-uid="KittyCoin.Models.Block.#ctor*"></a>
+  <h4 id="KittyCoin_Models_Block__ctor" data-uid="KittyCoin.Models.Block.#ctor">Block()</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Empty constructor to deserialize with NewtonSoft</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Block()</code></pre>
+  </div>
+  
+  
+  <a id="KittyCoin_Models_Block__ctor_" data-uid="KittyCoin.Models.Block.#ctor*"></a>
+  <h4 id="KittyCoin_Models_Block__ctor_System_Int32_System_String_System_DateTime_System_String_System_Collections_Generic_IEnumerable_KittyCoin_Models_Transfer__System_String_" data-uid="KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.DateTime,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)">Block(Int32, String, DateTime, String, IEnumerable&lt;Transfer&gt;, String)</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Constructor to create a block already in the chain</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Block(int index, string owner, DateTime creationDate, string previousHash, IEnumerable&lt;Transfer&gt; transfers, string difficulty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">creationDate</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">previousHash</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="KittyCoin.Models.Transfer.html">Transfer</a>&gt;</td>
+        <td><span class="parametername">transfers</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">difficulty</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block__ctor_" data-uid="KittyCoin.Models.Block.#ctor*"></a>
+  <h4 id="KittyCoin_Models_Block__ctor_System_Int32_System_String_System_String_System_Collections_Generic_IEnumerable_KittyCoin_Models_Transfer__System_String_" data-uid="KittyCoin.Models.Block.#ctor(System.Int32,System.String,System.String,System.Collections.Generic.IEnumerable{KittyCoin.Models.Transfer},System.String)">Block(Int32, String, String, IEnumerable&lt;Transfer&gt;, String)</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Constructor to initialize a new block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Block(int index, string owner, string previousHash, IEnumerable&lt;Transfer&gt; transfers, string difficulty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">previousHash</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="KittyCoin.Models.Transfer.html">Transfer</a>&gt;</td>
+        <td><span class="parametername">transfers</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">difficulty</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="KittyCoin_Models_Block_CreationDate_" data-uid="KittyCoin.Models.Block.CreationDate*"></a>
+  <h4 id="KittyCoin_Models_Block_CreationDate" data-uid="KittyCoin.Models.Block.CreationDate">CreationDate</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Creation DateTime of the Block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime CreationDate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Difficulty_" data-uid="KittyCoin.Models.Block.Difficulty*"></a>
+  <h4 id="KittyCoin_Models_Block_Difficulty" data-uid="KittyCoin.Models.Block.Difficulty">Difficulty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Difficulty { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Guid_" data-uid="KittyCoin.Models.Block.Guid*"></a>
+  <h4 id="KittyCoin_Models_Block_Guid" data-uid="KittyCoin.Models.Block.Guid">Guid</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">A random Guid to generate the hash beginning with K</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid Guid { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Guid</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Hash_" data-uid="KittyCoin.Models.Block.Hash*"></a>
+  <h4 id="KittyCoin_Models_Block_Hash" data-uid="KittyCoin.Models.Block.Hash">Hash</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">The Hash of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Hash { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Index_" data-uid="KittyCoin.Models.Block.Index*"></a>
+  <h4 id="KittyCoin_Models_Block_Index" data-uid="KittyCoin.Models.Block.Index">Index</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Index of the Block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Index { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Owner_" data-uid="KittyCoin.Models.Block.Owner*"></a>
+  <h4 id="KittyCoin_Models_Block_Owner" data-uid="KittyCoin.Models.Block.Owner">Owner</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Creator of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Owner { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_PreviousHash_" data-uid="KittyCoin.Models.Block.PreviousHash*"></a>
+  <h4 id="KittyCoin_Models_Block_PreviousHash" data-uid="KittyCoin.Models.Block.PreviousHash">PreviousHash</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">The Hash of the previous block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PreviousHash { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Transfers_" data-uid="KittyCoin.Models.Block.Transfers*"></a>
+  <h4 id="KittyCoin_Models_Block_Transfers" data-uid="KittyCoin.Models.Block.Transfers">Transfers</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">List of transfers contained in the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Transfer[] Transfers { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="KittyCoin.Models.Transfer.html">Transfer</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="KittyCoin_Models_Block_CalculateHash_" data-uid="KittyCoin.Models.Block.CalculateHash*"></a>
+  <h4 id="KittyCoin_Models_Block_CalculateHash" data-uid="KittyCoin.Models.Block.CalculateHash">CalculateHash()</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Calculate the Hash from creationDate, previousHash, transfers and Guid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CalculateHash()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">The calculated hash</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="KittyCoin_Models_Block_Equals_" data-uid="KittyCoin.Models.Block.Equals*"></a>
+  <h4 id="KittyCoin_Models_Block_Equals_System_Object_" data-uid="KittyCoin.Models.Block.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Compare 2 blocks</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="1" sourceendlinenumber="1">The compared block</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.Equals(System.Object)</span></div>
+  
+  
+  <a id="KittyCoin_Models_Block_ToString_" data-uid="KittyCoin.Models.Block.ToString*"></a>
+  <h4 id="KittyCoin_Models_Block_ToString" data-uid="KittyCoin.Models.Block.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">The ToString() method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  
+  
+  <a id="KittyCoin_Models_Block_TryHash_" data-uid="KittyCoin.Models.Block.TryHash*"></a>
+  <h4 id="KittyCoin_Models_Block_TryHash_System_String_" data-uid="KittyCoin.Models.Block.TryHash(System.String)">TryHash(String)</h4>
+  <div class="markdown level1 summary"><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Try if the Hash is correct for the actual difficulty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryHash(string difficulty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">difficulty</span></td>
+        <td><p sourcefile="obj/api/KittyCoin.Models.Block.yml" sourcestartlinenumber="2" sourceendlinenumber="2">Numbers of K needed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

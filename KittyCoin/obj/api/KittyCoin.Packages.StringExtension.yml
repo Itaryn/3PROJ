@@ -1,0 +1,616 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Packages.StringExtension
+  commentId: T:KittyCoin.Packages.StringExtension
+  id: StringExtension
+  parent: KittyCoin.Packages
+  children:
+  - KittyCoin.Packages.StringExtension.IsEqualHex(System.String,System.String)
+  - KittyCoin.Packages.StringExtension.IsGreaterHex(System.String,System.String)
+  - KittyCoin.Packages.StringExtension.IsLowerHex(System.String,System.String)
+  - KittyCoin.Packages.StringExtension.MultiplyHex(System.String,System.Double)
+  - KittyCoin.Packages.StringExtension.RemoveHex(System.String,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: StringExtension
+  nameWithType: StringExtension
+  fullName: KittyCoin.Packages.StringExtension
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: StringExtension
+    path: Packages/StringExtension.cs
+    startLine: 5
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static class StringExtension
+    content.vb: Public Module StringExtension
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: KittyCoin.Packages.StringExtension.IsLowerHex(System.String,System.String)
+  commentId: M:KittyCoin.Packages.StringExtension.IsLowerHex(System.String,System.String)
+  id: IsLowerHex(System.String,System.String)
+  isExtensionMethod: true
+  parent: KittyCoin.Packages.StringExtension
+  langs:
+  - csharp
+  - vb
+  name: IsLowerHex(String, String)
+  nameWithType: StringExtension.IsLowerHex(String, String)
+  fullName: KittyCoin.Packages.StringExtension.IsLowerHex(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: IsLowerHex
+    path: Packages/StringExtension.cs
+    startLine: 7
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static bool IsLowerHex(this string a, string b)
+    parameters:
+    - id: a
+      type: System.String
+    - id: b
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsLowerHex(a As String, b As String) As Boolean
+  overload: KittyCoin.Packages.StringExtension.IsLowerHex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Packages.StringExtension.IsGreaterHex(System.String,System.String)
+  commentId: M:KittyCoin.Packages.StringExtension.IsGreaterHex(System.String,System.String)
+  id: IsGreaterHex(System.String,System.String)
+  isExtensionMethod: true
+  parent: KittyCoin.Packages.StringExtension
+  langs:
+  - csharp
+  - vb
+  name: IsGreaterHex(String, String)
+  nameWithType: StringExtension.IsGreaterHex(String, String)
+  fullName: KittyCoin.Packages.StringExtension.IsGreaterHex(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: IsGreaterHex
+    path: Packages/StringExtension.cs
+    startLine: 13
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static bool IsGreaterHex(this string a, string b)
+    parameters:
+    - id: a
+      type: System.String
+    - id: b
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsGreaterHex(a As String, b As String) As Boolean
+  overload: KittyCoin.Packages.StringExtension.IsGreaterHex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Packages.StringExtension.IsEqualHex(System.String,System.String)
+  commentId: M:KittyCoin.Packages.StringExtension.IsEqualHex(System.String,System.String)
+  id: IsEqualHex(System.String,System.String)
+  isExtensionMethod: true
+  parent: KittyCoin.Packages.StringExtension
+  langs:
+  - csharp
+  - vb
+  name: IsEqualHex(String, String)
+  nameWithType: StringExtension.IsEqualHex(String, String)
+  fullName: KittyCoin.Packages.StringExtension.IsEqualHex(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: IsEqualHex
+    path: Packages/StringExtension.cs
+    startLine: 19
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static bool IsEqualHex(this string a, string b)
+    parameters:
+    - id: a
+      type: System.String
+    - id: b
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsEqualHex(a As String, b As String) As Boolean
+  overload: KittyCoin.Packages.StringExtension.IsEqualHex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Packages.StringExtension.RemoveHex(System.String,System.Int32)
+  commentId: M:KittyCoin.Packages.StringExtension.RemoveHex(System.String,System.Int32)
+  id: RemoveHex(System.String,System.Int32)
+  isExtensionMethod: true
+  parent: KittyCoin.Packages.StringExtension
+  langs:
+  - csharp
+  - vb
+  name: RemoveHex(String, Int32)
+  nameWithType: StringExtension.RemoveHex(String, Int32)
+  fullName: KittyCoin.Packages.StringExtension.RemoveHex(System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: RemoveHex
+    path: Packages/StringExtension.cs
+    startLine: 26
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static string RemoveHex(this string hex, int number)
+    parameters:
+    - id: hex
+      type: System.String
+    - id: number
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RemoveHex(hex As String, number As Integer) As String
+  overload: KittyCoin.Packages.StringExtension.RemoveHex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Packages.StringExtension.MultiplyHex(System.String,System.Double)
+  commentId: M:KittyCoin.Packages.StringExtension.MultiplyHex(System.String,System.Double)
+  id: MultiplyHex(System.String,System.Double)
+  isExtensionMethod: true
+  parent: KittyCoin.Packages.StringExtension
+  langs:
+  - csharp
+  - vb
+  name: MultiplyHex(String, Double)
+  nameWithType: StringExtension.MultiplyHex(String, Double)
+  fullName: KittyCoin.Packages.StringExtension.MultiplyHex(System.String, System.Double)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Packages/StringExtension.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: MultiplyHex
+    path: Packages/StringExtension.cs
+    startLine: 33
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Packages
+  syntax:
+    content: public static string MultiplyHex(this string hex, double number)
+    parameters:
+    - id: hex
+      type: System.String
+    - id: number
+      type: System.Double
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MultiplyHex(hex As String, number As Double) As String
+  overload: KittyCoin.Packages.StringExtension.MultiplyHex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: KittyCoin.Packages
+  commentId: N:KittyCoin.Packages
+  name: KittyCoin.Packages
+  nameWithType: KittyCoin.Packages
+  fullName: KittyCoin.Packages
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: KittyCoin.Packages.StringExtension.IsLowerHex*
+  commentId: Overload:KittyCoin.Packages.StringExtension.IsLowerHex
+  name: IsLowerHex
+  nameWithType: StringExtension.IsLowerHex
+  fullName: KittyCoin.Packages.StringExtension.IsLowerHex
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: KittyCoin.Packages.StringExtension.IsGreaterHex*
+  commentId: Overload:KittyCoin.Packages.StringExtension.IsGreaterHex
+  name: IsGreaterHex
+  nameWithType: StringExtension.IsGreaterHex
+  fullName: KittyCoin.Packages.StringExtension.IsGreaterHex
+- uid: KittyCoin.Packages.StringExtension.IsEqualHex*
+  commentId: Overload:KittyCoin.Packages.StringExtension.IsEqualHex
+  name: IsEqualHex
+  nameWithType: StringExtension.IsEqualHex
+  fullName: KittyCoin.Packages.StringExtension.IsEqualHex
+- uid: KittyCoin.Packages.StringExtension.RemoveHex*
+  commentId: Overload:KittyCoin.Packages.StringExtension.RemoveHex
+  name: RemoveHex
+  nameWithType: StringExtension.RemoveHex
+  fullName: KittyCoin.Packages.StringExtension.RemoveHex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: KittyCoin.Packages.StringExtension.MultiplyHex*
+  commentId: Overload:KittyCoin.Packages.StringExtension.MultiplyHex
+  name: MultiplyHex
+  nameWithType: StringExtension.MultiplyHex
+  fullName: KittyCoin.Packages.StringExtension.MultiplyHex
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double

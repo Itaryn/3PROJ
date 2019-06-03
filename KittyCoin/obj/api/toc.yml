@@ -1,0 +1,73 @@
+### YamlMime:TableOfContent
+- uid: KittyCoin
+  name: KittyCoin
+  items:
+  - uid: KittyCoin.App
+    name: App
+- uid: KittyCoin.Models
+  name: KittyCoin.Models
+  items:
+  - uid: KittyCoin.Models.Block
+    name: Block
+  - uid: KittyCoin.Models.Client
+    name: Client
+  - uid: KittyCoin.Models.Constants
+    name: Constants
+  - uid: KittyCoin.Models.EventArgsMessage
+    name: EventArgsMessage
+  - uid: KittyCoin.Models.EventArgsObject
+    name: EventArgsObject
+  - uid: KittyCoin.Models.KittyChain
+    name: KittyChain
+  - uid: KittyCoin.Models.Server
+    name: Server
+  - uid: KittyCoin.Models.Transfer
+    name: Transfer
+  - uid: KittyCoin.Models.User
+    name: User
+- uid: KittyCoin.Packages
+  name: KittyCoin.Packages
+  items:
+  - uid: KittyCoin.Packages.StringExtension
+    name: StringExtension
+- uid: KittyCoin.ViewModels
+  name: KittyCoin.ViewModels
+  items:
+  - uid: KittyCoin.ViewModels.ConnectBlockchainViewModel
+    name: ConnectBlockchainViewModel
+  - uid: KittyCoin.ViewModels.ConnectWalletViewModel
+    name: ConnectWalletViewModel
+  - uid: KittyCoin.ViewModels.LaunchServerViewModel
+    name: LaunchServerViewModel
+  - uid: KittyCoin.ViewModels.MainViewModel
+    name: MainViewModel
+  - uid: KittyCoin.ViewModels.NewTransactionViewModel
+    name: NewTransactionViewModel
+  - uid: KittyCoin.ViewModels.RegisterViewModel
+    name: RegisterViewModel
+  - uid: KittyCoin.ViewModels.ShowBlockchainViewModel
+    name: ShowBlockchainViewModel
+- uid: KittyCoin.Views
+  name: KittyCoin.Views
+  items:
+  - uid: KittyCoin.Views.ConnectBlockchainView
+    name: ConnectBlockchainView
+  - uid: KittyCoin.Views.ConnectWalletView
+    name: ConnectWalletView
+  - uid: KittyCoin.Views.LaunchServerView
+    name: LaunchServerView
+  - uid: KittyCoin.Views.MainView
+    name: MainView
+  - uid: KittyCoin.Views.NewTransactionView
+    name: NewTransactionView
+  - uid: KittyCoin.Views.RegisterView
+    name: RegisterView
+  - uid: KittyCoin.Views.ShowBlockchainView
+    name: ShowBlockchainView
+  - uid: KittyCoin.Views.SplashScreen
+    name: SplashScreen
+- uid: KittyCoin.Views.Controls
+  name: KittyCoin.Views.Controls
+  items:
+  - uid: KittyCoin.Views.Controls.ToggleButton
+    name: ToggleButton

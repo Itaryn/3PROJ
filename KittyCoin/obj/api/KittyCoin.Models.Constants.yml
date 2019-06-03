@@ -1,0 +1,1174 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Models.Constants
+  commentId: T:KittyCoin.Models.Constants
+  id: Constants
+  parent: KittyCoin.Models
+  children:
+  - KittyCoin.Models.Constants.BLOCK
+  - KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+  - KittyCoin.Models.Constants.BLOCKCHAIN
+  - KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+  - KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+  - KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+  - KittyCoin.Models.Constants.BLOCKS
+  - KittyCoin.Models.Constants.GET_SERVERS
+  - KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+  - KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  - KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+  - KittyCoin.Models.Constants.SAVE_FILENAME
+  - KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+  - KittyCoin.Models.Constants.SERVER_ADDRESS
+  - KittyCoin.Models.Constants.TRANSFER
+  - KittyCoin.Models.Constants.TRANSFERS
+  - KittyCoin.Models.Constants.WAITING_TIME_MAX
+  - KittyCoin.Models.Constants.WALLET_CONNECTED
+  - KittyCoin.Models.Constants.WEB_SERVICE_NAME
+  langs:
+  - csharp
+  - vb
+  name: Constants
+  nameWithType: Constants
+  fullName: KittyCoin.Models.Constants
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Constants
+    path: Models/Constants.cs
+    startLine: 2
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static class Constants
+    content.vb: Public Module Constants
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+  commentId: P:KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+  id: PRIVATE_WORDS_KITTYCHAIN
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: PRIVATE_WORDS_KITTYCHAIN
+  nameWithType: Constants.PRIVATE_WORDS_KITTYCHAIN
+  fullName: KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: PRIVATE_WORDS_KITTYCHAIN
+    path: Models/Constants.cs
+    startLine: 4
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string PRIVATE_WORDS_KITTYCHAIN { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property PRIVATE_WORDS_KITTYCHAIN As String
+  overload: KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.SAVE_FILENAME
+  commentId: P:KittyCoin.Models.Constants.SAVE_FILENAME
+  id: SAVE_FILENAME
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: SAVE_FILENAME
+  nameWithType: Constants.SAVE_FILENAME
+  fullName: KittyCoin.Models.Constants.SAVE_FILENAME
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: SAVE_FILENAME
+    path: Models/Constants.cs
+    startLine: 5
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string SAVE_FILENAME { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property SAVE_FILENAME As String
+  overload: KittyCoin.Models.Constants.SAVE_FILENAME*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+  commentId: P:KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+  id: BLOCK_CREATION_TIME_EXPECTED
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCK_CREATION_TIME_EXPECTED
+  nameWithType: Constants.BLOCK_CREATION_TIME_EXPECTED
+  fullName: KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCK_CREATION_TIME_EXPECTED
+    path: Models/Constants.cs
+    startLine: 6
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static int BLOCK_CREATION_TIME_EXPECTED { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property BLOCK_CREATION_TIME_EXPECTED As Integer
+  overload: KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  commentId: P:KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  id: NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  nameWithType: Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  fullName: KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+    path: Models/Constants.cs
+    startLine: 7
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static int NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY As Integer
+  overload: KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+  commentId: P:KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+  id: SCHEDULE_SAVE_TIME
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: SCHEDULE_SAVE_TIME
+  nameWithType: Constants.SCHEDULE_SAVE_TIME
+  fullName: KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: SCHEDULE_SAVE_TIME
+    path: Models/Constants.cs
+    startLine: 8
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static int SCHEDULE_SAVE_TIME { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property SCHEDULE_SAVE_TIME As Integer
+  overload: KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.SERVER_ADDRESS
+  commentId: P:KittyCoin.Models.Constants.SERVER_ADDRESS
+  id: SERVER_ADDRESS
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: SERVER_ADDRESS
+  nameWithType: Constants.SERVER_ADDRESS
+  fullName: KittyCoin.Models.Constants.SERVER_ADDRESS
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: SERVER_ADDRESS
+    path: Models/Constants.cs
+    startLine: 9
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string SERVER_ADDRESS { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property SERVER_ADDRESS As String
+  overload: KittyCoin.Models.Constants.SERVER_ADDRESS*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.WEB_SERVICE_NAME
+  commentId: P:KittyCoin.Models.Constants.WEB_SERVICE_NAME
+  id: WEB_SERVICE_NAME
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: WEB_SERVICE_NAME
+  nameWithType: Constants.WEB_SERVICE_NAME
+  fullName: KittyCoin.Models.Constants.WEB_SERVICE_NAME
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: WEB_SERVICE_NAME
+    path: Models/Constants.cs
+    startLine: 10
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string WEB_SERVICE_NAME { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property WEB_SERVICE_NAME As String
+  overload: KittyCoin.Models.Constants.WEB_SERVICE_NAME*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN
+  commentId: P:KittyCoin.Models.Constants.BLOCKCHAIN
+  id: BLOCKCHAIN
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCKCHAIN
+  nameWithType: Constants.BLOCKCHAIN
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCKCHAIN
+    path: Models/Constants.cs
+    startLine: 11
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCKCHAIN { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCKCHAIN As String
+  overload: KittyCoin.Models.Constants.BLOCKCHAIN*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.TRANSFER
+  commentId: P:KittyCoin.Models.Constants.TRANSFER
+  id: TRANSFER
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: TRANSFER
+  nameWithType: Constants.TRANSFER
+  fullName: KittyCoin.Models.Constants.TRANSFER
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: TRANSFER
+    path: Models/Constants.cs
+    startLine: 12
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string TRANSFER { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property TRANSFER As String
+  overload: KittyCoin.Models.Constants.TRANSFER*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.TRANSFERS
+  commentId: P:KittyCoin.Models.Constants.TRANSFERS
+  id: TRANSFERS
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: TRANSFERS
+  nameWithType: Constants.TRANSFERS
+  fullName: KittyCoin.Models.Constants.TRANSFERS
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: TRANSFERS
+    path: Models/Constants.cs
+    startLine: 13
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string TRANSFERS { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property TRANSFERS As String
+  overload: KittyCoin.Models.Constants.TRANSFERS*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCK
+  commentId: P:KittyCoin.Models.Constants.BLOCK
+  id: BLOCK
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCK
+  nameWithType: Constants.BLOCK
+  fullName: KittyCoin.Models.Constants.BLOCK
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCK
+    path: Models/Constants.cs
+    startLine: 14
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCK { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCK As String
+  overload: KittyCoin.Models.Constants.BLOCK*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCKS
+  commentId: P:KittyCoin.Models.Constants.BLOCKS
+  id: BLOCKS
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCKS
+  nameWithType: Constants.BLOCKS
+  fullName: KittyCoin.Models.Constants.BLOCKS
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCKS
+    path: Models/Constants.cs
+    startLine: 15
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCKS { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCKS As String
+  overload: KittyCoin.Models.Constants.BLOCKS*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+  commentId: P:KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+  id: BLOCKCHAIN_IS_NOT_VALID
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCKCHAIN_IS_NOT_VALID
+  nameWithType: Constants.BLOCKCHAIN_IS_NOT_VALID
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCKCHAIN_IS_NOT_VALID
+    path: Models/Constants.cs
+    startLine: 16
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCKCHAIN_IS_NOT_VALID { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCKCHAIN_IS_NOT_VALID As String
+  overload: KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+  commentId: P:KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+  id: BLOCKCHAIN_MISS_BLOCK
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCKCHAIN_MISS_BLOCK
+  nameWithType: Constants.BLOCKCHAIN_MISS_BLOCK
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCKCHAIN_MISS_BLOCK
+    path: Models/Constants.cs
+    startLine: 17
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCKCHAIN_MISS_BLOCK { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCKCHAIN_MISS_BLOCK As String
+  overload: KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+  commentId: P:KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+  id: BLOCKCHAIN_OVERWRITE
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: BLOCKCHAIN_OVERWRITE
+  nameWithType: Constants.BLOCKCHAIN_OVERWRITE
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BLOCKCHAIN_OVERWRITE
+    path: Models/Constants.cs
+    startLine: 18
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string BLOCKCHAIN_OVERWRITE { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property BLOCKCHAIN_OVERWRITE As String
+  overload: KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+  commentId: P:KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+  id: NEED_BLOCKCHAIN
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: NEED_BLOCKCHAIN
+  nameWithType: Constants.NEED_BLOCKCHAIN
+  fullName: KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NEED_BLOCKCHAIN
+    path: Models/Constants.cs
+    startLine: 19
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string NEED_BLOCKCHAIN { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property NEED_BLOCKCHAIN As String
+  overload: KittyCoin.Models.Constants.NEED_BLOCKCHAIN*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.WAITING_TIME_MAX
+  commentId: P:KittyCoin.Models.Constants.WAITING_TIME_MAX
+  id: WAITING_TIME_MAX
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: WAITING_TIME_MAX
+  nameWithType: Constants.WAITING_TIME_MAX
+  fullName: KittyCoin.Models.Constants.WAITING_TIME_MAX
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: WAITING_TIME_MAX
+    path: Models/Constants.cs
+    startLine: 21
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static int WAITING_TIME_MAX { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Property WAITING_TIME_MAX As Integer
+  overload: KittyCoin.Models.Constants.WAITING_TIME_MAX*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.GET_SERVERS
+  commentId: P:KittyCoin.Models.Constants.GET_SERVERS
+  id: GET_SERVERS
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: GET_SERVERS
+  nameWithType: Constants.GET_SERVERS
+  fullName: KittyCoin.Models.Constants.GET_SERVERS
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: GET_SERVERS
+    path: Models/Constants.cs
+    startLine: 23
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string GET_SERVERS { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property GET_SERVERS As String
+  overload: KittyCoin.Models.Constants.GET_SERVERS*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: KittyCoin.Models.Constants.WALLET_CONNECTED
+  commentId: P:KittyCoin.Models.Constants.WALLET_CONNECTED
+  id: WALLET_CONNECTED
+  parent: KittyCoin.Models.Constants
+  langs:
+  - csharp
+  - vb
+  name: WALLET_CONNECTED
+  nameWithType: Constants.WALLET_CONNECTED
+  fullName: KittyCoin.Models.Constants.WALLET_CONNECTED
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Constants.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: WALLET_CONNECTED
+    path: Models/Constants.cs
+    startLine: 25
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static string WALLET_CONNECTED { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property WALLET_CONNECTED As String
+  overload: KittyCoin.Models.Constants.WALLET_CONNECTED*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN*
+  commentId: Overload:KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+  name: PRIVATE_WORDS_KITTYCHAIN
+  nameWithType: Constants.PRIVATE_WORDS_KITTYCHAIN
+  fullName: KittyCoin.Models.Constants.PRIVATE_WORDS_KITTYCHAIN
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: KittyCoin.Models.Constants.SAVE_FILENAME*
+  commentId: Overload:KittyCoin.Models.Constants.SAVE_FILENAME
+  name: SAVE_FILENAME
+  nameWithType: Constants.SAVE_FILENAME
+  fullName: KittyCoin.Models.Constants.SAVE_FILENAME
+- uid: KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+  name: BLOCK_CREATION_TIME_EXPECTED
+  nameWithType: Constants.BLOCK_CREATION_TIME_EXPECTED
+  fullName: KittyCoin.Models.Constants.BLOCK_CREATION_TIME_EXPECTED
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY*
+  commentId: Overload:KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  name: NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  nameWithType: Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+  fullName: KittyCoin.Models.Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY
+- uid: KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME*
+  commentId: Overload:KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+  name: SCHEDULE_SAVE_TIME
+  nameWithType: Constants.SCHEDULE_SAVE_TIME
+  fullName: KittyCoin.Models.Constants.SCHEDULE_SAVE_TIME
+- uid: KittyCoin.Models.Constants.SERVER_ADDRESS*
+  commentId: Overload:KittyCoin.Models.Constants.SERVER_ADDRESS
+  name: SERVER_ADDRESS
+  nameWithType: Constants.SERVER_ADDRESS
+  fullName: KittyCoin.Models.Constants.SERVER_ADDRESS
+- uid: KittyCoin.Models.Constants.WEB_SERVICE_NAME*
+  commentId: Overload:KittyCoin.Models.Constants.WEB_SERVICE_NAME
+  name: WEB_SERVICE_NAME
+  nameWithType: Constants.WEB_SERVICE_NAME
+  fullName: KittyCoin.Models.Constants.WEB_SERVICE_NAME
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCKCHAIN
+  name: BLOCKCHAIN
+  nameWithType: Constants.BLOCKCHAIN
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN
+- uid: KittyCoin.Models.Constants.TRANSFER*
+  commentId: Overload:KittyCoin.Models.Constants.TRANSFER
+  name: TRANSFER
+  nameWithType: Constants.TRANSFER
+  fullName: KittyCoin.Models.Constants.TRANSFER
+- uid: KittyCoin.Models.Constants.TRANSFERS*
+  commentId: Overload:KittyCoin.Models.Constants.TRANSFERS
+  name: TRANSFERS
+  nameWithType: Constants.TRANSFERS
+  fullName: KittyCoin.Models.Constants.TRANSFERS
+- uid: KittyCoin.Models.Constants.BLOCK*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCK
+  name: BLOCK
+  nameWithType: Constants.BLOCK
+  fullName: KittyCoin.Models.Constants.BLOCK
+- uid: KittyCoin.Models.Constants.BLOCKS*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCKS
+  name: BLOCKS
+  nameWithType: Constants.BLOCKS
+  fullName: KittyCoin.Models.Constants.BLOCKS
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+  name: BLOCKCHAIN_IS_NOT_VALID
+  nameWithType: Constants.BLOCKCHAIN_IS_NOT_VALID
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_IS_NOT_VALID
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+  name: BLOCKCHAIN_MISS_BLOCK
+  nameWithType: Constants.BLOCKCHAIN_MISS_BLOCK
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_MISS_BLOCK
+- uid: KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE*
+  commentId: Overload:KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+  name: BLOCKCHAIN_OVERWRITE
+  nameWithType: Constants.BLOCKCHAIN_OVERWRITE
+  fullName: KittyCoin.Models.Constants.BLOCKCHAIN_OVERWRITE
+- uid: KittyCoin.Models.Constants.NEED_BLOCKCHAIN*
+  commentId: Overload:KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+  name: NEED_BLOCKCHAIN
+  nameWithType: Constants.NEED_BLOCKCHAIN
+  fullName: KittyCoin.Models.Constants.NEED_BLOCKCHAIN
+- uid: KittyCoin.Models.Constants.WAITING_TIME_MAX*
+  commentId: Overload:KittyCoin.Models.Constants.WAITING_TIME_MAX
+  name: WAITING_TIME_MAX
+  nameWithType: Constants.WAITING_TIME_MAX
+  fullName: KittyCoin.Models.Constants.WAITING_TIME_MAX
+- uid: KittyCoin.Models.Constants.GET_SERVERS*
+  commentId: Overload:KittyCoin.Models.Constants.GET_SERVERS
+  name: GET_SERVERS
+  nameWithType: Constants.GET_SERVERS
+  fullName: KittyCoin.Models.Constants.GET_SERVERS
+- uid: KittyCoin.Models.Constants.WALLET_CONNECTED*
+  commentId: Overload:KittyCoin.Models.Constants.WALLET_CONNECTED
+  name: WALLET_CONNECTED
+  nameWithType: Constants.WALLET_CONNECTED
+  fullName: KittyCoin.Models.Constants.WALLET_CONNECTED

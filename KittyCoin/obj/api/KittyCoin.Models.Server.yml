@@ -1,0 +1,1619 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.Models.Server
+  commentId: T:KittyCoin.Models.Server
+  id: Server
+  parent: KittyCoin.Models
+  children:
+  - KittyCoin.Models.Server.BlockchainUpdate
+  - KittyCoin.Models.Server.NewMessage
+  - KittyCoin.Models.Server.OnMessage(WebSocketSharp.MessageEventArgs)
+  - KittyCoin.Models.Server.ServerAddress
+  - KittyCoin.Models.Server.ServersList
+  - KittyCoin.Models.Server.ServerUpdate
+  - KittyCoin.Models.Server.Start(System.Int32,System.String)
+  - KittyCoin.Models.Server.wss
+  langs:
+  - csharp
+  - vb
+  name: Server
+  nameWithType: Server
+  fullName: KittyCoin.Models.Server
+  type: Class
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Server
+    path: Models/Server.cs
+    startLine: 11
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: 'public class Server : WebSocketBehavior, IWebSocketSession'
+    content.vb: >-
+      Public Class Server
+          Inherits WebSocketBehavior
+          Implements IWebSocketSession
+  inheritance:
+  - System.Object
+  - WebSocketSharp.Server.WebSocketBehavior
+  implements:
+  - WebSocketSharp.Server.IWebSocketSession
+  inheritedMembers:
+  - WebSocketSharp.Server.WebSocketBehavior.Error(System.String,System.Exception)
+  - WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+  - WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+  - WebSocketSharp.Server.WebSocketBehavior.OnOpen
+  - WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+  - WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+  - WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+  - WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[],System.Action{System.Boolean})
+  - WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo,System.Action{System.Boolean})
+  - WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String,System.Action{System.Boolean})
+  - WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream,System.Int32,System.Action{System.Boolean})
+  - WebSocketSharp.Server.WebSocketBehavior.Log
+  - WebSocketSharp.Server.WebSocketBehavior.Sessions
+  - WebSocketSharp.Server.WebSocketBehavior.Context
+  - WebSocketSharp.Server.WebSocketBehavior.CookiesValidator
+  - WebSocketSharp.Server.WebSocketBehavior.EmitOnPing
+  - WebSocketSharp.Server.WebSocketBehavior.ID
+  - WebSocketSharp.Server.WebSocketBehavior.IgnoreExtensions
+  - WebSocketSharp.Server.WebSocketBehavior.OriginValidator
+  - WebSocketSharp.Server.WebSocketBehavior.Protocol
+  - WebSocketSharp.Server.WebSocketBehavior.StartTime
+  - WebSocketSharp.Server.WebSocketBehavior.State
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: KittyCoin.Models.Server.wss
+  commentId: F:KittyCoin.Models.Server.wss
+  id: wss
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: wss
+  nameWithType: Server.wss
+  fullName: KittyCoin.Models.Server.wss
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: wss
+    path: Models/Server.cs
+    startLine: 18
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe webSocket\n"
+  example: []
+  syntax:
+    content: public WebSocketServer wss
+    return:
+      type: WebSocketSharp.Server.WebSocketServer
+    content.vb: Public wss As WebSocketServer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Server.ServerAddress
+  commentId: F:KittyCoin.Models.Server.ServerAddress
+  id: ServerAddress
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: ServerAddress
+  nameWithType: Server.ServerAddress
+  fullName: KittyCoin.Models.Server.ServerAddress
+  type: Field
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServerAddress
+    path: Models/Server.cs
+    startLine: 23
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nThe Server Address\n"
+  example: []
+  syntax:
+    content: public string ServerAddress
+    return:
+      type: System.String
+    content.vb: Public ServerAddress As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Server.NewMessage
+  commentId: P:KittyCoin.Models.Server.NewMessage
+  id: NewMessage
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: NewMessage
+  nameWithType: Server.NewMessage
+  fullName: KittyCoin.Models.Server.NewMessage
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: NewMessage
+    path: Models/Server.cs
+    startLine: 25
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static EventHandler NewMessage { get; set; }
+    parameters: []
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared Property NewMessage As EventHandler
+  overload: KittyCoin.Models.Server.NewMessage*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Models.Server.BlockchainUpdate
+  commentId: P:KittyCoin.Models.Server.BlockchainUpdate
+  id: BlockchainUpdate
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: BlockchainUpdate
+  nameWithType: Server.BlockchainUpdate
+  fullName: KittyCoin.Models.Server.BlockchainUpdate
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: BlockchainUpdate
+    path: Models/Server.cs
+    startLine: 27
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static EventHandler BlockchainUpdate { get; set; }
+    parameters: []
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared Property BlockchainUpdate As EventHandler
+  overload: KittyCoin.Models.Server.BlockchainUpdate*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Models.Server.ServerUpdate
+  commentId: P:KittyCoin.Models.Server.ServerUpdate
+  id: ServerUpdate
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: ServerUpdate
+  nameWithType: Server.ServerUpdate
+  fullName: KittyCoin.Models.Server.ServerUpdate
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServerUpdate
+    path: Models/Server.cs
+    startLine: 29
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public static EventHandler ServerUpdate { get; set; }
+    parameters: []
+    return:
+      type: System.EventHandler
+    content.vb: Public Shared Property ServerUpdate As EventHandler
+  overload: KittyCoin.Models.Server.ServerUpdate*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: KittyCoin.Models.Server.ServersList
+  commentId: P:KittyCoin.Models.Server.ServersList
+  id: ServersList
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: ServersList
+  nameWithType: Server.ServersList
+  fullName: KittyCoin.Models.Server.ServersList
+  type: Property
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: ServersList
+    path: Models/Server.cs
+    startLine: 31
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  syntax:
+    content: public List<string> ServersList { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Property ServersList As List(Of String)
+  overload: KittyCoin.Models.Server.ServersList*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Server.Start(System.Int32,System.String)
+  commentId: M:KittyCoin.Models.Server.Start(System.Int32,System.String)
+  id: Start(System.Int32,System.String)
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: Start(Int32, String)
+  nameWithType: Server.Start(Int32, String)
+  fullName: KittyCoin.Models.Server.Start(System.Int32, System.String)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: Start
+    path: Models/Server.cs
+    startLine: 41
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nStart the server\n"
+  example: []
+  syntax:
+    content: public string Start(int port, string ip = "127.0.0.1")
+    parameters:
+    - id: port
+      type: System.Int32
+      description: ''
+    - id: ip
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Start(port As Integer, ip As String = "127.0.0.1") As String
+  overload: KittyCoin.Models.Server.Start*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: KittyCoin.Models.Server.OnMessage(WebSocketSharp.MessageEventArgs)
+  commentId: M:KittyCoin.Models.Server.OnMessage(WebSocketSharp.MessageEventArgs)
+  id: OnMessage(WebSocketSharp.MessageEventArgs)
+  parent: KittyCoin.Models.Server
+  langs:
+  - csharp
+  - vb
+  name: OnMessage(MessageEventArgs)
+  nameWithType: Server.OnMessage(MessageEventArgs)
+  fullName: KittyCoin.Models.Server.OnMessage(WebSocketSharp.MessageEventArgs)
+  type: Method
+  source:
+    remote:
+      path: KittyCoin/Models/Server.cs
+      branch: master
+      repo: https://gitlab.com/Itaryn/kittycoins.git
+    id: OnMessage
+    path: Models/Server.cs
+    startLine: 80
+  assemblies:
+  - KittyCoin
+  namespace: KittyCoin.Models
+  summary: "\nMethod called when the server receive a message\n"
+  example: []
+  syntax:
+    content: protected override void OnMessage(MessageEventArgs e)
+    parameters:
+    - id: e
+      type: WebSocketSharp.MessageEventArgs
+      description: ''
+    content.vb: Protected Overrides Sub OnMessage(e As MessageEventArgs)
+  overridden: WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+  overload: KittyCoin.Models.Server.OnMessage*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: KittyCoin.Models
+  commentId: N:KittyCoin.Models
+  name: KittyCoin.Models
+  nameWithType: KittyCoin.Models
+  fullName: KittyCoin.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: WebSocketSharp.Server.WebSocketBehavior
+  commentId: T:WebSocketSharp.Server.WebSocketBehavior
+  parent: WebSocketSharp.Server
+  isExternal: true
+  name: WebSocketBehavior
+  nameWithType: WebSocketBehavior
+  fullName: WebSocketSharp.Server.WebSocketBehavior
+- uid: WebSocketSharp.Server.IWebSocketSession
+  commentId: T:WebSocketSharp.Server.IWebSocketSession
+  parent: WebSocketSharp.Server
+  isExternal: true
+  name: IWebSocketSession
+  nameWithType: IWebSocketSession
+  fullName: WebSocketSharp.Server.IWebSocketSession
+- uid: WebSocketSharp.Server.WebSocketBehavior.Error(System.String,System.Exception)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.Error(System.String,System.Exception)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Error(String, Exception)
+  nameWithType: WebSocketBehavior.Error(String, Exception)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Error(System.String, System.Exception)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Error(System.String,System.Exception)
+    name: Error
+    nameWithType: WebSocketBehavior.Error
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Error
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Error(System.String,System.Exception)
+    name: Error
+    nameWithType: WebSocketBehavior.Error
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Error
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Exception
+    name: Exception
+    nameWithType: Exception
+    fullName: System.Exception
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: OnClose(CloseEventArgs)
+  nameWithType: WebSocketBehavior.OnClose(CloseEventArgs)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+    name: OnClose
+    nameWithType: WebSocketBehavior.OnClose
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnClose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.CloseEventArgs
+    name: CloseEventArgs
+    nameWithType: CloseEventArgs
+    fullName: WebSocketSharp.CloseEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnClose(WebSocketSharp.CloseEventArgs)
+    name: OnClose
+    nameWithType: WebSocketBehavior.OnClose
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnClose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.CloseEventArgs
+    name: CloseEventArgs
+    nameWithType: CloseEventArgs
+    fullName: WebSocketSharp.CloseEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: OnError(ErrorEventArgs)
+  nameWithType: WebSocketBehavior.OnError(ErrorEventArgs)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+    name: OnError
+    nameWithType: WebSocketBehavior.OnError
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnError
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.ErrorEventArgs
+    name: ErrorEventArgs
+    nameWithType: ErrorEventArgs
+    fullName: WebSocketSharp.ErrorEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnError(WebSocketSharp.ErrorEventArgs)
+    name: OnError
+    nameWithType: WebSocketBehavior.OnError
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnError
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.ErrorEventArgs
+    name: ErrorEventArgs
+    nameWithType: ErrorEventArgs
+    fullName: WebSocketSharp.ErrorEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.OnOpen
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.OnOpen
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: OnOpen()
+  nameWithType: WebSocketBehavior.OnOpen()
+  fullName: WebSocketSharp.Server.WebSocketBehavior.OnOpen()
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnOpen
+    name: OnOpen
+    nameWithType: WebSocketBehavior.OnOpen
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnOpen
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnOpen
+    name: OnOpen
+    nameWithType: WebSocketBehavior.OnOpen
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnOpen
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Send(Byte[])
+  nameWithType: WebSocketBehavior.Send(Byte[])
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+  nameWithType.vb: WebSocketBehavior.Send(Byte())
+  fullName.vb: WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte())
+  name.vb: Send(Byte())
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.Byte[])
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Send(FileInfo)
+  nameWithType: WebSocketBehavior.Send(FileInfo)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    nameWithType: FileInfo
+    fullName: System.IO.FileInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.IO.FileInfo)
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    nameWithType: FileInfo
+    fullName: System.IO.FileInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Send(String)
+  nameWithType: WebSocketBehavior.Send(String)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.Send(System.String)
+    name: Send
+    nameWithType: WebSocketBehavior.Send
+    fullName: WebSocketSharp.Server.WebSocketBehavior.Send
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[],System.Action{System.Boolean})
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[],System.Action{System.Boolean})
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: SendAsync(Byte[], Action<Boolean>)
+  nameWithType: WebSocketBehavior.SendAsync(Byte[], Action<Boolean>)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[], System.Action<System.Boolean>)
+  nameWithType.vb: WebSocketBehavior.SendAsync(Byte(), Action(Of Boolean))
+  fullName.vb: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte(), System.Action(Of System.Boolean))
+  name.vb: SendAsync(Byte(), Action(Of Boolean))
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[],System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.Byte[],System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo,System.Action{System.Boolean})
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo,System.Action{System.Boolean})
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: SendAsync(FileInfo, Action<Boolean>)
+  nameWithType: WebSocketBehavior.SendAsync(FileInfo, Action<Boolean>)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo, System.Action<System.Boolean>)
+  nameWithType.vb: WebSocketBehavior.SendAsync(FileInfo, Action(Of Boolean))
+  fullName.vb: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo, System.Action(Of System.Boolean))
+  name.vb: SendAsync(FileInfo, Action(Of Boolean))
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    nameWithType: FileInfo
+    fullName: System.IO.FileInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.FileInfo,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    nameWithType: FileInfo
+    fullName: System.IO.FileInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String,System.Action{System.Boolean})
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String,System.Action{System.Boolean})
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: SendAsync(String, Action<Boolean>)
+  nameWithType: WebSocketBehavior.SendAsync(String, Action<Boolean>)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String, System.Action<System.Boolean>)
+  nameWithType.vb: WebSocketBehavior.SendAsync(String, Action(Of Boolean))
+  fullName.vb: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String, System.Action(Of System.Boolean))
+  name.vb: SendAsync(String, Action(Of Boolean))
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.String,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream,System.Int32,System.Action{System.Boolean})
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream,System.Int32,System.Action{System.Boolean})
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: SendAsync(Stream, Int32, Action<Boolean>)
+  nameWithType: WebSocketBehavior.SendAsync(Stream, Int32, Action<Boolean>)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream, System.Int32, System.Action<System.Boolean>)
+  nameWithType.vb: WebSocketBehavior.SendAsync(Stream, Int32, Action(Of Boolean))
+  fullName.vb: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream, System.Int32, System.Action(Of System.Boolean))
+  name.vb: SendAsync(Stream, Int32, Action(Of Boolean))
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream,System.Int32,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.SendAsync(System.IO.Stream,System.Int32,System.Action{System.Boolean})
+    name: SendAsync
+    nameWithType: WebSocketBehavior.SendAsync
+    fullName: WebSocketSharp.Server.WebSocketBehavior.SendAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: WebSocketSharp.Server.WebSocketBehavior.Log
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.Log
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Log
+  nameWithType: WebSocketBehavior.Log
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Log
+- uid: WebSocketSharp.Server.WebSocketBehavior.Sessions
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.Sessions
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Sessions
+  nameWithType: WebSocketBehavior.Sessions
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Sessions
+- uid: WebSocketSharp.Server.WebSocketBehavior.Context
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.Context
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Context
+  nameWithType: WebSocketBehavior.Context
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Context
+- uid: WebSocketSharp.Server.WebSocketBehavior.CookiesValidator
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.CookiesValidator
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: CookiesValidator
+  nameWithType: WebSocketBehavior.CookiesValidator
+  fullName: WebSocketSharp.Server.WebSocketBehavior.CookiesValidator
+- uid: WebSocketSharp.Server.WebSocketBehavior.EmitOnPing
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.EmitOnPing
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: EmitOnPing
+  nameWithType: WebSocketBehavior.EmitOnPing
+  fullName: WebSocketSharp.Server.WebSocketBehavior.EmitOnPing
+- uid: WebSocketSharp.Server.WebSocketBehavior.ID
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.ID
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: ID
+  nameWithType: WebSocketBehavior.ID
+  fullName: WebSocketSharp.Server.WebSocketBehavior.ID
+- uid: WebSocketSharp.Server.WebSocketBehavior.IgnoreExtensions
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.IgnoreExtensions
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: IgnoreExtensions
+  nameWithType: WebSocketBehavior.IgnoreExtensions
+  fullName: WebSocketSharp.Server.WebSocketBehavior.IgnoreExtensions
+- uid: WebSocketSharp.Server.WebSocketBehavior.OriginValidator
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.OriginValidator
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: OriginValidator
+  nameWithType: WebSocketBehavior.OriginValidator
+  fullName: WebSocketSharp.Server.WebSocketBehavior.OriginValidator
+- uid: WebSocketSharp.Server.WebSocketBehavior.Protocol
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.Protocol
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: Protocol
+  nameWithType: WebSocketBehavior.Protocol
+  fullName: WebSocketSharp.Server.WebSocketBehavior.Protocol
+- uid: WebSocketSharp.Server.WebSocketBehavior.StartTime
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.StartTime
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: StartTime
+  nameWithType: WebSocketBehavior.StartTime
+  fullName: WebSocketSharp.Server.WebSocketBehavior.StartTime
+- uid: WebSocketSharp.Server.WebSocketBehavior.State
+  commentId: P:WebSocketSharp.Server.WebSocketBehavior.State
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: State
+  nameWithType: WebSocketBehavior.State
+  fullName: WebSocketSharp.Server.WebSocketBehavior.State
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSocketSharp.Server
+  commentId: N:WebSocketSharp.Server
+  isExternal: true
+  name: WebSocketSharp.Server
+  nameWithType: WebSocketSharp.Server
+  fullName: WebSocketSharp.Server
+- uid: WebSocketSharp.Server.WebSocketServer
+  commentId: T:WebSocketSharp.Server.WebSocketServer
+  parent: WebSocketSharp.Server
+  isExternal: true
+  name: WebSocketServer
+  nameWithType: WebSocketServer
+  fullName: WebSocketSharp.Server.WebSocketServer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: KittyCoin.Models.Server.NewMessage*
+  commentId: Overload:KittyCoin.Models.Server.NewMessage
+  name: NewMessage
+  nameWithType: Server.NewMessage
+  fullName: KittyCoin.Models.Server.NewMessage
+- uid: System.EventHandler
+  commentId: T:System.EventHandler
+  parent: System
+  isExternal: true
+  name: EventHandler
+  nameWithType: EventHandler
+  fullName: System.EventHandler
+- uid: KittyCoin.Models.Server.BlockchainUpdate*
+  commentId: Overload:KittyCoin.Models.Server.BlockchainUpdate
+  name: BlockchainUpdate
+  nameWithType: Server.BlockchainUpdate
+  fullName: KittyCoin.Models.Server.BlockchainUpdate
+- uid: KittyCoin.Models.Server.ServerUpdate*
+  commentId: Overload:KittyCoin.Models.Server.ServerUpdate
+  name: ServerUpdate
+  nameWithType: Server.ServerUpdate
+  fullName: KittyCoin.Models.Server.ServerUpdate
+- uid: KittyCoin.Models.Server.ServersList*
+  commentId: Overload:KittyCoin.Models.Server.ServersList
+  name: ServersList
+  nameWithType: Server.ServersList
+  fullName: KittyCoin.Models.Server.ServersList
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: KittyCoin.Models.Server.Start*
+  commentId: Overload:KittyCoin.Models.Server.Start
+  name: Start
+  nameWithType: Server.Start
+  fullName: KittyCoin.Models.Server.Start
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+  commentId: M:WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+  parent: WebSocketSharp.Server.WebSocketBehavior
+  isExternal: true
+  name: OnMessage(MessageEventArgs)
+  nameWithType: WebSocketBehavior.OnMessage(MessageEventArgs)
+  fullName: WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+  spec.csharp:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+    name: OnMessage
+    nameWithType: WebSocketBehavior.OnMessage
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnMessage
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.MessageEventArgs
+    name: MessageEventArgs
+    nameWithType: MessageEventArgs
+    fullName: WebSocketSharp.MessageEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: WebSocketSharp.Server.WebSocketBehavior.OnMessage(WebSocketSharp.MessageEventArgs)
+    name: OnMessage
+    nameWithType: WebSocketBehavior.OnMessage
+    fullName: WebSocketSharp.Server.WebSocketBehavior.OnMessage
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: WebSocketSharp.MessageEventArgs
+    name: MessageEventArgs
+    nameWithType: MessageEventArgs
+    fullName: WebSocketSharp.MessageEventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: KittyCoin.Models.Server.OnMessage*
+  commentId: Overload:KittyCoin.Models.Server.OnMessage
+  name: OnMessage
+  nameWithType: Server.OnMessage
+  fullName: KittyCoin.Models.Server.OnMessage
+- uid: WebSocketSharp.MessageEventArgs
+  commentId: T:WebSocketSharp.MessageEventArgs
+  parent: WebSocketSharp
+  isExternal: true
+  name: MessageEventArgs
+  nameWithType: MessageEventArgs
+  fullName: WebSocketSharp.MessageEventArgs
+- uid: WebSocketSharp
+  commentId: N:WebSocketSharp
+  isExternal: true
+  name: WebSocketSharp
+  nameWithType: WebSocketSharp
+  fullName: WebSocketSharp

@@ -1,0 +1,67 @@
+### YamlMime:ManagedReference
+items:
+- uid: KittyCoin.ViewModels
+  commentId: N:KittyCoin.ViewModels
+  id: KittyCoin.ViewModels
+  children:
+  - KittyCoin.ViewModels.ConnectBlockchainViewModel
+  - KittyCoin.ViewModels.ConnectWalletViewModel
+  - KittyCoin.ViewModels.LaunchServerViewModel
+  - KittyCoin.ViewModels.MainViewModel
+  - KittyCoin.ViewModels.NewTransactionViewModel
+  - KittyCoin.ViewModels.RegisterViewModel
+  - KittyCoin.ViewModels.ShowBlockchainViewModel
+  langs:
+  - csharp
+  - vb
+  name: KittyCoin.ViewModels
+  nameWithType: KittyCoin.ViewModels
+  fullName: KittyCoin.ViewModels
+  type: Namespace
+  assemblies:
+  - KittyCoin
+references:
+- uid: KittyCoin.ViewModels.ConnectWalletViewModel
+  commentId: T:KittyCoin.ViewModels.ConnectWalletViewModel
+  parent: KittyCoin.ViewModels
+  name: ConnectWalletViewModel
+  nameWithType: ConnectWalletViewModel
+  fullName: KittyCoin.ViewModels.ConnectWalletViewModel
+- uid: KittyCoin.ViewModels.ConnectBlockchainViewModel
+  commentId: T:KittyCoin.ViewModels.ConnectBlockchainViewModel
+  parent: KittyCoin.ViewModels
+  name: ConnectBlockchainViewModel
+  nameWithType: ConnectBlockchainViewModel
+  fullName: KittyCoin.ViewModels.ConnectBlockchainViewModel
+- uid: KittyCoin.ViewModels.NewTransactionViewModel
+  commentId: T:KittyCoin.ViewModels.NewTransactionViewModel
+  parent: KittyCoin.ViewModels
+  name: NewTransactionViewModel
+  nameWithType: NewTransactionViewModel
+  fullName: KittyCoin.ViewModels.NewTransactionViewModel
+- uid: KittyCoin.ViewModels.LaunchServerViewModel
+  commentId: T:KittyCoin.ViewModels.LaunchServerViewModel
+  parent: KittyCoin.ViewModels
+  name: LaunchServerViewModel
+  nameWithType: LaunchServerViewModel
+  fullName: KittyCoin.ViewModels.LaunchServerViewModel
+- uid: KittyCoin.ViewModels.RegisterViewModel
+  commentId: T:KittyCoin.ViewModels.RegisterViewModel
+  name: RegisterViewModel
+  nameWithType: RegisterViewModel
+  fullName: KittyCoin.ViewModels.RegisterViewModel
+- uid: KittyCoin.ViewModels.ShowBlockchainViewModel
+  commentId: T:KittyCoin.ViewModels.ShowBlockchainViewModel
+  name: ShowBlockchainViewModel
+  nameWithType: ShowBlockchainViewModel
+  fullName: KittyCoin.ViewModels.ShowBlockchainViewModel
+- uid: KittyCoin.ViewModels.MainViewModel
+  commentId: T:KittyCoin.ViewModels.MainViewModel
+  name: MainViewModel
+  nameWithType: MainViewModel
+  fullName: KittyCoin.ViewModels.MainViewModel
+- uid: KittyCoin.ViewModels
+  commentId: N:KittyCoin.ViewModels
+  name: KittyCoin.ViewModels
+  nameWithType: KittyCoin.ViewModels
+  fullName: KittyCoin.ViewModels
