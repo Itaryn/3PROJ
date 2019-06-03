@@ -22,5 +22,7 @@
         public static int WAITING_TIME_MAX => 10;
 
         public static string GET_SERVERS => "GetServers";
+
+        public static string WALLET_CONNECTED => "Your wallet is connected";
     }
 }

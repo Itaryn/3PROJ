@@ -29,6 +29,9 @@ namespace KittyCoins.Views
             if (_viewModel.ActualUser == null)
             {
                 _viewModel.Console = "You must have a connected wallet to be able to mine blocks";
+
+                ButtonMenuClick(new Button { Name = "ConnectWalletButton" }, new RoutedEventArgs());
+
                 MiningToggleButton.SetToggleState(false);
             }
 

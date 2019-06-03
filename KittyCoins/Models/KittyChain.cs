@@ -155,11 +155,10 @@ namespace KittyCoins.Models
         /// Add the created block to the blockchain
         /// Create the transfer to give the biscuit to the creator of the block
         /// </summary>
-        /// <param name="minerAddress"></param>
         /// <param name="block"></param>
-        public string AddBlock(string minerAddress, Block block)
+        public string AddBlock(Block block)
         {
-            block.Transfers = PendingTransfers.ToList();
+            block.Transfers = PendingTransfers.ToArray();
             PendingTransfers = new List<Transfer>();
             block.Index = LastBlock.Index + 1;
             Chain.Add(block);
@@ -198,25 +197,13 @@ namespace KittyCoins.Models
                     !currentBlock.Hash.IsLowerHex(currentBlock.Difficulty) ||
                     currentBlock.Transfers.Any(t => !t.IsValid()))
                 {
-                    try
-                    {
-                        var a = currentBlock.Hash != currentBlock.CalculateHash();
-                        var b = currentBlock.Hash != nextBlock.PreviousHash;
-                        var c = currentBlock.Hash.IsLowerHex(currentBlock.Difficulty);
-                        var d = currentBlock.Transfers.Any(t => !t.IsValid());
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
                     return false;
                 }
 
                 // Verify if the difficulty was well calculated
                 if (i % Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY == 0)
                 {
-                    var compareBlock = GetBlockAt(i - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY);
+                    var compareBlock = GetBlockAt(i + 1 - Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY);
 
                     var moy = (currentBlock.CreationDate - compareBlock.CreationDate).TotalSeconds /
                               Constants.NUMBER_OF_BLOCKS_TO_CHECK_DIFFICULTY;

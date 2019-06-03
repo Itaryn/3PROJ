@@ -130,6 +130,7 @@ namespace KittyCoins.Models
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"), null, null);
                         MainViewModel.BlockChain = chainReceived;
+                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                         NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
 
@@ -139,6 +140,7 @@ namespace KittyCoins.Models
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain is bigger than local"), null, null);
                         MainViewModel.BlockChain = chainReceived;
+                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                         NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
 
@@ -164,6 +166,7 @@ namespace KittyCoins.Models
                         {
                             NewMessage.BeginInvoke(this, new EventArgsMessage("Overwrite BlockChain from sender"), null, null);
                             MainViewModel.BlockChain = chainReceived;
+                            MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                             NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                         }
                         // Send a overwrite force to the sender
@@ -174,9 +177,13 @@ namespace KittyCoins.Models
                         }
                     }
                 }
+                else if (e.Data.StartsWith(Constants.NEED_BLOCKCHAIN))
+                {
+                    Send(Constants.BLOCKCHAIN + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                }
 
                 #endregion
-                
+
                 #region Block Receive
 
                 else if (e.Data.StartsWith(Constants.BLOCK))
@@ -220,7 +227,7 @@ namespace KittyCoins.Models
                     NewMessage.BeginInvoke(this, new EventArgsMessage("New transfer received"), null, null);
 
                     // If we already have it or it's not a valid transfer don't add it
-                    if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
+                    if (MainViewModel.BlockChain.PendingTransfers.Any(t => t.Equals(newTransfer)) || !newTransfer.IsValid())
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                     }
@@ -242,7 +249,7 @@ namespace KittyCoins.Models
                     foreach (var newTransfer in newTransfers)
                     {
                         // If we already have it or it's not a valid transfer don't add it
-                        if (MainViewModel.BlockChain.PendingTransfers.Contains(newTransfer) || !newTransfer.IsValid())
+                        if (MainViewModel.BlockChain.PendingTransfers.Any(t => t.Equals(newTransfer)) || !newTransfer.IsValid())
                         {
                             NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                         }
@@ -280,7 +287,7 @@ namespace KittyCoins.Models
             }
             catch (Exception ex)
             {
-                NewMessage.BeginInvoke(this, new EventArgsMessage("Impossible to deserialize received object"), null, null);
+                NewMessage.BeginInvoke(this, new EventArgsMessage(ex.Message), null, null);
             }
             finally
             {

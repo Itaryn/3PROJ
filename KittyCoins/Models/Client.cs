@@ -59,6 +59,7 @@ namespace KittyCoins.Models
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_IS_NOT_VALID), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_IS_NOT_VALID.Length));
                         MainViewModel.BlockChain = chainReceived;
+                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                         NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_MISS_BLOCK))
@@ -66,6 +67,7 @@ namespace KittyCoins.Models
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_MISS_BLOCK), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_MISS_BLOCK.Length));
                         MainViewModel.BlockChain = chainReceived;
+                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                         NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
@@ -73,11 +75,22 @@ namespace KittyCoins.Models
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_OVERWRITE), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_OVERWRITE.Length));
                         MainViewModel.BlockChain = chainReceived;
+                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
                         NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.NEED_BLOCKCHAIN))
                     {
                         ws.Send(Constants.BLOCKCHAIN + JsonConvert.SerializeObject(MainViewModel.BlockChain));
+                    }
+                    else if (e.Data.StartsWith(Constants.BLOCKCHAIN))
+                    {
+                        var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN.Length));
+                        if (!MainViewModel.BlockChain.IsValid() && chainReceived.IsValid())
+                        {
+                            MainViewModel.BlockChain = chainReceived;
+                            MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
+                            NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        }
                     }
 
                     #endregion
@@ -172,7 +185,14 @@ namespace KittyCoins.Models
             foreach (var item in serverClose)
             {
                 MainViewModel.ServerList.Remove(item);
-                MainViewModel.ServerListUpdated?.BeginInvoke(null, null, null, null);
+                var receivers = MainViewModel.ServerListUpdated?.GetInvocationList();
+                if (receivers != null)
+                {
+                    foreach (EventHandler receiver in receivers)
+                    {
+                        receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                    }
+                }
             }
         }
 

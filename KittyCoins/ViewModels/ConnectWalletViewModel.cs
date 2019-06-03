@@ -15,8 +15,11 @@ namespace KittyCoins.ViewModels
         private string _publicAddress;
         private double _balance;
         private Dictionary<Transfer, bool> _transferHistory;
+        private string _walletConnectMessage;
 
         public EventHandler ConnectWithWords;
+
+        public EventHandler UserChanged;
 
         public ConnectWalletViewModel(string publicAddress)
         {
@@ -53,10 +56,13 @@ namespace KittyCoins.ViewModels
             PublicAddress = user.PublicAddress;
             UpdateUserBalance(this, EventArgs.Empty);
             ConnectWithWords.BeginInvoke(this, new EventArgsObject(user), null, null);
+
+            UserChanged?.Invoke(null, null);
         }
 
         private void UpdateUserBalance(object sender, EventArgs e)
         {
+            WalletConnectMessage = "You don't have a connected wallet";
             if (!string.IsNullOrEmpty(PublicAddress))
             {
                 Balance = MainViewModel.BlockChain.GetBalance(PublicAddress);
@@ -69,6 +75,8 @@ namespace KittyCoins.ViewModels
                 }
 
                 TransactionHistory = transactionDic;
+
+                WalletConnectMessage = Constants.WALLET_CONNECTED;
             }
         }
 
@@ -115,6 +123,17 @@ namespace KittyCoins.ViewModels
                 if (_transferHistory == value) return;
                 _transferHistory = value;
                 RaisePropertyChanged("TransactionHistory");
+            }
+        }
+
+        public string WalletConnectMessage
+        {
+            get => _walletConnectMessage;
+            set
+            {
+                if (_walletConnectMessage == value) return;
+                _walletConnectMessage = value;
+                RaisePropertyChanged("WalletConnectMessage");
             }
         }
 

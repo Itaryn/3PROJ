@@ -60,6 +60,6 @@
             <UserControl x:Name="MainUserControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Margin="20"/>
         </Grid>
         <TextBlock Grid.Row="2" Text="Console log" Foreground="Gray" FontSize="11" FontFamily="./FontFamily/HelveticaBold/#Helvetica" Margin="20,0,20,0" VerticalAlignment="Center"/>
-        <TextBox x:Name="ConsoleGUI" Grid.Row="3" Margin="20,0,20,20" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        <TextBox x:Name="ConsoleGUI" Grid.Row="3" IsEnabled="False"  Margin="20,0,20,20" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
     </Grid>
 </Window>

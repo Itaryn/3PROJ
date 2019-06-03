@@ -105,22 +105,23 @@ namespace KittyCoins.ViewModels
                     Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
                     var dif = BlockChain.LastBlock.CreationDate - DateTime.UtcNow;
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
-                    Console = BlockChain.AddBlock(ActualUser.PublicAddress, CurrentMineBlock);
+                    Console = BlockChain.AddBlock(CurrentMineBlock);
 
                     if (!BlockChain.IsValid())
                     {
                         Client.NeedBlockchain();
                         BlockChainWaitingList.Remove(guid);
-                        continue;
                     }
+                    else
+                    {
+                        Client.NewBlock(CurrentMineBlock);
 
-                    Client.NewBlock(CurrentMineBlock);
+                        var transfer = new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), ActualUser.PublicAddress, BlockChain.Biscuit, 0);
 
-                    var transfer = new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), ActualUser.PublicAddress, BlockChain.Biscuit, 0);
-
-                    BlockChain.CreateTransfer(transfer);
-                    Client.NewTransfer(transfer);
-                    CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
+                        BlockChain.CreateTransfer(transfer);
+                        Client.NewTransfer(transfer);
+                        CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
+                    }
                 }
                 BlockChainWaitingList.Remove(guid);
             }

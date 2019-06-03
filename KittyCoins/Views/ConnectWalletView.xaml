@@ -52,6 +52,8 @@
             <Button Style="{StaticResource ButtonBasic}" Width="200" Margin="5" Command="{Binding ConnectWithFileCommand}">
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect with a file"/>
             </Button>
+            <TextBlock x:Name="ConnectMessage" Margin="20" HorizontalAlignment="Center" Foreground="#FE4D62" Text="{Binding WalletConnectMessage}"/>
+
         </StackPanel>
         <ScrollViewer Grid.Column="2" >
             <StackPanel Background="#F0F0F0">

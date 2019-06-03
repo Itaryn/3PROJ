@@ -39,7 +39,7 @@ namespace KittyCoins.Models
         /// <summary>
         /// List of transfers contained in the block
         /// </summary>
-        public List<Transfer> Transfers { get; set; }
+        public Transfer[] Transfers { get; set; }
 
         /// <summary>
         /// A random Guid to generate the hash beginning with K
@@ -75,7 +75,7 @@ namespace KittyCoins.Models
             Owner = owner;
             CreationDate = creationDate;
             PreviousHash = previousHash;
-            Transfers = transfers.ToList();
+            Transfers = transfers.ToArray();
             Difficulty = difficulty;
             Guid = Guid.NewGuid();
             Hash = CalculateHash();
@@ -93,7 +93,7 @@ namespace KittyCoins.Models
             Owner = owner;
             CreationDate = DateTime.UtcNow;
             PreviousHash = previousHash;
-            Transfers = transfers.ToList();
+            Transfers = transfers.ToArray();
             Difficulty = difficulty;
             Guid = Guid.NewGuid();
             Hash = CalculateHash();
@@ -128,7 +128,7 @@ namespace KittyCoins.Models
         public bool TryHash(string difficulty)
         {
             PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
-            Transfers = MainViewModel.BlockChain.PendingTransfers;
+            Transfers = MainViewModel.BlockChain.PendingTransfers.ToArray();
 
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;
@@ -164,7 +164,7 @@ namespace KittyCoins.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Index} ({CreationDate}) | {Transfers.Count} transfers | {Transfers.Sum(t => t.Amount + t.Biscuit)} coins";
+            return $"{Index} ({CreationDate}) | {Transfers.Count()} transfers | {Transfers.Sum(t => t.Amount + t.Biscuit)} coins";
         }
 
         #endregion
