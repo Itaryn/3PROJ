@@ -20,11 +20,12 @@ namespace KittyCoin.Views
             DataContext = ViewModel;
 
             ViewModel.UserChanged += ChangeConnectMessage;
+            ChangeConnectMessage(null, null);
         }
 
         private void ChangeConnectMessage(object sender, EventArgs e)
         {
-            if (ConnectMessage.Text == Constants.WALLET_CONNECTED)
+            if (ViewModel.WalletConnectMessage == Constants.WALLET_CONNECTED)
             {
                 ConnectMessage.Foreground = new SolidColorBrush(Color.FromArgb(255, 91, 193, 70));
             }

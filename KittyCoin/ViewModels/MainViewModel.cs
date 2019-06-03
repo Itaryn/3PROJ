@@ -155,6 +155,11 @@ namespace KittyCoin.ViewModels
 
         public void ConnectBlockchainMethod(object sender, EventArgs e)
         {
+            if (Server == null)
+            {
+                Console = "Launch your server with a port before connecting to the BlockChain Network";
+                return;
+            }
             if (e is EventArgsMessage args)
             {
                 try

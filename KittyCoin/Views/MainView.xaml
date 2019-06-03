@@ -59,7 +59,9 @@
             <Grid Grid.Row="0" Grid.Column="5" Background="#0079D8"/>
             <UserControl x:Name="MainUserControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Margin="20"/>
         </Grid>
-        <TextBlock Grid.Row="2" Text="Console log" Foreground="Gray" FontSize="11" FontFamily="./FontFamily/HelveticaBold/#Helvetica" Margin="20,0,20,0" VerticalAlignment="Center"/>
-        <TextBox x:Name="ConsoleGUI" Grid.Row="3" IsEnabled="False"  Margin="20,0,20,20" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="2" Text="Console log" Foreground="Gray" FontSize="11" FontFamily="./FontFamily/HelveticaBold/#Helvetica" Margin="20,0,0,0" VerticalAlignment="Center"/>
+        <ScrollViewer x:Name="ScrollViewerConsole" Grid.Row="3" Margin="20, 0, 20, 20">
+            <TextBox x:Name="ConsoleGUI" Background="#F0F0F0" Padding="20, 20, 20, 0" BorderThickness="0" IsEnabled="False" Text="{Binding Console}" TextChanged="ScrollToTheEnd" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        </ScrollViewer>
     </Grid>
 </Window>

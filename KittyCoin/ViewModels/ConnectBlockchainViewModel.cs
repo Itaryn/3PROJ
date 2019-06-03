@@ -13,7 +13,7 @@ namespace KittyCoin.ViewModels
         private string _serverAddress;
         private List<string> _serverList;
 
-        public EventHandler LaunchServerWithPort;
+        public EventHandler ConnectToBlockchain;
 
         public ConnectBlockchainViewModel(IEnumerable<string> serverList)
         {
@@ -32,7 +32,7 @@ namespace KittyCoin.ViewModels
 
         public void ConnectToBlockchainMethod()
         {
-            LaunchServerWithPort.BeginInvoke(this, new EventArgsMessage(ServerAddress), null, null);
+            ConnectToBlockchain?.BeginInvoke(this, new EventArgsMessage(ServerAddress), null, null);
         }
 
         #region Input

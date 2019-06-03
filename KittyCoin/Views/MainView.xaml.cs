@@ -19,9 +19,7 @@ namespace KittyCoin.Views
             _viewModel = new MainViewModel();
             DataContext = _viewModel;
 
-            var launcherServerView = new LaunchServerView();
-            launcherServerView.ViewModel.LaunchServerWithPort += _viewModel.LaunchServerMethod;
-            MainUserControl.Content = launcherServerView;
+            ButtonMenuClick(new Button { Name = "LaunchServerButton" }, new RoutedEventArgs());
         }
 
         private void MiningClick(object sender, MouseButtonEventArgs e)
@@ -59,8 +57,8 @@ namespace KittyCoin.Views
                         break;
                     case "ConnectBlockchainButton":
                         ConnectBlockchainButton.Style = FindResource("ButtonMenuClicked") as Style;
-                        var connectBlockchainView = new ConnectBlockchainView(_viewModel.Client.GetServers());
-                        connectBlockchainView.ViewModel.LaunchServerWithPort += _viewModel.ConnectBlockchainMethod;
+                        var connectBlockchainView = new ConnectBlockchainView(_viewModel.Client.GetServers(), _viewModel.Server);
+                        connectBlockchainView.ViewModel.ConnectToBlockchain += _viewModel.ConnectBlockchainMethod;
                         MainUserControl.Content = connectBlockchainView;
                         break;
                     case "ConnectWalletButton":
@@ -88,7 +86,7 @@ namespace KittyCoin.Views
 
         private void ScrollToTheEnd(object sender, TextChangedEventArgs e)
         {
-            ConsoleGUI.ScrollToEnd();
+            ScrollViewerConsole.ScrollToEnd();
         }
         protected override void OnClosing(CancelEventArgs e)
         {

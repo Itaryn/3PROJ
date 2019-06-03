@@ -15,9 +15,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="57*"/>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="48*"/>
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Grid.Column="0" >
@@ -42,7 +42,7 @@
                 <ComboBox ItemsSource="{Binding Chain}" SelectedItem="{Binding SelectedBlock}"/>
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer Grid.Column="2" Margin="20" Background="#F0F0F0">
+        <ScrollViewer Grid.Column="2" Background="#F0F0F0">
             <StackPanel>
                 <StackPanel Orientation="Vertical" Margin="20">
                     <TextBlock Style="{StaticResource TextBlockTitle}" Text="Selected block"
