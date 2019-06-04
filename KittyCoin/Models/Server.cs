@@ -47,7 +47,7 @@ namespace KittyCoin.Models
         /// <param name="port"></param>
         public string Start(int port)
         {
-            string ip;
+            var ip = "127.0.0.1";
             foreach (var address in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
                 try

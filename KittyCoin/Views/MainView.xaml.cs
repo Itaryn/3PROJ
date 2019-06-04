@@ -93,7 +93,7 @@ namespace KittyCoin.Views
             _viewModel.MiningThread?.Abort();
             _viewModel.SaveThread?.Abort();
             _viewModel.Client?.Close();
-            _viewModel.Server?.wss.Stop();
+            _viewModel.Server?.wss?.Stop();
 
             Application.Current.Shutdown();
             base.OnClosing(e);

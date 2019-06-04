@@ -106,7 +106,7 @@ namespace KittyCoin.Models
         /// </returns>
         public Block GetNextBlock(Block block)
         {
-            return Chain.FirstOrDefault(b => b.PreviousHash.Equals(block.Hash));
+            return Chain.FirstOrDefault(b => b.PreviousHash.Equals(block?.Hash));
         }
 
         /// <summary>
@@ -171,8 +171,11 @@ namespace KittyCoin.Models
         /// <param name="transfer"></param>
         public string CreateTransfer(Transfer transfer)
         {
-            if (new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress ||
-                GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit)
+            if (transfer != null &&
+                transfer.Amount > 0 &&
+                transfer.Biscuit >= 0 &&
+                GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit ||
+                new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress)
             {
                 PendingTransfers.Add(transfer);
                 var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
@@ -186,7 +189,7 @@ namespace KittyCoin.Models
                 return "Transfer added";
             }
 
-            return "Error with the transfer. It can't be added (you need more coins)";
+            return "Error with the transfer. It can't be added (You don't have enough money or you're trying to send negative/zero value)";
         }
 
         /// <summary>
@@ -289,7 +292,7 @@ namespace KittyCoin.Models
             var guid = Guid.NewGuid();
             MainViewModel.WaitingForBlockchainAccess(guid);
 
-            var chain = Chain.ToList();
+            var chain = Chain.ToArray();
 
             MainViewModel.BlockChainWaitingList.Remove(guid);
 

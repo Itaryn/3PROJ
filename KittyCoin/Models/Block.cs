@@ -168,10 +168,10 @@ namespace KittyCoin.Models
         /// <returns>
         /// If the Hash is below the Difficulty
         /// </returns>
-        public bool TryHash(string difficulty)
+        public bool TryHash(string difficulty, string previousHash, Transfer[] transfers)
         {
-            PreviousHash = MainViewModel.BlockChain.LastBlock.Hash;
-            Transfers = MainViewModel.BlockChain.PendingTransfers.ToArray();
+            PreviousHash = previousHash;
+            Transfers = transfers;
 
             Guid = Guid.NewGuid();
             CreationDate = DateTime.UtcNow;

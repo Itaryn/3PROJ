@@ -10,10 +10,13 @@
 /KittyCoin/bin/Release/*.xml
 /KittyCoin/bin/Release/*.config
 /KittyCoin/bin/Release/Resources/Blockchain Save
-/KittyCoin/obj/Release
+/KittyCoin/obj
 /UnitTestKittyCoin/bin/Debug/netcoreapp2.1
 /UnitTestKittyCoin/obj
 /.vs
 /KittyCoin.Tests/bin/Debug
 /KittyCoin.Tests/obj
 /KittyCoin.Tests/bin/Release
+/Documentation HTML
+/Documentation Utilisateur.pdf
+/kittycoins.zip

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using KittyCoin.Models;
 using KittyCoin.Views;
@@ -99,18 +100,38 @@ namespace KittyCoin.ViewModels
             {
                 var guid = Guid.NewGuid();
                 WaitingForBlockchainAccess(guid);
-                if (CurrentMineBlock.TryHash(BlockChain.Difficulty))
-                {
 
+                var difficulty = BlockChain.Difficulty;
+                var previousHash = BlockChain.LastBlock.Hash;
+                var transfers = BlockChain.PendingTransfers.ToArray();
+
+                BlockChainWaitingList.Remove(guid);
+
+                TryHash(difficulty, previousHash, transfers);
+            }
+        }
+
+        public void TryHash(string difficulty, string previousHash, Transfer[] transfers)
+        {
+            if (CurrentMineBlock.TryHash(difficulty, previousHash, transfers))
+            {
+                var guid = Guid.NewGuid();
+                WaitingForBlockchainAccess(guid);
+
+                if (difficulty == BlockChain.Difficulty &&
+                    previousHash == BlockChain.LastBlock.Hash &&
+                    transfers.SequenceEqual(BlockChain.PendingTransfers))
+                {
                     Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
                     var dif = BlockChain.LastBlock.CreationDate - DateTime.UtcNow;
                     Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
                     Console = BlockChain.AddBlock(CurrentMineBlock);
+                    
+                    BlockChainWaitingList.Remove(guid);
 
                     if (!BlockChain.IsValid())
                     {
                         Client.NeedBlockchain();
-                        BlockChainWaitingList.Remove(guid);
                     }
                     else
                     {
@@ -123,7 +144,6 @@ namespace KittyCoin.ViewModels
                         CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
                     }
                 }
-                BlockChainWaitingList.Remove(guid);
             }
         }
 
@@ -210,7 +230,7 @@ namespace KittyCoin.ViewModels
                     Console = "Error when trying to launch the server";
                     Console = ex.Message;
 
-                    Server?.wss.Stop();
+                    Server?.wss?.Stop();
                     SaveThread?.Abort();
                 }
             }

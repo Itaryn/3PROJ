@@ -88,7 +88,7 @@
         /// <summary>
         /// The max value for waiting the blockchain object (in second)
         /// </summary>
-        public static int WAITING_TIME_MAX => 10;
+        public static int WAITING_TIME_MAX => 3;
 
         /// <summary>
         /// The Get server word
