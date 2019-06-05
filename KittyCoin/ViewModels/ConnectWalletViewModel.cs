@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Input;
 using KittyCoin.Models;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using Prism.Commands;
 
 namespace KittyCoin.ViewModels
@@ -37,7 +39,7 @@ namespace KittyCoin.ViewModels
 
         public void ConnectWithWordsMethod()
         {
-            UpdateUser(PrivateWords);
+            UpdateUser(new User(PrivateWords));
         }
 
         public void ConnectWithFileMethod()
@@ -46,13 +48,14 @@ namespace KittyCoin.ViewModels
 
             if (openFileDialog.ShowDialog() == true)
             {
-                UpdateUser(File.ReadAllText(openFileDialog.FileName));
+                var privateKey = JsonConvert.DeserializeObject<RSAParameters>(File.ReadAllText(openFileDialog.FileName));
+
+                UpdateUser(new User(privateKey));
             }
         }
 
-        public void UpdateUser(string privateWords)
+        public void UpdateUser(User user)
         {
-            var user = new User(privateWords);
             PublicAddress = user.PublicAddress;
             UpdateUserBalance(this, EventArgs.Empty);
             ConnectWithWords.BeginInvoke(this, new EventArgsObject(user), null, null);

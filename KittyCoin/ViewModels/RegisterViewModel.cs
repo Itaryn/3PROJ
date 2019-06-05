@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
+using KittyCoin.Models;
 using Microsoft.Win32;
 using Prism.Commands;
 
@@ -38,7 +39,8 @@ namespace KittyCoin.ViewModels
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, PrivateKey);
+                var user = new User(PrivateKey);
+                user.SaveToFile(saveFileDialog.FileName);
             }
         }
 

@@ -16,10 +16,11 @@
 
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBox Margin="5, 5, 5, 5" Text="{Binding PrivateKey}" Height="60" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" IsReadOnly="True"/>
-            <TextBlock Margin="5, 5, 5, 5" Text="Make a safe note of this string of random words, this is your private key, without it you lose access to your wallet" TextWrapping="Wrap" TextAlignment="Justify"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5, 5, 5, 5">
-                <Button Content="I saved it !" Margin="0, 0, 10, 0" Click="CloseWindow" Width="75" FontWeight="Bold" Style="{StaticResource ButtonBasic}"/>
+            <TextBox Margin="5" Text="{Binding PrivateKey}" Height="60" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" IsReadOnly="True"/>
+            <TextBlock Margin="5" Text="Make a safe note of this string of random words, this is your private key, without it you lose access to your wallet" TextWrapping="Wrap" TextAlignment="Justify"/>
+            <TextBlock Margin="5" Text="NB : File save is the only way to reuse your wallet on a different computer" TextWrapping="Wrap" TextAlignment="Justify"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Button Content="I saved it" Margin="0, 0, 10, 0" Click="CloseWindow" Width="75" FontWeight="Bold" Style="{StaticResource ButtonBasic}"/>
                 <Button Content="Random" Margin="10, 0, 0, 0" Width="75" FontWeight="Bold" Command="{Binding RefreshWordsCommand}" Style="{StaticResource ButtonBasic}"/>
             </StackPanel>
             <Button Content="Save it to a file" Width="170" FontWeight="Bold" Command="{Binding SaveItInFileCommand}" Style="{StaticResource ButtonBasic}"/>

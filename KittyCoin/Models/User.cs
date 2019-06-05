@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 using System.Security.Cryptography;
 
 namespace KittyCoin.Models
@@ -32,9 +34,6 @@ namespace KittyCoin.Models
         /// Create the user with a private key
         /// </summary>
         /// <param name="privateKey"></param>
-        /// <remarks>
-        /// It's used only for test purpose
-        /// </remarks>
         public User(RSAParameters privateKey)
         {
             using (var rsa = new RSACryptoServiceProvider())
@@ -57,6 +56,11 @@ namespace KittyCoin.Models
                 _privateKey = rsa.ExportParameters(includePrivateParameters: true);
                 PublicAddress = Convert.ToBase64String(rsa.ExportParameters(includePrivateParameters: false).Modulus);
             }
+        }
+
+        internal void SaveToFile(string fileName)
+        {
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(_privateKey));
         }
 
         #endregion
