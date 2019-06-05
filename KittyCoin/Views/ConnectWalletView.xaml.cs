@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using KittyCoin.Models;
@@ -32,6 +33,15 @@ namespace KittyCoin.Views
             else
             {
                 ConnectMessage.Foreground = new SolidColorBrush(Color.FromArgb(255, 254, 77, 98));
+            }
+        }
+
+        private void CopyPublicAddressToClipboard(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.PublicAddress != null)
+            {
+                Clipboard.SetText(ViewModel.PublicAddress, TextDataFormat.Text);
+                MessageCopyClipboard.Text = "Copied";
             }
         }
     }
