@@ -27,15 +27,15 @@
 
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Difficulty"
                     HorizontalAlignment="Left"/>
-                <TextBlock Text="{Binding BlockChain.Difficulty}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding BlockChain.Difficulty}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Biscuit"
                     HorizontalAlignment="Left"/>
-                <TextBlock Text="{Binding BlockChain.Biscuit}" Margin="0,0,0,5"/>
+                <TextBlock Text="{Binding BlockChain.Biscuit}" Margin="0,0,0,10"/>
 
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Pending transfers"
                     HorizontalAlignment="Left"/>
-                <ListBox ItemsSource="{Binding BlockChain.PendingTransfers}" Height="100" Margin="0,0,0,5"/>
+                <ListBox ItemsSource="{Binding BlockChain.PendingTransfers}" Height="100" Margin="0,0,0,10"/>
 
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Blocks"
                     HorizontalAlignment="Left"/>
@@ -50,31 +50,31 @@
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="ID"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.Index}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.Index}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Created by"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.Owner}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.Owner}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Created at"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.CreationDate}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.CreationDate}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Difficulty"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.Difficulty}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.Difficulty}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Hash"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.Hash}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.Hash}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Previous hash"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.PreviousHash}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.PreviousHash}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Guid"
                         HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding SelectedBlock.Guid}" Margin="0,0,0,5" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding SelectedBlock.Guid}" Margin="0,0,0,10" TextWrapping="Wrap"/>
 
                     <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Transfers"
                         HorizontalAlignment="Left"/>

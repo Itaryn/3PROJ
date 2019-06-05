@@ -186,7 +186,7 @@ namespace KittyCoin.Models
                         receiver.BeginInvoke(this, EventArgs.Empty, null, null);
                     }
                 }
-                return "Transfer added";
+                return Constants.TRANSFER_ADDED;
             }
 
             return "Error with the transfer. It can't be added (You don't have enough money or you're trying to send negative/zero value)";

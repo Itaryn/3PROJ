@@ -53,7 +53,7 @@
             </Grid.RowDefinitions>
             <Button x:Name="LaunchServerButton" Grid.Row="0" Grid.Column="0" Content="Launch Server" Style="{StaticResource ButtonMenuClicked}" Click="ButtonMenuClick"/>
             <Button x:Name="ConnectBlockchainButton" Grid.Row="0" Grid.Column="1" Content="Connect to Blockchain" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
-            <Button x:Name="ConnectWalletButton" Grid.Row="0" Grid.Column="2" Content="Connect your Wallet" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
+            <Button x:Name="ConnectWalletButton" Grid.Row="0" Grid.Column="2" Content="Wallet" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
             <Button x:Name="NewTransactionButton" Grid.Row="0" Grid.Column="3" Content="New Transaction" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
             <Button x:Name="ShowBlockchainButton" Grid.Row="0" Grid.Column="4" Content="Show Blockchain" Style="{StaticResource ButtonMenu}" Click="ButtonMenuClick"/>
             <Grid Grid.Row="0" Grid.Column="5" Background="#0079D8"/>

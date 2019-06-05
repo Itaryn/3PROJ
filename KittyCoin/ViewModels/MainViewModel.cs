@@ -162,7 +162,14 @@ namespace KittyCoin.ViewModels
                         var amount = int.Parse(argument[0]);
                         var publicAddress = argument[1];
                         var transfer = new Transfer(ActualUser, publicAddress, amount, 1);
-                        Console = BlockChain.CreateTransfer(transfer);
+                        var message = BlockChain.CreateTransfer(transfer);
+
+                        if (message == Constants.TRANSFER_ADDED)
+                        {
+                            Client.NewTransfer(transfer);
+                        }
+
+                        Console = message;
                     }
                     catch (Exception ex)
                     {
@@ -296,11 +303,6 @@ namespace KittyCoin.ViewModels
             if (e is EventArgsMessage args)
             {
                 Console = args.Message;
-            }
-            else if (e is EventArgsObject argObj &&
-                     argObj.Object is Transfer transfer)
-            {
-                Client.NewTransfer(transfer);
             }
         }
 

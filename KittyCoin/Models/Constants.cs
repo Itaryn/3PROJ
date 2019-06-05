@@ -99,5 +99,10 @@
         /// The Wallet connected message
         /// </summary>
         public static string WALLET_CONNECTED => "Your wallet is connected";
+
+        /// <summary>
+        /// The transfer added message
+        /// </summary>
+        public static string TRANSFER_ADDED => "Transfer added";
     }
 }
