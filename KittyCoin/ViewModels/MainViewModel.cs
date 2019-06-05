@@ -18,32 +18,83 @@ namespace KittyCoin.ViewModels
     {
         #region Private Attributes
 
+        /// <summary>
+        /// Boolean who represent if the user mine or not
+        /// </summary>
         private bool _checkBoxMine;
-        private int _port;
-        private string _peerUrl;
-        private string _privateWords;
+
+        /// <summary>
+        /// The string in the console
+        /// </summary>
         private string _consoleOutput = "";
 
         #endregion
 
         #region Public Attributes
 
+        /// <summary>
+        /// The Blockchain
+        /// </summary>
+        /// <remarks>
+        /// It's initialize when the app is launched
+        /// </remarks>
+        /// <see cref="KittyChain"/>
         public static KittyChain BlockChain = new KittyChain();
 
+        /// <summary>
+        /// The EventHandler used when the blockchain is updated
+        /// </summary>
         public static EventHandler BlockChainUpdated;
+
+        /// <summary>
+        /// The EventHandler used when the server list is updated
+        /// </summary>
         public static EventHandler ServerListUpdated;
 
+        /// <summary>
+        /// List of Guid to schedule access for the blockchain
+        /// </summary>
+        /// <see cref="Guid"/>
         public static List<Guid> BlockChainWaitingList { get; set; }
 
         /// <summary>
         /// The block in creation
         /// </summary>
         private Block CurrentMineBlock { get; set; }
+
+        /// <summary>
+        /// The list of connected server
+        /// </summary>
         public static IDictionary<string, WebSocket> ServerList;
+
+        /// <summary>
+        /// The client
+        /// </summary>
+        /// <see cref="Client"/>
         public Client Client;
+
+        /// <summary>
+        /// The server
+        /// </summary>
+        /// <see cref="Server"/>
         public Server Server;
+
+        /// <summary>
+        /// The mining thread
+        /// </summary>
+        /// <see cref="Thread"/>
         public Thread MiningThread;
+
+        /// <summary>
+        /// The blockchain save thread
+        /// </summary>
+        /// <see cref="Thread"/>
         public Thread SaveThread;
+
+        /// <summary>
+        /// The wallet connected
+        /// </summary>
+        /// <see cref="User"/>
         public User ActualUser;
 
         #endregion
@@ -57,9 +108,6 @@ namespace KittyCoin.ViewModels
 
             #endregion
 
-            // Default Values
-            Port = 6002;
-            PeerUrl = "127.0.0.1:6002";
             BlockChainWaitingList = new List<Guid>();
 
             Client = new Client();
@@ -83,6 +131,10 @@ namespace KittyCoin.ViewModels
         
         #region Mining
 
+        /// <summary>
+        /// Method who save the blockchain in a txt file, the interval is set in Constants
+        /// </summary>
+        /// <see cref="Constants.SCHEDULE_SAVE_TIME"/>
         public void Save()
         {
             while (true)
@@ -92,6 +144,10 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Method to try hash for a new block
+        /// </summary>
+        /// <see cref="Block.TryHash"/>
         public void Mining()
         {
             CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
@@ -144,6 +200,12 @@ namespace KittyCoin.ViewModels
 
         #region Command Method
 
+        /// <summary>
+        /// Add a new transaction to the blockchain and broadcast it to the connected server
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <see cref="NewTransactionViewModel.SendTransactionMethod"/>
         public void NewTransactionMethod(object sender, EventArgs e)
         {
             if (e is EventArgsObject args)
@@ -173,6 +235,12 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Connect the user to a server
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <see cref="ConnectBlockchainViewModel.ConnectToBlockchainMethod"/>
         public void ConnectBlockchainMethod(object sender, EventArgs e)
         {
             if (Server == null)
@@ -194,6 +262,12 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Set the ActualUser to the new wallet connected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <see cref="ConnectWalletViewModel.UpdateUser"/>
         public void ConnectUserMethod(object sender, EventArgs e)
         {
             if (e is EventArgsObject args)
@@ -206,6 +280,12 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Launch the server with the given port
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <see cref="LaunchServerViewModel.LaunchServerMethod"/>
         public void LaunchServerMethod(object sender, EventArgs e)
         {
             if (e is EventArgsMessage args)
@@ -236,12 +316,22 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Show the popup to register a new wallet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <see cref="RegisterView"/>
         public void RegisterMethod()
         {
             var registerView = new RegisterView();
             registerView.Show();
         }
 
+        /// <summary>
+        /// Method who wait to access the blockchain
+        /// </summary>
+        /// <param name="guid"></param>
         public static void WaitingForBlockchainAccess(Guid guid)
         {
             var waitingTime = 0;
@@ -333,26 +423,6 @@ namespace KittyCoin.ViewModels
                 }
 
                 RaisePropertyChanged("CheckBoxMine");
-            }
-        }
-        public int Port
-        {
-            get => _port;
-            set
-            {
-                if (_port == value) return;
-                _port = value;
-                RaisePropertyChanged("Port");
-            }
-        }
-        public string PeerUrl
-        {
-            get => _peerUrl;
-            set
-            {
-                if (_peerUrl == value) return;
-                _peerUrl = value;
-                RaisePropertyChanged("PeerUrl");
             }
         }
         public string Console

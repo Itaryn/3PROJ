@@ -13,20 +13,53 @@ namespace KittyCoin.ViewModels
 {
     public class ConnectWalletViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// The private words
+        /// </summary>
         private string _privateWords;
+
+        /// <summary>
+        /// The public address
+        /// </summary>
         private string _publicAddress;
+
+        /// <summary>
+        /// The balance
+        /// </summary>
         private double _balance;
+
+        /// <summary>
+        /// The transaction list
+        /// </summary>
         private Dictionary<Transfer, bool> _transferHistory;
+
+        /// <summary>
+        /// The information message about the wallet
+        /// </summary>
         private string _walletConnectMessage;
 
+        /// <summary>
+        /// Event Handler, invoke when the user is trying to connect is wallet
+        /// </summary>
+        /// <remarks>
+        /// It's invoke even if the user connect with a file
+        /// </remarks>
         public EventHandler ConnectWithWords;
 
+        /// <summary>
+        /// Event Handler, invoke when the user is connected
+        /// </summary>
         public EventHandler UserChanged;
 
+        /// <summary>
+        /// Create the ViewModel with the public address of the user
+        /// </summary>
+        /// <param name="publicAddress"></param>
         public ConnectWalletViewModel(string publicAddress)
         {
             ConnectWithWordsCommand = new DelegateCommand(ConnectWithWordsMethod);
             ConnectWithFileCommand = new DelegateCommand(ConnectWithFileMethod);
+            SaveItInFileCommand = new DelegateCommand(SaveItInFileMethod);
 
             PublicAddress = publicAddress;
             UpdateUserBalance(null, null);
@@ -34,14 +67,36 @@ namespace KittyCoin.ViewModels
             MainViewModel.BlockChainUpdated += UpdateUserBalance;
         }
 
+        /// <summary>
+        /// The ICommand for the button "Connect with words"
+        /// </summary>
         public ICommand ConnectWithWordsCommand { get; }
-        public ICommand ConnectWithFileCommand { get; }
 
+        /// <summary>
+        /// The ICommand for the button "Connect with file"
+        /// </summary>
+        public ICommand ConnectWithFileCommand { get; }
+        
+        /// <summary>
+        /// The ICommand for the button "Save it in file"
+        /// </summary>
+        public ICommand SaveItInFileCommand { get; }
+
+        /// <summary>
+        /// The method use when the user click the button "Connect with words"
+        /// It create the user from the words list
+        /// </summary>
+        /// <see cref="User"/>
         public void ConnectWithWordsMethod()
         {
             UpdateUser(new User(PrivateWords));
         }
 
+        /// <summary>
+        /// The method use when the user click the button "Connect with file"
+        /// It create the user from the selected file
+        /// </summary>
+        /// <see cref="User"/>
         public void ConnectWithFileMethod()
         {
             var openFileDialog = new OpenFileDialog();
@@ -54,6 +109,27 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Save the private key to a file choose by the user
+        /// </summary>
+        public void SaveItInFileMethod()
+        {
+            var saveFileDialog = new SaveFileDialog();
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var user = new User(PrivateWords);
+                user.SaveToFile(saveFileDialog.FileName);
+            }
+        }
+
+        /// <summary>
+        /// This method is called by the 2 methods "ConnectWith..."
+        /// It send the user to the MainViewModel from the EventHandler "ConnectWithWords"
+        /// </summary>
+        /// <param name="user"></param>
+        /// <see cref="MainViewModel.ConnectUserMethod"/>
+        /// <seealso cref="UpdateUserBalance"/>
         public void UpdateUser(User user)
         {
             PublicAddress = user.PublicAddress;
@@ -63,6 +139,11 @@ namespace KittyCoin.ViewModels
             UserChanged?.Invoke(null, null);
         }
 
+        /// <summary>
+        /// Update the balance and transaction list from the public address
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateUserBalance(object sender, EventArgs e)
         {
             WalletConnectMessage = "You don't have a connected wallet";
@@ -85,6 +166,9 @@ namespace KittyCoin.ViewModels
 
         #region Input
 
+        /// <summary>
+        /// The input string private words
+        /// </summary>
         public string PrivateWords
         {
             get => _privateWords;
@@ -96,6 +180,9 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// The string PublicAddress
+        /// </summary>
         public string PublicAddress
         {
             get => _publicAddress;
@@ -107,6 +194,9 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// The double Balance
+        /// </summary>
         public double Balance
         {
             get => _balance;
@@ -118,6 +208,12 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// The list of transaction
+        /// </summary>
+        /// <remarks>
+        /// Each line have a boolean to know if the user win or lose coins
+        /// </remarks>
         public Dictionary<Transfer, bool> TransactionHistory
         {
             get => _transferHistory;
@@ -129,6 +225,9 @@ namespace KittyCoin.ViewModels
             }
         }
 
+        /// <summary>
+        /// The message about wallet statue
+        /// </summary>
         public string WalletConnectMessage
         {
             get => _walletConnectMessage;

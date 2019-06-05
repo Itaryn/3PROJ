@@ -52,6 +52,9 @@
             <Button Style="{StaticResource ButtonBasic}" Width="200" Margin="5" Command="{Binding ConnectWithWordsCommand}">
                 <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect with words" HorizontalAlignment="Center" TextWrapping="Wrap"/>
             </Button>
+            <Button Style="{StaticResource ButtonBasic}" Width="200" Margin="5" Command="{Binding ConnectWithWordsCommand}">
+                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Save private key to a file" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            </Button>
             <TextBlock x:Name="ConnectMessage" Margin="20" HorizontalAlignment="Center" Foreground="#FE4D62" Text="{Binding WalletConnectMessage}"/>
         </StackPanel>
         <ScrollViewer Grid.Column="2" >

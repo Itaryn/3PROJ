@@ -23,6 +23,9 @@ namespace KittyCoin.ViewModels
         public ICommand RefreshWordsCommand { get; }
         public ICommand SaveItInFileCommand { get; }
 
+        /// <summary>
+        /// Random the 10 words
+        /// </summary>
         public void RefreshWordsMethod()
         {
             var wordDictionnary = File.ReadAllLines(@".\Resources\File\wordDictionnary.txt");
@@ -33,6 +36,9 @@ namespace KittyCoin.ViewModels
             PrivateKey = string.Join(" ", wordList);
         }
 
+        /// <summary>
+        /// Save the private key to a file choose by the user
+        /// </summary>
         public void SaveItInFileMethod()
         {
             var saveFileDialog = new SaveFileDialog();
