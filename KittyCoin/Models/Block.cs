@@ -158,6 +158,20 @@ namespace KittyCoin.Models
         }
 
         /// <summary>
+        /// Calcul the biscuit given to the owner
+        /// </summary>
+        /// <param name="biscuit">
+        /// The biscuit base
+        /// </param>
+        /// <returns>
+        /// The sum of the biscuit base and the biscuit given by transaction
+        /// </returns>
+        public double GetBiscuit(double biscuit)
+        {
+            return biscuit + Transfers.Sum(t => t.Biscuit);
+        }
+
+        /// <summary>
         /// Try if the Hash is correct for the given difficulty
         /// </summary>
         /// <param name="difficulty">

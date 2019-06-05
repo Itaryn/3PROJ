@@ -107,26 +107,14 @@ namespace KittyCoin.ViewModels
 
                 BlockChainWaitingList.Remove(guid);
 
-                TryHash(difficulty, previousHash, transfers);
-            }
-        }
-
-        public void TryHash(string difficulty, string previousHash, Transfer[] transfers)
-        {
-            if (CurrentMineBlock.TryHash(difficulty, previousHash, transfers))
-            {
-                var guid = Guid.NewGuid();
-                WaitingForBlockchainAccess(guid);
-
-                if (difficulty == BlockChain.Difficulty &&
-                    previousHash == BlockChain.LastBlock.Hash &&
-                    transfers.SequenceEqual(BlockChain.PendingTransfers))
+                if (CurrentMineBlock.TryHash(difficulty, previousHash, transfers))
                 {
-                    Console = $"You have mined one block ! You successfull win {BlockChain.Biscuit} coins.";
+                    guid = Guid.NewGuid();
+                    WaitingForBlockchainAccess(guid);
+
                     var dif = BlockChain.LastBlock.CreationDate - DateTime.UtcNow;
-                    Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
                     Console = BlockChain.AddBlock(CurrentMineBlock);
-                    
+
                     BlockChainWaitingList.Remove(guid);
 
                     if (!BlockChain.IsValid())
@@ -135,9 +123,14 @@ namespace KittyCoin.ViewModels
                     }
                     else
                     {
+                        var biscuit = CurrentMineBlock.GetBiscuit(BlockChain.Biscuit);
+
+                        Console = $"You have mined one block ! You successfull win {biscuit} coins.";
+                        Console = $"The last block was mined {dif:hh}h {dif:mm}m {dif:ss}s ago.";
+
                         Client.NewBlock(CurrentMineBlock);
 
-                        var transfer = new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), ActualUser.PublicAddress, BlockChain.Biscuit, 0);
+                        var transfer = new Transfer(new User(Constants.PRIVATE_WORDS_KITTYCHAIN), ActualUser.PublicAddress, biscuit, 0);
 
                         BlockChain.CreateTransfer(transfer);
                         Client.NewTransfer(transfer);
