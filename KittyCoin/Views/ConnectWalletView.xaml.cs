@@ -40,8 +40,15 @@ namespace KittyCoin.Views
         {
             if (ViewModel.PublicAddress != null)
             {
-                Clipboard.SetText(ViewModel.PublicAddress, TextDataFormat.Text);
-                MessageCopyClipboard.Text = "Copied";
+                try
+                {
+                    Clipboard.SetDataObject(ViewModel.PublicAddress);
+                    MessageCopyClipboard.Text = "Copied";
+                }
+                catch (Exception exception)
+                {
+                    MessageCopyClipboard.Text = "Error while trying to copy the Public Address";
+                }
             }
         }
     }
