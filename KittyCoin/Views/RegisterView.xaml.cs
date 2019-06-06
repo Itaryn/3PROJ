@@ -4,7 +4,7 @@ using KittyCoin.ViewModels;
 namespace KittyCoin.Views
 {
     /// <summary>
-    /// Interaction logic for BlockChainView.xaml
+    /// Interaction logic for RegisterView.xaml
     /// </summary>
     public partial class RegisterView : Window
     {

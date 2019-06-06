@@ -8,7 +8,7 @@ using KittyCoin.ViewModels;
 namespace KittyCoin.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for ConnectWalletView.xaml
     /// </summary>
     public partial class ConnectWalletView : UserControl
     {

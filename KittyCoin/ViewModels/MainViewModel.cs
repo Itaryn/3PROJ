@@ -70,13 +70,13 @@ namespace KittyCoin.ViewModels
         /// <summary>
         /// The client
         /// </summary>
-        /// <see cref="Client"/>
+        /// <see cref="Models.Client"/>
         public Client Client;
 
         /// <summary>
         /// The server
         /// </summary>
-        /// <see cref="Server"/>
+        /// <see cref="Models.Server"/>
         public Server Server;
 
         /// <summary>
