@@ -22,3 +22,8 @@
 /kittycoins.zip
 /KittyCoin/bin/Release/Resources/Blockchain.txt
 /KittyCoin/bin/Debug.zip
+/KittyCoins.Tests/bin
+/KittyCoins.Tests/obj
+/KittyCoins/bin
+/KittyCoins/obj/Debug
+/KittyCoins/obj/Release

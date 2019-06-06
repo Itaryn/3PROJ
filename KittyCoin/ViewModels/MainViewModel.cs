@@ -191,6 +191,15 @@ namespace KittyCoin.ViewModels
                         BlockChain.CreateTransfer(transfer);
                         Client.NewTransfer(transfer);
                         CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
+
+                        var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+                        if (receivers != null)
+                        {
+                            foreach (EventHandler receiver in receivers)
+                            {
+                                receiver.BeginInvoke(this, EventArgs.Empty, null, null);
+                            }
+                        }
                     }
                 }
             }
@@ -430,7 +439,8 @@ namespace KittyCoin.ViewModels
             get => _consoleOutput;
             set
             {
-                if (_consoleOutput == value) return;
+                if (_consoleOutput == value ||
+                    string.IsNullOrEmpty(value)) return;
                 _consoleOutput += value + "\n";
                 RaisePropertyChanged("Console");
             }
