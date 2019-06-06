@@ -28,7 +28,7 @@
         /// <summary>
         /// The interval between 2 save (in second)
         /// </summary>
-        public static int SCHEDULE_SAVE_TIME => 5 * 60;
+        public static int SCHEDULE_SAVE_TIME => 1 * 60;
 
         /// <summary>
         /// The beginning of the server address

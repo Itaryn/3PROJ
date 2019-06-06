@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 namespace KittyCoin.Models
 {
@@ -139,28 +140,35 @@ namespace KittyCoin.Models
         /// <returns></returns>
         public bool VerifyData()
         {
-            using (var rsa = new RSACryptoServiceProvider())
+            var tryCount = 0;
+            while (tryCount < 100)
             {
-                try
+                using (var rsa = new RSACryptoServiceProvider())
                 {
-                    var rsap = new RSAParameters
+                    try
                     {
-                        Modulus = Convert.FromBase64String(FromAddress),
-                        Exponent = Convert.FromBase64String("AQAB")
-                    };
-                    rsa.ImportParameters(rsap);
+                        var rsap = new RSAParameters
+                        {
+                            Modulus = Convert.FromBase64String(FromAddress),
+                            Exponent = Convert.FromBase64String("AQAB")
+                        };
+                        rsa.ImportParameters(rsap);
 
-                    return rsa.VerifyData(Convert.FromBase64String(ToHash()), CryptoConfig.MapNameToOID("SHA256"), Convert.FromBase64String(Signature));
-                }
-                catch (CryptographicException)
-                {
-                    return false;
-                }
-                finally
-                {
-                    rsa.PersistKeyInCsp = false;
+                        return rsa.VerifyData(Convert.FromBase64String(ToHash()), CryptoConfig.MapNameToOID("SHA256"), Convert.FromBase64String(Signature));
+                    }
+                    catch (Exception)
+                    {
+                        tryCount++;
+                        Thread.Sleep(10);
+                    }
+                    finally
+                    {
+                        rsa.PersistKeyInCsp = false;
+                    }
                 }
             }
+
+            return false;
         }
 
         #endregion
