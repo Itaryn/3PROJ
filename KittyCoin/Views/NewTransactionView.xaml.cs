@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
+using KittyCoin.Models;
 using KittyCoin.ViewModels;
 
 namespace KittyCoin.Views
@@ -15,6 +17,16 @@ namespace KittyCoin.Views
             InitializeComponent();
             ViewModel = new NewTransactionViewModel();
             DataContext = ViewModel;
+        }
+
+        private void ButtonOnMouseEnter(object sender, MouseEventArgs e)
+        {
+            CodeBehindCommon.ButtonChangeCat(sender, true);
+        }
+
+        private void ButtonOnMouseLeave(object sender, MouseEventArgs e)
+        {
+            CodeBehindCommon.ButtonChangeCat(sender, false);
         }
     }
 }

@@ -23,7 +23,18 @@
                 <Button Content="I saved it" Margin="0, 0, 10, 0" Click="CloseWindow" Width="75" FontWeight="Bold" Style="{StaticResource ButtonBasic}"/>
                 <Button Content="Random" Margin="10, 0, 0, 0" Width="75" FontWeight="Bold" Command="{Binding RefreshWordsCommand}" Style="{StaticResource ButtonBasic}"/>
             </StackPanel>
-            <Button Content="Save it to a file" Width="170" FontWeight="Bold" Command="{Binding SaveItInFileCommand}" Style="{StaticResource ButtonBasic}"/>
+            <Button Width="170" FontWeight="Bold" Command="{Binding SaveItInFileCommand}" Style="{StaticResource ButtonBasic}" MouseEnter="ButtonOnMouseEnter" MouseLeave="ButtonOnMouseLeave">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}" Margin="0, 0, 5, 0"/>
+                    <TextBlock Grid.Column="1" Style="{StaticResource TextBlockSubTitle}" Text="Save it to a file" VerticalAlignment="Center"/>
+                    <Image Grid.Column="2" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}" Margin="5, 0, 0, 0"/>
+                </Grid>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

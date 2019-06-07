@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using KittyCoin.Models;
 using KittyCoin.ViewModels;
@@ -31,6 +32,16 @@ namespace KittyCoin.Views
                 ServerStatusMessage.Text = "Your server is launched, enter an ip to connect to the KittyCoin Network";
                 ServerStatusMessage.Foreground = new SolidColorBrush(Color.FromArgb(255, 91, 193, 70));
             }
+        }
+
+        private void ButtonOnMouseEnter(object sender, MouseEventArgs e)
+        {
+            CodeBehindCommon.ButtonChangeCat(sender, true);
+        }
+
+        private void ButtonOnMouseLeave(object sender, MouseEventArgs e)
+        {
+            CodeBehindCommon.ButtonChangeCat(sender, false);
         }
     }
 }

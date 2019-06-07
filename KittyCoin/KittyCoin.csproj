@@ -54,6 +54,9 @@
     <LangVersion>7.3</LangVersion>
     <DocumentationFile>bin\Release\KittyCoin.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>KittyCoinIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
@@ -119,6 +122,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CodeBehindCommon.cs" />
     <Compile Include="ViewModels\ConnectWalletViewModel.cs" />
     <Compile Include="ViewModels\ConnectBlockchainViewModel.cs" />
     <Compile Include="ViewModels\NewTransactionViewModel.cs" />
@@ -252,7 +256,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Blockchain Save\" />
+    <Resource Include="Resources\Image\icons8-chat-100-down.png" />
+    <Resource Include="Resources\Image\icons8-chat-100-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="KittyCoinIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\icons8-cat-footprint-100.png" />
+    <Resource Include="Resources\Image\icons8-cheap-2-filled-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\cat.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -98,4 +98,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ButtonCatStyle" TargetType="Image">
+        <Setter Property="MaxHeight" Value="30"/>
+        <Setter Property="Margin" Value="20, 0, 20, 0"/>
+    </Style>
 </ResourceDictionary>

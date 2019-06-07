@@ -41,8 +41,17 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Style="{StaticResource ButtonBasic}" Command="{Binding LaunchServerCommand}">
-            <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Launch"/>
+        <Button Style="{StaticResource ButtonBasic}" Command="{Binding LaunchServerCommand}" MouseEnter="ButtonOnMouseEnter" MouseLeave="ButtonOnMouseLeave">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource TextBlockSubTitle}" Text="Launch" VerticalAlignment="Center"/>
+                <Image Grid.Column="2" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}"/>
+            </Grid>
         </Button>
     </StackPanel>
 </UserControl>

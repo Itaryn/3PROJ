@@ -8,6 +8,8 @@
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
         <TextBlock Text="Kitty Coin" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"
                    FontFamily="Helvetica" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center" Padding="10"/>
-        <Rectangle Fill="#FF0079D8" Width="260" Height="30"/>
+        <Grid Background="#FF0079D8" Height="50">
+            <Image Source="../Resources/Image/icons8-cat-footprint-100.png" Margin="5"/>
+        </Grid>
     </StackPanel>
 </Window>

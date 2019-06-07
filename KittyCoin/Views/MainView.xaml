@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:KittyCoin.Views.Controls"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         Title="Kitty Coin"
-        mc:Ignorable="d" Width="1280" Height="720" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Width="1280" Height="720" WindowStartupLocation="CenterScreen"
+        Name="MainWindow">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -28,9 +30,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Kitty Coin" FontFamily="Helvetica"  Style="{StaticResource Title}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Text="Kitty Coin" Style="{StaticResource Title}" VerticalAlignment="Center"/>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10">
-                    <Button Style="{StaticResource ButtonBasic}" Content="Create a Wallet" Foreground="White" Command="{Binding RegisterCommand}"/>
+                    <Button Style="{StaticResource ButtonBasic}" Content="Create a Wallet" Command="{Binding RegisterCommand}"/>
                     <Border VerticalAlignment="Center" BorderBrush="White" BorderThickness="1, 20, 0, 0" Margin="10, 0, 10, 0"/>
                     <TextBlock FontFamily="./FontFamily/#Helvetica" Foreground="White" Text="Mining" VerticalAlignment="Center"/>
                     <controls:ToggleButton x:Name="MiningToggleButton" HorizontalAlignment="Center" Height="25" Width="50" VerticalAlignment="Center" MouseLeftButtonDown="MiningClick"/>

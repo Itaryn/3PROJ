@@ -46,8 +46,17 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <Button x:Name="ConnectButton" Style="{StaticResource ButtonBasic}" Command="{Binding ConnectToBlockchainCommand}" Width="200">
-                <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Connect"/>
+            <Button x:Name="ConnectButton" Style="{StaticResource ButtonBasic}" Command="{Binding ConnectToBlockchainCommand}" Width="200" MouseEnter="ButtonOnMouseEnter" MouseLeave="ButtonOnMouseLeave">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}"/>
+                    <TextBlock Grid.Column="1" Style="{StaticResource TextBlockSubTitle}" Text="Connect" VerticalAlignment="Center"/>
+                    <Image Grid.Column="2" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}"/>
+                </Grid>
             </Button>
             <TextBlock x:Name="ServerStatusMessage" Margin="20" HorizontalAlignment="Center"/>
         </StackPanel>

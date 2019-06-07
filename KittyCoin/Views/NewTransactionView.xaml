@@ -77,8 +77,17 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonBasic}" Command="{Binding SendTransactionCommand}">
-            <TextBlock Style="{StaticResource TextBlockSubTitle}" Text="Send"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonBasic}" Command="{Binding SendTransactionCommand}" MouseEnter="ButtonOnMouseEnter" MouseLeave="ButtonOnMouseLeave">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}"/>
+                <TextBlock Grid.Column="1" Style="{StaticResource TextBlockSubTitle}" Text="Send" VerticalAlignment="Center"/>
+                <Image Grid.Column="2" Source="../Resources/Image/icons8-chat-100-down.png" Style="{StaticResource ButtonCatStyle}"/>
+            </Grid>
         </Button>
     </Grid>
 </UserControl>
