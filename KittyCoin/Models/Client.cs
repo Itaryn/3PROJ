@@ -84,24 +84,21 @@ namespace KittyCoin.Models
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_IS_NOT_VALID), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_IS_NOT_VALID.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_MISS_BLOCK))
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_MISS_BLOCK), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_MISS_BLOCK.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.BLOCKCHAIN_OVERWRITE))
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_OVERWRITE), null, null);
                         var chainReceived = JsonConvert.DeserializeObject<KittyChain>(e.Data.Substring(Constants.BLOCKCHAIN_OVERWRITE.Length));
                         MainViewModel.BlockChain = chainReceived;
-                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                     }
                     else if (e.Data.StartsWith(Constants.NEED_BLOCKCHAIN))
                     {
@@ -113,8 +110,7 @@ namespace KittyCoin.Models
                         if (!MainViewModel.BlockChain.IsValid() && chainReceived.IsValid())
                         {
                             MainViewModel.BlockChain = chainReceived;
-                            MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                            NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                            NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                         }
                     }
 

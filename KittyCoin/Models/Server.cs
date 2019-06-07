@@ -136,8 +136,7 @@ namespace KittyCoin.Models
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain receive is valid and local is not"), null, null);
                         MainViewModel.BlockChain = chainReceived;
-                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                     }
 
                     // If the received chain is bigger than local
@@ -146,8 +145,7 @@ namespace KittyCoin.Models
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("Blockchain is bigger than local"), null, null);
                         MainViewModel.BlockChain = chainReceived;
-                        MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                        NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                        NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                     }
 
                     // If the received chain is lower than local
@@ -172,8 +170,7 @@ namespace KittyCoin.Models
                         {
                             NewMessage.BeginInvoke(this, new EventArgsMessage("Overwrite BlockChain from sender"), null, null);
                             MainViewModel.BlockChain = chainReceived;
-                            MainViewModel.BlockChain.PendingTransfers = new List<Transfer>();
-                            NewMessage.BeginInvoke(this, new EventArgsMessage("BlockChain updated from server"), null, null);
+                            NewMessage.BeginInvoke(this, new EventArgsMessage(Constants.BLOCKCHAIN_UPDATED), null, null);
                         }
                         // Send a overwrite force to the sender
                         else
@@ -232,8 +229,16 @@ namespace KittyCoin.Models
                     var newTransfer = JsonConvert.DeserializeObject<Transfer>(e.Data.Substring(8));
                     NewMessage.BeginInvoke(this, new EventArgsMessage("New transfer received"), null, null);
 
-                    // If we already have it or it's not a valid transfer don't add it
-                    if (MainViewModel.BlockChain.PendingTransfers.Any(t => t.Equals(newTransfer)) || !newTransfer.IsValid())
+                    var chain = MainViewModel.BlockChain.Chain.ToArray();
+                    var transactions = MainViewModel.BlockChain.PendingTransfers.ToArray();
+
+                    // If we already have it (in pending transfer or already validated) or it's not a valid transfer don't add it
+                    if (transactions.Any(t => t.Equals(newTransfer)) ||
+                        chain.Any(b => b.Transfers.Any(t => t.Equals(newTransfer))) ||
+                        !newTransfer.IsValid() ||
+                        newTransfer.Amount <= 0 ||
+                        newTransfer.Biscuit < 0 ||
+                        MainViewModel.BlockChain.GetBalance(newTransfer.FromAddress, chain, transactions) < newTransfer.Amount + newTransfer.Biscuit)
                     {
                         NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                     }
@@ -255,7 +260,9 @@ namespace KittyCoin.Models
                     foreach (var newTransfer in newTransfers)
                     {
                         // If we already have it or it's not a valid transfer don't add it
-                        if (MainViewModel.BlockChain.PendingTransfers.Any(t => t.Equals(newTransfer)) || !newTransfer.IsValid())
+                        if (MainViewModel.BlockChain.PendingTransfers.Any(t => t.Equals(newTransfer)) ||
+                            MainViewModel.BlockChain.Chain.Any(b => b.Transfers.Any(t => t.Equals(newTransfer))) ||
+                            !newTransfer.IsValid())
                         {
                             NewMessage.BeginInvoke(this, new EventArgsMessage("New Transfer not valid or already in local"), null, null);
                         }

@@ -138,7 +138,7 @@ namespace KittyCoin.ViewModels
         {
             while (true)
             {
-                BlockChain.SaveBlockChain();
+                Console = BlockChain.SaveBlockChain();
                 Thread.Sleep(Constants.SCHEDULE_SAVE_TIME * 1000);
             }
         }
@@ -391,6 +391,13 @@ namespace KittyCoin.ViewModels
             if (e is EventArgsMessage args)
             {
                 Console = args.Message;
+                if (args.Message == Constants.BLOCKCHAIN_UPDATED &&
+                    CheckBoxMine)
+                {
+                    MiningThread?.Abort();
+                    MiningThread = new Thread(Mining) { IsBackground = true };
+                    MiningThread.Start();
+                }
             }
         }
 

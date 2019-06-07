@@ -104,5 +104,10 @@
         /// The transfer added message
         /// </summary>
         public static string TRANSFER_ADDED => "Transfer added";
+
+        /// <summary>
+        /// The blockchain update message
+        /// </summary>
+        public static string BLOCKCHAIN_UPDATED => "BlockChain updated from server";
     }
 }

@@ -156,7 +156,15 @@ namespace KittyCoin.ViewModels
             WalletConnectMessage = "You don't have a connected wallet";
             if (!string.IsNullOrEmpty(PublicAddress))
             {
-                Balance = MainViewModel.BlockChain.GetBalance(PublicAddress);
+                var guid = Guid.NewGuid();
+                MainViewModel.WaitingForBlockchainAccess(guid);
+
+                var chain = MainViewModel.BlockChain.Chain.ToArray();
+                var pendingTran = MainViewModel.BlockChain.PendingTransfers.ToArray();
+
+                MainViewModel.BlockChainWaitingList.Remove(guid);
+
+                Balance = MainViewModel.BlockChain.GetBalance(PublicAddress, chain, pendingTran);
                 var transactions = MainViewModel.BlockChain.GetTransactions(PublicAddress);
 
                 var transactionDic = new Dictionary<Transfer, bool>();

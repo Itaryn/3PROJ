@@ -171,11 +171,22 @@ namespace KittyCoin.Models
         /// <param name="transfer"></param>
         public string CreateTransfer(Transfer transfer)
         {
-            if (transfer != null &&
-                transfer.Amount > 0 &&
-                transfer.Biscuit >= 0 &&
-                GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit ||
-                transfer != null &&
+            if (transfer == null ||
+                transfer.Amount <= 0 ||
+                transfer.Biscuit < 0)
+            {
+                return "Error with the transfer. It can't be added (You don't have enough money or you're trying to send negative/zero value)";
+            }
+
+            var guid = Guid.NewGuid();
+            MainViewModel.WaitingForBlockchainAccess(guid);
+
+            var chain = MainViewModel.BlockChain.Chain.ToArray();
+            var transactions = MainViewModel.BlockChain.PendingTransfers.ToArray();
+
+            MainViewModel.BlockChainWaitingList.Remove(guid);
+
+            if (GetBalance(transfer.FromAddress, chain, transactions) >= transfer.Amount + transfer.Biscuit ||
                 new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress)
             {
                 PendingTransfers.Add(transfer);
@@ -282,20 +293,16 @@ namespace KittyCoin.Models
         /// Get the balance of an address
         /// </summary>
         /// <param name="address"></param>
+        /// <param name="chain"></param>
+        /// <param name="transactions"></param>
         /// <returns>
         /// The amount of coin
         /// </returns>
-        public double GetBalance(string address)
+        public double GetBalance(string address, Block[] chain, Transfer[] transactions)
         {
             double balance = 0;
 
-            var guid = Guid.NewGuid();
-            MainViewModel.WaitingForBlockchainAccess(guid);
-
-            var chain = Chain.ToArray();
-
-            MainViewModel.BlockChainWaitingList.Remove(guid);
-
+            // Check transactions in blocks
             foreach (var block in chain)
             {
                 foreach (var transfer in block.Transfers)
@@ -309,6 +316,19 @@ namespace KittyCoin.Models
                     if (transfer.ToAddress == address)
                         balance += transfer.Amount;
                 }
+            }
+
+            // Check transactions waiting
+            foreach (var transfer in transactions)
+            {
+                if (transfer.FromAddress == address)
+                {
+                    balance -= transfer.Amount;
+                    balance -= transfer.Biscuit;
+                }
+
+                if (transfer.ToAddress == address)
+                    balance += transfer.Amount;
             }
 
             return balance;
@@ -372,9 +392,17 @@ namespace KittyCoin.Models
         /// <summary>
         /// Save the blockchain to the txt file
         /// </summary>
-        public void SaveBlockChain()
+        public string SaveBlockChain()
         {
-            File.WriteAllText(Constants.SAVE_FILENAME, JsonConvert.SerializeObject(this));
+            try
+            {
+                File.WriteAllText(Constants.SAVE_FILENAME, JsonConvert.SerializeObject(this));
+                return "Blockchain saved";
+            }
+            catch (Exception e)
+            {
+                return $"Can't save the blockchain into the file, error : {e.Message}";
+            }
         }
 
         #endregion

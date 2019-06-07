@@ -29,9 +29,9 @@ namespace KittyCoin.Tests
             var user2 = new User("b");
             var user3 = new User("c");
 
-            Assert.Equal(30, blockchain2.GetBalance(user1.PublicAddress));
-            Assert.Equal(-65, blockchain2.GetBalance(user2.PublicAddress));
-            Assert.Equal(10, blockchain2.GetBalance(user3.PublicAddress));
+            Assert.Equal(30, blockchain2.GetBalance(user1.PublicAddress, blockchain2.Chain.ToArray(), blockchain2.PendingTransfers.ToArray()));
+            Assert.Equal(-65, blockchain2.GetBalance(user2.PublicAddress, blockchain2.Chain.ToArray(), blockchain2.PendingTransfers.ToArray()));
+            Assert.Equal(10, blockchain2.GetBalance(user3.PublicAddress, blockchain2.Chain.ToArray(), blockchain2.PendingTransfers.ToArray()));
         }
 
         private List<Block> GetBlocks()

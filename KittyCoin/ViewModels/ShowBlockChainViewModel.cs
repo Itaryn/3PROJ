@@ -51,7 +51,8 @@ namespace KittyCoin.ViewModels
             get => _selectedBlock;
             set
             {
-                if (_selectedBlock.Equals(value)) return;
+                if (value != null &&
+                    value.Equals(_selectedBlock)) return;
                 _selectedBlock = value;
                 RaisePropertyChanged("SelectedBlock");
             }

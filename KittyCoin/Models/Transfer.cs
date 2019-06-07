@@ -192,12 +192,7 @@ namespace KittyCoin.Models
             if (!(obj is Transfer other))
                 return false;
 
-            return string.Equals(FromAddress, other.FromAddress) &&
-                   string.Equals(ToAddress, other.ToAddress) &&
-                   Amount.Equals(other.Amount) &&
-                   Biscuit.Equals(other.Biscuit) &&
-                   CreationDate.Equals(other.CreationDate) &&
-                   string.Equals(Signature, other.Signature);
+            return ToString() == other.ToString();
         }
 
         /// <summary>
