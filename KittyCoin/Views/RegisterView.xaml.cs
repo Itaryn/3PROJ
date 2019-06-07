@@ -8,14 +8,12 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for RegisterView.xaml
     /// </summary>
-    public partial class RegisterView : Window
+    public partial class RegisterView
     {
-        private RegisterViewModel _viewModel;
         public RegisterView()
         {
             InitializeComponent();
-            _viewModel = new RegisterViewModel();
-            DataContext = _viewModel;
+            DataContext = new RegisterViewModel();
         }
 
         private void ButtonOnMouseEnter(object sender, MouseEventArgs e)

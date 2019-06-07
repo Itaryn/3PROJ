@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Input;
 using KittyCoin.Models;
 using KittyCoin.ViewModels;
 
@@ -11,7 +7,7 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for LaunchServerView.xaml
     /// </summary>
-    public partial class LaunchServerView : UserControl
+    public partial class LaunchServerView
     {
         public LaunchServerViewModel ViewModel;
 

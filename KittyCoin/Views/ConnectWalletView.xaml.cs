@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using KittyCoin.Models;
 using KittyCoin.ViewModels;
@@ -10,7 +9,7 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for ConnectWalletView.xaml
     /// </summary>
-    public partial class ConnectWalletView : UserControl
+    public partial class ConnectWalletView
     {
         public ConnectWalletViewModel ViewModel { get; }
 
@@ -45,7 +44,7 @@ namespace KittyCoin.Views
                     Clipboard.SetDataObject(ViewModel.PublicAddress);
                     MessageCopyClipboard.Text = "Copied";
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     MessageCopyClipboard.Text = "Error while trying to copy the Public Address";
                 }

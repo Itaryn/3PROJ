@@ -175,6 +175,7 @@ namespace KittyCoin.Models
                 transfer.Amount > 0 &&
                 transfer.Biscuit >= 0 &&
                 GetBalance(transfer.FromAddress) >= transfer.Amount + transfer.Biscuit ||
+                transfer != null &&
                 new User(Constants.PRIVATE_WORDS_KITTYCHAIN).PublicAddress == transfer.FromAddress)
             {
                 PendingTransfers.Add(transfer);
@@ -260,7 +261,6 @@ namespace KittyCoin.Models
 
                     if (currentBlock.Difficulty.MultiplyHex(pourcentOfDiff) != nextBlock.Difficulty)
                     {
-                        var t = currentBlock.Difficulty.MultiplyHex(pourcentOfDiff);
                         return false;
                     }
                 }

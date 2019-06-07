@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using KittyCoin.Packages;
-using KittyCoin.ViewModels;
 using Newtonsoft.Json;
 
 namespace KittyCoin.Models
@@ -179,6 +178,8 @@ namespace KittyCoin.Models
         /// That's why is begin with some 0 most of the time
         /// More 0 means more difficulty to have a working hash
         /// </param>
+        /// <param name="previousHash"></param>
+        /// <param name="transfers"></param>
         /// <returns>
         /// If the Hash is below the Difficulty
         /// </returns>

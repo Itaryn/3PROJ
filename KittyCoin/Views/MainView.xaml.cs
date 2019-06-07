@@ -9,7 +9,7 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class MainView
     {
         private MainViewModel _viewModel;
 
@@ -78,8 +78,6 @@ namespace KittyCoin.Views
                         var showBlockchainView = new ShowBlockchainView();
                         MainUserControl.Content = showBlockchainView;
                         break;
-                    default:
-                        break;
                 }
             }
         }
@@ -93,7 +91,7 @@ namespace KittyCoin.Views
             _viewModel.MiningThread?.Abort();
             _viewModel.SaveThread?.Abort();
             _viewModel.Client?.Close();
-            _viewModel.Server?.wss?.Stop();
+            _viewModel.Server?.Wss?.Stop();
 
             Application.Current.Shutdown();
             base.OnClosing(e);

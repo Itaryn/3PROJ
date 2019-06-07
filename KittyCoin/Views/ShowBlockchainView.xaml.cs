@@ -1,20 +1,17 @@
-﻿using System.Windows.Controls;
-using KittyCoin.ViewModels;
+﻿using KittyCoin.ViewModels;
 
 namespace KittyCoin.Views
 {
     /// <summary>
     /// Interaction logic for ShowBlockchainView.xaml
     /// </summary>
-    public partial class ShowBlockchainView : UserControl
+    public partial class ShowBlockchainView
     {
-        private ShowBlockchainViewModel _viewModel;
 
         public ShowBlockchainView()
         {
             InitializeComponent();
-            _viewModel = new ShowBlockchainViewModel();
-            DataContext = _viewModel;
+            DataContext = new ShowBlockchainViewModel();
         }
     }
 }

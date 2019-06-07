@@ -108,7 +108,7 @@ namespace KittyCoin.ViewModels
                     var privateKey = JsonConvert.DeserializeObject<RSAParameters>(File.ReadAllText(openFileDialog.FileName));
                     UpdateUser(new User(privateKey));
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     WalletConnectMessage = "Error with your file";
                 }

@@ -8,7 +8,7 @@ namespace KittyCoin.ViewModels
 {
     public class LaunchServerViewModel : INotifyPropertyChanged
     {
-        private int _port;
+        private string _port;
 
         public EventHandler LaunchServerWithPort;
 
@@ -21,12 +21,12 @@ namespace KittyCoin.ViewModels
 
         public void LaunchServerMethod()
         {
-            LaunchServerWithPort.BeginInvoke(this, new EventArgsMessage(Port.ToString()), null, null);
+            LaunchServerWithPort.BeginInvoke(this, new EventArgsMessage(Port), null, null);
         }
 
         #region Input
 
-        public int Port
+        public string Port
         {
             get => _port;
             set

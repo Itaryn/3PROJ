@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using KittyCoin.Models;
 using KittyCoin.ViewModels;
 
@@ -8,7 +7,7 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for NewTransactionView.xaml
     /// </summary>
-    public partial class NewTransactionView : UserControl
+    public partial class NewTransactionView
     {
         public NewTransactionViewModel ViewModel;
 

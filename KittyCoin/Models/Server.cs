@@ -20,7 +20,7 @@ namespace KittyCoin.Models
         /// <summary>
         /// The Web Socket
         /// </summary>
-        public WebSocketServer wss;
+        public WebSocketServer Wss;
 
         /// <summary>
         /// The Server Address
@@ -53,22 +53,22 @@ namespace KittyCoin.Models
                 try
                 {
                     // Set the web socket at the local address
-                    wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{address}:{port}");
+                    Wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}{address}:{port}");
                     ip = address.ToString();
                     break;
                 }
                 catch (Exception)
                 { }
             }
-            if (wss == null)
+            if (Wss == null)
             {
-                wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}127.0.0.1:{port}");
+                Wss = new WebSocketServer($"{Constants.SERVER_ADDRESS}127.0.0.1:{port}");
                 ip = "127.0.0.1";
             }
 
             // Set the service "Blockchain"
-            wss.AddWebSocketService<Server>(Constants.WEB_SERVICE_NAME);
-            wss.Start();
+            Wss.AddWebSocketService<Server>(Constants.WEB_SERVICE_NAME);
+            Wss.Start();
 
             // Set the address
             ServerAddress = $"{Constants.SERVER_ADDRESS}{ip}:{port}{Constants.WEB_SERVICE_NAME}";

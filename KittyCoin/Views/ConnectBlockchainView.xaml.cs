@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using KittyCoin.Models;
@@ -10,7 +9,7 @@ namespace KittyCoin.Views
     /// <summary>
     /// Interaction logic for ConnectBlockchainView.xaml
     /// </summary>
-    public partial class ConnectBlockchainView : UserControl
+    public partial class ConnectBlockchainView
     {
         public ConnectBlockchainViewModel ViewModel;
 

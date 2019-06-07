@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using KittyCoin.Models;
 using KittyCoin.Views;
@@ -192,7 +191,7 @@ namespace KittyCoin.ViewModels
                         Client.NewTransfer(transfer);
                         CurrentMineBlock = new Block(0, ActualUser.PublicAddress, BlockChain.Chain.Last().Hash, BlockChain.PendingTransfers, BlockChain.Difficulty);
 
-                        var receivers = MainViewModel.BlockChainUpdated?.GetInvocationList();
+                        var receivers = BlockChainUpdated?.GetInvocationList();
                         if (receivers != null)
                         {
                             foreach (EventHandler receiver in receivers)
@@ -319,7 +318,7 @@ namespace KittyCoin.ViewModels
                     Console = "Error when trying to launch the server";
                     Console = ex.Message;
 
-                    Server?.wss?.Stop();
+                    Server?.Wss?.Stop();
                     SaveThread?.Abort();
                 }
             }
@@ -328,8 +327,6 @@ namespace KittyCoin.ViewModels
         /// <summary>
         /// Show the popup to register a new wallet
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         /// <see cref="RegisterView"/>
         public void RegisterMethod()
         {
@@ -361,14 +358,13 @@ namespace KittyCoin.ViewModels
             {
                 if (waitingTime > Constants.WAITING_TIME_MAX * 2000)
                 {
-                    if (first != null &&
-                        first == BlockChainWaitingList.FirstOrDefault())
+                    if (first == BlockChainWaitingList.FirstOrDefault())
                     {
                         BlockChainWaitingList.Remove(first);
                     }
                     else
                     {
-                        first = BlockChainWaitingList.FirstOrDefault(); ;
+                        first = BlockChainWaitingList.FirstOrDefault();
                         waitingTime = 0;
                     }
                 }
